@@ -1,5 +1,6 @@
 "use strict";
 
+// out only goes to console
 console.log("Hello from external JavaScript");
 alert("Welcome to my website!");
 let favCol = prompt("Please enter your favorite color");
