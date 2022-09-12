@@ -92,7 +92,7 @@ asyncThunk2(function(thePassedFunction){ // this is a function call that passes 
 // Does using OOP in JS eliminate hte need for closures?
 // Does the use of let and var eliminate the need for closures?
 //  Why bother with closures besides just trying to show off?
-
+// Does "normal" object notation eliminate the need for arrow functions and closures?  If so, why do we need them at besides saving a few kb here and there?  It seems to make code very cryptic-looking and hard to read, defying the need to balance readability and size.
 /*
 "Situations where you might want to do this are particularly common on the web. Much of the code written in front-end JavaScript is event-based. You define some behavior, and then attach it to an event that is triggered by the user (such as a click or a keypress). The code is attached as a callback (a single function that is executed in response to the event)."
  */
