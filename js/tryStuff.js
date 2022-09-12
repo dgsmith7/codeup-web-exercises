@@ -82,3 +82,47 @@ asyncThunk2(function(thePassedFunction){ // this is a function call that passes 
 // r = gen.next().value;
 // console.log(r != undefined?r:"No more"); // No more
 
+// My theory is thus:   In a closure, a function returns a function, allowing the lexical context (scope) live on even after the function has returned.
+// This allows for one to maintain state without a global variable
+// Functions declarations allow variables of their container into scope, thus closures allow one to "remember" a state of a variable
+// even after it has changed based on the variables value when the function was called.
+// So, closures are like function factories that maintain state of their enclosing blocks variables (if passed in).
+
+// Another way to say it is that a closure is akin to (in Java) an instance of an object with one method. - Is that correct?
+// Does using OOP in JS eliminate hte need for closures?
+// Does the use of let and var eliminate the need for closures?
+//  Why bother with closures besides just trying to show off?
+
+/*
+"Situations where you might want to do this are particularly common on the web. Much of the code written in front-end JavaScript is event-based. You define some behavior, and then attach it to an event that is triggered by the user (such as a click or a keypress). The code is attached as a callback (a single function that is executed in response to the event)."
+ */
+(function () {
+    let foo = 20;
+
+    function a(v) {
+        return function () {
+            return foo + v;
+        };
+    }
+
+    let foo2 = 30;
+
+    function b(v) {
+        return function() {
+            return foo2 + v;
+        }
+    }
+
+
+    const d = a(123);
+    const e = b(456);
+    console.log(d());  // prints 143
+    console.log(d);
+    const f= b(123);
+    console.log(f()); // prints 153
+    console.log(e());  // prints 486
+    console.log(e);
+})();
+
+
+
