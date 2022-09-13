@@ -197,32 +197,32 @@ let s2 = "7";
 console.log(parseInt(s));
      console.log(parseInt(s2));
 
-let opt = confirm("Would you like to enter a number? Click OK for yes, CANCEL for no");
-if (opt) {
-    let n = prompt("Please enter a number.");
-    if (isNaN(n)) {
-        alert("That was not a number.")
-    } else {
+// let opt = confirm("Would you like to enter a number? Click OK for yes, CANCEL for no");
+// if (opt) {
+//     let n = prompt("Please enter a number.");
+//     if (isNaN(n)) {
+//         alert("That was not a number.")
+//     } else {
 
-// alternatively, comment out (the six lines above as well as line 223) then uncomment the 2 lines below
-//        let n = getValue();
-//        if (n != null) {
-//
+// alternatively, comment out (the six lines above as well as line 225) then uncomment the 2 lines below
+       let n = getValue();
+       if (n != null) {
+
         n = Number(n);
-        if (n % 2 == 0 /*issOdd(n)*/ ) {
+        if (/*n % 2 == 0*/ isEven(n) ) {
             alert("Your number is even.");
         } else {
             alert("Your number is odd.");
         }
         alert("Adding 100 to your number results in :" + (n + 100) /*(add100(n))*/ );
-        if (n >= 0 /*isPositive*/ ) {
+        if (/*n >= 0*/ isPositive(n) ) {
             alert("Your number is positive.");
         } else {
             alert("Your number is negative.");
         }
     }
 
-}
+//}
 
 function getValue() {
     let opt = confirm("Would you like to enter a number? Click OK for yes, CANCEL for no");
