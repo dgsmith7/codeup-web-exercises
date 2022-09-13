@@ -168,8 +168,9 @@ console.log(calculateTotal(0,100));
 // // Generate a random number between 0 and 6
 var luckyNumber = Math.floor(Math.random() * 6);
 let bill = Number(prompt("Please enter the amount of your bill."));
-let randNum = luckyNumber;
-alert("Your bill was: $" + bill.toFixed(2) + "\nYour lucky number was: " + randNum + "\nYour final charge is: $" + calculateTotal(randNum ,bill));
+alert("Your bill was: $" + bill.toFixed(2));
+alert("Your lucky number was: " + luckyNumber);
+alert("Your final charge is: $" + calculateTotal(luckyNumber ,bill));
 // /**
 //  * TODO:
 //  * Write some JavaScript that uses a `confirm` dialog to ask the user if they
