@@ -7,11 +7,15 @@
      * 'names'.
      */
 
+    let names = ["David", "Kenneth", "Ana", "Laura"];
+
     /**
      * TODO:
      * Create a log statement that will log the number of elements in the names
      * array.
      */
+
+    console.log(names.length);
 
     /**
      * TODO:
@@ -19,16 +23,29 @@
      * accessing each element's index.
      */
 
+    console.log(names[0]);
+    console.log(names[1]);
+    console.log(names[2]);
+    console.log(names[3]);
+
     /**
      * TODO:
      * Write some code that uses a for loop to log every item in the names
      * array.
      */
 
+    for (let i = 0; i < names.length; i ++) {
+        console.log(names[i]);
+    }
+
     /**
      * TODO:
      * Refactor your above code to use a `forEach` loop
      */
+
+    names.forEach(function(name) {
+        console.log(name);
+    })
 
     /**
      * TODO:
@@ -44,4 +61,19 @@
      *  > last([1, 2, 3, 4, 5]) // return 5
      */
 
+    function first(myArray) {
+        console.log(myArray[0]);
+    }
+
+    function second(myArray) {
+        console.log(myArray[1]);
+    }
+
+    function last(myArray) {
+        console.log(myArray[myArray.length - 1]);
+    }
+
+    first(names);
+    second(names);
+    last(names);
 })();
