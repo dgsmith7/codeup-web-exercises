@@ -122,6 +122,11 @@ asyncThunk2(function(thePassedFunction){ // this is a function call that passes 
     console.log(f()); // prints 153
     console.log(e());  // prints 486
     console.log(e);
+
+    //////////////////
+
+    let myVar = 7;
+    console.log(`The value of myVar is ${myVar} and a(7) is ${a(myVar)(7)}`);
 })();
 
 
