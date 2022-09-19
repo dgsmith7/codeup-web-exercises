@@ -127,6 +127,81 @@ asyncThunk2(function(thePassedFunction){ // this is a function call that passes 
 
     let myVar = 7;
     console.log(`The value of myVar is ${myVar} and a(7) is ${a(myVar)(7)}`);
+
+
+
+    /////////////////////
+
+    const num = 3;
+    function multiplyBy2 (inputNumber) {
+        const result = inputNumber * 2;
+        return result;
+    }
+
+    const output = multiplyBy2(num);
+    const newOutput = multiplyBy2(10);
+
+    /////////////
+
+    const tweets = getTweets("https://twitter.com/will/1");
+
+    displayTweets(tweets);
+
+    console.log("I wanna run!");
+
+    //////////////
+    // One cannot predict how long
+
+    function printHello(){
+        console.log("Hello");
+    }
+
+    setTimeout(printHello, 1000);
+
+    console.log("Me, first!");
+
+    ///////////////////////////////
+    // What if it was a 0 second delay
+
+    function printHello(){
+        console.log("Hello");
+    }
+
+    setTimeout(printHello, 0);
+
+    console.log("Me, first!");
+
+    // same result
+    ///////////////////////////////
+
+    function printHello(){
+        console.log("Hello");
+    }
+
+    blockFor1Second() {
+        // do stuff
+    }
+
+    setTimeout(printHello, 0);
+
+    console.log("Me, first!");
+
+    //////////////////////////////////
+
+    function display(data){
+        console.log(data);
+    }
+
+    const futureData = fetch("https://twitter.com/regis/1");
+
+    futureData.then(display);
+
+    console.log("Me First!");
+
+    ////////////////////////////////////
+
+
+
 })();
 
 

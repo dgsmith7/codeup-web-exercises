@@ -19,17 +19,29 @@
         console.log(randy + " is " + id);
     }
 
-    for (let i = 1; i < 10; i ++) {
-        let str = "";
-        for (let j = 0; j < i; j++) {
-            str += i;
-        }
-        console.log(str);
+    // for (let i = 1; i < 10; i ++) {
+    //     let str = "";
+    //     for (let j = 0; j < i; j++) {
+    //         str += i;
+    //     }
+    //     console.log(str);
+    // }
+
+    for (let i = 0; i < 10; i++) {
+        console.log(i.toString().repeat(i));
     }
 
     for (let i = 100; i > 0; i -= 5) {
         console.log(i);
     }
 
-
 }());
+
+
+
+
+
+
+
+
+
