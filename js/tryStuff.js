@@ -97,109 +97,128 @@ asyncThunk2(function(thePassedFunction){ // this is a function call that passes 
 "Situations where you might want to do this are particularly common on the web. Much of the code written in front-end JavaScript is event-based. You define some behavior, and then attach it to an event that is triggered by the user (such as a click or a keypress). The code is attached as a callback (a single function that is executed in response to the event)."
  */
 (function () {
-    let foo = 20;
+    'use strict';
 
-    function a(v) {
-        return function () {
-            return foo + v;
-        };
-    }
 
-    let foo2 = 30;
+    console.log(window.navigator.clipboard);
+// this code will produce a console log every second
+// when count >= max, the interval is cancelled, and the logging will stop
 
-    function b(v) {
-        return function() {
-            return foo2 + v;
+    var count = 0;
+    var max = 10;
+    var interval = 1000; // interval time in milliseconds
+
+    var intervalId = setInterval(function () {
+        if (count >= max) {
+            clearInterval(intervalId);
+            console.log('All done');
+        } else {
+            count++;
+            console.log('Repeating this line ' + count);
         }
-    }
+    }, interval);
 
-
-    const d = a(123);
-    const e = b(456);
-    console.log(d());  // prints 143
-    console.log(d);
-    const f= b(123);
-    console.log(f()); // prints 153
-    console.log(e());  // prints 486
-    console.log(e);
-
-    //////////////////
-
-    let myVar = 7;
-    console.log(`The value of myVar is ${myVar} and a(7) is ${a(myVar)(7)}`);
-
-
-
-    /////////////////////
-
-    const num = 3;
-    function multiplyBy2 (inputNumber) {
-        const result = inputNumber * 2;
-        return result;
-    }
-
-    const output = multiplyBy2(num);
-    const newOutput = multiplyBy2(10);
-
-    /////////////
-
-    const tweets = getTweets("https://twitter.com/will/1");
-
-    displayTweets(tweets);
-
-    console.log("I wanna run!");
-
-    //////////////
-    // One cannot predict how long
-
-    function printHello(){
-        console.log("Hello");
-    }
-
-    setTimeout(printHello, 1000);
-
-    console.log("Me, first!");
-
-    ///////////////////////////////
-    // What if it was a 0 second delay
-
-    function printHello(){
-        console.log("Hello");
-    }
-
-    setTimeout(printHello, 0);
-
-    console.log("Me, first!");
-
-    // same result
-    ///////////////////////////////
-
-    function printHello(){
-        console.log("Hello");
-    }
-
-    blockFor1Second() {
-        // do stuff
-    }
-
-    setTimeout(printHello, 0);
-
-    console.log("Me, first!");
-
-    //////////////////////////////////
-
-    function display(data){
-        console.log(data);
-    }
-
-    const futureData = fetch("https://twitter.com/regis/1");
-
-    futureData.then(display);
-
-    console.log("Me First!");
-
-    ////////////////////////////////////
-
+    // let foo = 20;
+    //
+    // function a(v) {
+    //     return function () {
+    //         return foo + v;
+    //     };
+    // }
+    //
+    // let foo2 = 30;
+    //
+    // function b(v) {
+    //     return function() {
+    //         return foo2 + v;
+    //     }
+    // }
+    //
+    //
+    // const d = a(123);
+    // const e = b(456);
+    // console.log(d());  // prints 143
+    // console.log(d);
+    // const f= b(123);
+    // console.log(f()); // prints 153
+    // console.log(e());  // prints 486
+    // console.log(e);
+    //
+    // //////////////////
+    //
+    // let myVar = 7;
+    // console.log(`The value of myVar is ${myVar} and a(7) is ${a(myVar)(7)}`);
+    //
+    //
+    //
+    // /////////////////////
+    //
+    // const num = 3;
+    // function multiplyBy2 (inputNumber) {
+    //     const result = inputNumber * 2;
+    //     return result;
+    // }
+    //
+    // const output = multiplyBy2(num);
+    // const newOutput = multiplyBy2(10);
+    //
+    // /////////////
+    //
+    // const tweets = getTweets("https://twitter.com/will/1");
+    //
+    // displayTweets(tweets);
+    //
+    // console.log("I wanna run!");
+    //
+    // //////////////
+    // // One cannot predict how long
+    //
+    // function printHello(){
+    //     console.log("Hello");
+    // }
+    //
+    // setTimeout(printHello, 1000);
+    //
+    // console.log("Me, first!");
+    //
+    // ///////////////////////////////
+    // // What if it was a 0 second delay
+    //
+    // function printHello(){
+    //     console.log("Hello");
+    // }
+    //
+    // setTimeout(printHello, 0);
+    //
+    // console.log("Me, first!");
+    //
+    // // same result
+    // ///////////////////////////////
+    //
+    // function printHello(){
+    //     console.log("Hello");
+    // }
+    //
+    // blockFor1Second();
+    //
+    // setTimeout(printHello, 0);
+    //
+    // console.log("Me, first!");
+    //
+    // //////////////////////////////////
+    //
+    // function display(data){
+    //     console.log(data);
+    // }
+    //
+    // const futureData = fetch("https://twitter.com/regis/1");
+    //
+    // futureData.then(display);
+    //
+    // console.log("Me First!");
+    //
+    // ////////////////////////////////////
+    //
 
 
 })();
