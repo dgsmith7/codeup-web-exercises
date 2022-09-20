@@ -60,8 +60,7 @@
         }
         console.log(shoppers[i].name + ": Before discount - $" + shoppers[i].amount + ", Discount - $" + discount + ", After $"+(shoppers[i].amount - discount));
         }
-
-
+    
     /** TODO:
      * Create an array of objects that represent books and store it in a
      * variable named `books`. Each object should have a title and an author
