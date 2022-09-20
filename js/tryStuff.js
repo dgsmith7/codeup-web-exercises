@@ -99,7 +99,11 @@ asyncThunk2(function(thePassedFunction){ // this is a function call that passes 
 (function () {
     'use strict';
 
-
+let myArr = [54,78,24,84,1,111,453];
+console.log(myArr);
+console.log(myArr.sort());
+console.log(myArr.sort((a, b) => (a - b) ));
+console.log(myArr);
 //    console.log(window.navigator.clipboard);
 
 // this code will produce a console log every second
