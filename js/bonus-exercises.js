@@ -6,6 +6,8 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
 (function() {
 
     function areaOfTri(a, b, c) {
+        // Heron's formula
+        // https://byjus.com/maths/area-of-a-triangle/#Area-of-a-Triangle-Formula
         let semiP = (a + b + c) / 2;
         return Math.sqrt(semiP * (semiP - a) * (semiP - b) * (semiP - c));
     }
