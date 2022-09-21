@@ -19,6 +19,20 @@
 <script>
     "use strict";
     (function() {
+        let o = {
+            fp: 7,
+            sp: 12,
+            tp: {
+                fp: 9,
+                sayFp: function () {
+                    return(this.fp);
+                },
+                arrowSayFp: () => (this.fp)
+            }
+        }
+
+        console.log(o.tp.sayFp());
+        console.log(o.tp.arrowSayFp());   // this won't bind in arrow func:https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this
         // Get the main heading h1 by id
         var mainHeading = document.getElementById('main-heading');
 

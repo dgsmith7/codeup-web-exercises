@@ -142,6 +142,7 @@
      *   `showBookInfo` function.
      */
 
+
     function createBook(titleName, authName) {
         return {title: titleName, author: {firstName: authName.split(" ")[0], lastName: authName.split(" ")[1]}}
     }
