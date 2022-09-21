@@ -38,14 +38,20 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
         // below:  shuffle array - //from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
         // <0 is a before b, >0 is a after b and 0 is keep same:  mathrand-0.5 will be between -.5 and .5
         let currentValue = [...myArray];
-        return currentValue.sort(() => Math.random() - 0.5);
+        return myArray.sort(function () {return Math.random() - 0.5;});
     }
 
-    console.log(areaOfTri(10, 10, 3));
+    function shuffleArray(myArray) {
+        return myArray.sort(function () {return Math.random() - 0.5;});
+    }
+
+
+        console.log(areaOfTri(10, 10, 3));
     console.log(backwards("codeup"));
     let myArray = [1, 2, 3, 4, 5];
     console.log("My array is - " + myArray);
     console.log("Shuffled version is - " + shuffle(myArray));
+    console.log(shuffleArray(myArray));
     console.log(Math.random() - 0.5);
 }());
 
