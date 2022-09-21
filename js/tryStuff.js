@@ -99,11 +99,15 @@ asyncThunk2(function(thePassedFunction){ // this is a function call that passes 
 (function () {
     'use strict';
 
-let myArr = [54,78,24,84,1,111,453];
+let myArr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0];
 console.log(myArr);
 console.log(myArr.sort());
 console.log(myArr.sort((a, b) => (a - b) ));
 console.log(myArr);
+console.log(myArr.sort(() => Math.random() - 0.5));
+    console.log(myArr.sort(() => Math.random() - 0.5));
+    console.log(myArr.sort(() => Math.random() - 0.5));
+    console.log(myArr.sort(() => Math.random() - 0.5));
 //    console.log(window.navigator.clipboard);
 
 // this code will produce a console log every second
