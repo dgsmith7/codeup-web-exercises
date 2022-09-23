@@ -1,4 +1,112 @@
+/* elements */
+body {
+    background-color: #aaa;
+    background-image: url('https://i0.wp.com/www.davidgailsmith.com/wp-content/uploads/2022/03/binaryprotoytypetwo.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    font-family: "Permanent Marker", sans-serif;
+}
+
+h1, h2 {
+    color: #900;
+}
+
+li {
+    list-style: circle;
+    list-style-position: inside;
+}
+
+td, tr {
+    padding: 10px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+/* classes */
 .fancy-header {
     color: purple;
     text-decoration: underline;
+}
+
+.item1 {
+    grid-area: a;
+}
+
+.item2 {
+    grid-area: b;
+}
+
+.item3 {
+    grid-area: c;
+}
+
+.item4 {
+    grid-area: d;
+}
+
+.mosaic {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-areas:
+            "a b"
+            "c d";
+    align-items: center;
+    justify-items: center;
+}
+
+.mosaic img {
+    padding: 10px;
+    border-radius: 15px;
+    filter: drop-shadow(30px 10px 4px #a0a0ae);
+}
+
+.tableContainer {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.threeTables {
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    grid-template-areas: "a b c";
+    align-items: start;
+    text-align: center;
+}
+
+.title {
+    text-align: center;
+}
+
+/* ids */
+#note {
+    text-align: right;
+}
+
+#top {
+    text-align: center;
+}
+
+#top > p {
+    color: purple;
+}
+
+/* psuedo-classes */
+a:link {
+    color: #9c0;
+}
+
+a:hover {
+    color: #0ff;
+}
+
+a:active {
+    color: #39f;
+}
+
+a:visited {
+    color: #66f;
 }
