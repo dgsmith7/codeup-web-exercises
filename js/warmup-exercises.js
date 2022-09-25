@@ -825,26 +825,26 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
     – using a for loop, iterate through the array to log the shapes until the matching shape is found
     – once the shape is found, log a message (“Shape is found”) and use a break statement to exit loop.
 */
-    let shapes = ["circle", "torus", "cube", "tetrahedron", "dodecahedron"];
-    for (let i = 0; i < shapes.length; i++) {
-        if (shapes[i] == "tetrahedron") {
-            console.log("Shape is found");
-            break;
-        }
-    }
+    // let shapes = ["circle", "torus", "cube", "tetrahedron", "dodecahedron"];
+    // for (let i = 0; i < shapes.length; i++) {
+    //     if (shapes[i] == "tetrahedron") {
+    //         console.log("Shape is found");
+    //         break;
+    //     }
+    // }
 
     /*
 2.  Create a function that returns a random day of the week
  */
-    function randomDay() {
-        let day = Math.floor(Math.random() * 7);
-        let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-        return days[day];
-    }
-
-    console.log(randomDay());
-    console.log(randomDay());
-    console.log(randomDay());
+    // function randomDay() {
+    //     let day = Math.floor(Math.random() * 7);
+    //     let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    //     return days[day];
+    // }
+    //
+    // console.log(randomDay());
+    // console.log(randomDay());
+    // console.log(randomDay());
 
     /*
 3.  Create a function that takes a single letter and returns what number the letter is in the alphabet. Ignore case.
@@ -852,33 +852,33 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
      – someFunction("z") // returns 26
  */
 
-    function whereInAlphabet(letter) {
-        let alphabet = "abcdefghijklmnopqrstuvwxyz";
-        let newStr = letter.toLowerCase();
-        return alphabet.indexOf(newStr) + 1;
-    }
-
-    console.log("Letter in alphabet");
-    console.log(whereInAlphabet("A"));
-    console.log(whereInAlphabet("z"));
+    // function whereInAlphabet(letter) {
+    //     let alphabet = "abcdefghijklmnopqrstuvwxyz";
+    //     let newStr = letter.toLowerCase();
+    //     return alphabet.indexOf(newStr) + 1;
+    // }
+    //
+    // console.log("Letter in alphabet");
+    // console.log(whereInAlphabet("A"));
+    // console.log(whereInAlphabet("z"));
 
     /*
 4.  Create a function that returns the longest string in a given array of string elements.
  */
-    function longest(array) {
-        let max = 0;
-        let maxIdx = 0;
-        for (let i = 0; i < array.length; i++) {
-            if (array[i].length > max) {
-                max = array[i].length;
-                maxIdx = i;
-            }
-        }
-        return array[maxIdx];
-    }
-
-    console.log("longest");
-    console.log(longest(["Free", "your", "mind", "and", "your", "ass", "will", "follow"]))
+    // function longest(array) {
+    //     let max = 0;
+    //     let maxIdx = 0;
+    //     for (let i = 0; i < array.length; i++) {
+    //         if (array[i].length > max) {
+    //             max = array[i].length;
+    //             maxIdx = i;
+    //         }
+    //     }
+    //     return array[maxIdx];
+    // }
+    //
+    // console.log("longest");
+    // console.log(longest(["Free", "your", "mind", "and", "your", "ass", "will", "follow"]))
 
     /*
 5.   Create a function that takes in two arrays of elements, including numbers. If all numbers added together in the first array is equal to all the number inputs added in the second array, return true, otherwise, false. Only add together numeric elements but either array may contain non-numeric elements.
@@ -887,29 +887,29 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
      – exampleFunction(arr1, arr2) // returns true
 
   */
-    function compareNumsInTwoArrays(arr1, arr2) {
-        let total1 = 0;
-        let total2 = 0;
-        for (let i = 0; i < arr1.length; i++) {
-            if ((!(isNaN(arr1[i]) === true) && !(typeof arr1[i] === "boolean") && !(arr1[i] === null))) {
-                total1 += Number(arr1[i]);
-            }
-        }
-        for (let i = 0; i < arr2.length; i++) {
-            if ((!(isNaN(arr2[i]) === true) && !(typeof arr2[i] === "boolean") && !(arr2[i] === null))) {
-                total2 += arr2[i];
-            }
-        }
-        return (total1 == total2);
-    }
+    // function compareNumsInTwoArrays(arr1, arr2) {
+    //     let total1 = 0;
+    //     let total2 = 0;
+    //     for (let i = 0; i < arr1.length; i++) {
+    //         if ((!(isNaN(arr1[i]) === true) && !(typeof arr1[i] === "boolean") && !(arr1[i] === null))) {
+    //             total1 += Number(arr1[i]);
+    //         }
+    //     }
+    //     for (let i = 0; i < arr2.length; i++) {
+    //         if ((!(isNaN(arr2[i]) === true) && !(typeof arr2[i] === "boolean") && !(arr2[i] === null))) {
+    //             total2 += arr2[i];
+    //         }
+    //     }
+    //     return (total1 == total2);
+    // }
 
-    console.log("Compare numbers in two arrays");
-    let arr1 = ['bob', 1, true, 1, 2];
-    let arr2 = [2, null, undefined, 0, 2, "apple"]
-    console.log(compareNumsInTwoArrays(arr1, arr2));
-    arr1 = ['bob', 2, true, 1, 2];
-    arr2 = [2, null, undefined, 0, 2, "apple"]
-    console.log(compareNumsInTwoArrays(arr1, arr2));
+    // console.log("Compare numbers in two arrays");
+    // let arr1 = ['bob', 1, true, 1, 2];
+    // let arr2 = [2, null, undefined, 0, 2, "apple"]
+    // console.log(compareNumsInTwoArrays(arr1, arr2));
+    // arr1 = ['bob', 2, true, 1, 2];
+    // arr2 = [2, null, undefined, 0, 2, "apple"]
+    // console.log(compareNumsInTwoArrays(arr1, arr2));
 
 
     /* arrays and objects
@@ -918,7 +918,21 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
 
     Example input: `["fred", true, 5, 3]`
     Example output: `[3, 5]`
+*/
+    function filterNumbers(arr) {
+        let res = [];
+        for (let i = 0; i < arr.length; i++) {
+            if ((!(isNaN(arr[i]) === true) && !(typeof arr[i] === "boolean") && !(arr[i] === null))) {
+                res.push(arr[i]);
+            }
+            res.sort((a, b) => (a - b));
+        }
+        return res;
+    }
 
+    console.log(filterNumbers(["fred", true, 5, 3]));
+
+    /*
 1. Write a function, `getOlder()` that takes in array of dog objects and
    increases the value of each object's `age` property by 1.
 
@@ -961,6 +975,36 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
             age: 11
           }
         ]
+
+        */
+    function getOlder(arrOfDogz) {
+        for (let i = 0; i < arrOfDogz.length; i++) {
+            arrOfDogz[i].age += 1;
+        }
+        return arrOfDogz;
+    }
+
+    let myArray = [
+        {
+            name: "Chompers",
+            breed: "Pug",
+            age: 7
+        },
+        {
+            name: "Freddy",
+            breed: "Lab",
+            age: 4
+        },
+        {
+            name: "Mr. Pig",
+            breed: "Mastif",
+            age: 10
+        }
+    ];
+    myArray = getOlder(myArray);
+    console.log(myArray);
+
+    /*
 
 1. Write a function, `washCars()` that takes in a array of car objects and sets
    the boolean properties of `isDirty` to false.
@@ -1011,6 +1055,39 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
           }
         ]
 
+*/
+    function washCars(arr) {
+        for (let i = 0; i < arr.length; i++) {
+            arr[i].isDirty = false;
+        }
+        return arr;
+    }
+
+    let carz = [
+        {
+            make: 'Volvo',
+            color: 'red',
+            year: 1996,
+            isDirty: true
+        },
+        {
+            make: 'Toyota',
+            color: 'black',
+            year: 2004,
+            isDirty: false
+        },
+        {
+            make: 'Ford',
+            color: 'white',
+            year: 2007,
+            isDirty: true
+        }
+    ];
+
+    carz = washCars(carz);
+    console.log(carz);
+
+    /*
 1. Write a function, `adminList()` that takes in an array of user objects and
    returns a count of all admins based on the `isAdmin` property. Refactor to
    return an array of admin-only user emails. Refactor again to return an array
@@ -1055,6 +1132,58 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
           }
         ]
 
+*/
+    function adminList(arr) {
+        let total = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].isAdmin == true) {
+                total++;
+            }
+        }
+        return total;
+    }
+
+    function adminList2(arr) {
+        let res = [];
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].isAdmin == true) {
+                res.push(arr[i].email);
+            }
+        }
+        return res;
+    }
+
+    function adminList3(arr) {
+        let res = [];
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].isAdmin == true) {
+                res.push(arr[i]);
+            }
+        }
+        return res;
+    }
+
+    let userz = [
+        {
+            isAdmin: true,
+            email: 'user1@email.com'
+        },
+        {
+            isAdmin: true,
+            email: 'user2@email.com'
+        },
+        {
+            isAdmin: false,
+            email: 'user3@email.com'
+        }
+    ];
+    console.log("Admin list");
+    console.log(adminList(userz));
+    console.log(adminList2(userz));
+    console.log(adminList3(userz));
+
+
+    /*
 1. Create a function, `makeSandwhichObjects()` that takes in two array of
    strings, breads and fillings and returns an array of `sandwhichObjects` that
    contain properties for bread and filling and values correspond to the same
@@ -1103,6 +1232,31 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
         ]
 
      */
+
+    function makeSandwhichObjects(breads, fillings) {
+        let res = [];
+        for (let i = 0; i < breads.length; i++) {
+            res.push({bread: breads[i], filling: fillings[i]});
+        }
+        return res;
+    }
+
+    let breads = [
+        "white",
+        "wheat",
+        "rhy",
+        "white"
+    ];
+
+    let fillings = [
+        "pb&j",
+        "ham",
+        "cheese steak",
+        "tuna"
+    ];
+
+    console.log("Make sandwiches");
+    console.log(makeSandwhichObjects(breads, fillings));
 
 
     /*  functions
