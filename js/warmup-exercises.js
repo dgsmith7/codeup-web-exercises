@@ -919,18 +919,18 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
     Example input: `["fred", true, 5, 3]`
     Example output: `[3, 5]`
 */
-    function filterNumbers(arr) {
-        let res = [];
-        for (let i = 0; i < arr.length; i++) {
-            if ((!(isNaN(arr[i]) === true) && !(typeof arr[i] === "boolean") && !(arr[i] === null))) {
-                res.push(arr[i]);
-            }
-            res.sort((a, b) => (a - b));
-        }
-        return res;
-    }
-
-    console.log(filterNumbers(["fred", true, 5, 3]));
+    // function filterNumbers(arr) {
+    //     let res = [];
+    //     for (let i = 0; i < arr.length; i++) {
+    //         if ((!(isNaN(arr[i]) === true) && !(typeof arr[i] === "boolean") && !(arr[i] === null))) {
+    //             res.push(arr[i]);
+    //         }
+    //         res.sort((a, b) => (a - b));
+    //     }
+    //     return res;
+    // }
+    //
+    // console.log(filterNumbers(["fred", true, 5, 3]));
 
     /*
 1. Write a function, `getOlder()` that takes in array of dog objects and
@@ -977,32 +977,32 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
         ]
 
         */
-    function getOlder(arrOfDogz) {
-        for (let i = 0; i < arrOfDogz.length; i++) {
-            arrOfDogz[i].age += 1;
-        }
-        return arrOfDogz;
-    }
+    // function getOlder(arrOfDogz) {
+    //     for (let i = 0; i < arrOfDogz.length; i++) {
+    //         arrOfDogz[i].age += 1;
+    //     }
+    //     return arrOfDogz;
+    // }
 
-    let myArray = [
-        {
-            name: "Chompers",
-            breed: "Pug",
-            age: 7
-        },
-        {
-            name: "Freddy",
-            breed: "Lab",
-            age: 4
-        },
-        {
-            name: "Mr. Pig",
-            breed: "Mastif",
-            age: 10
-        }
-    ];
-    myArray = getOlder(myArray);
-    console.log(myArray);
+    // let myArray = [
+    //     {
+    //         name: "Chompers",
+    //         breed: "Pug",
+    //         age: 7
+    //     },
+    //     {
+    //         name: "Freddy",
+    //         breed: "Lab",
+    //         age: 4
+    //     },
+    //     {
+    //         name: "Mr. Pig",
+    //         breed: "Mastif",
+    //         age: 10
+    //     }
+    // ];
+    // myArray = getOlder(myArray);
+    // console.log(myArray);
 
     /*
 
@@ -1056,36 +1056,36 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
         ]
 
 */
-    function washCars(arr) {
-        for (let i = 0; i < arr.length; i++) {
-            arr[i].isDirty = false;
-        }
-        return arr;
-    }
+    // function washCars(arr) {
+    //     for (let i = 0; i < arr.length; i++) {
+    //         arr[i].isDirty = false;
+    //     }
+    //     return arr;
+    // }
+    //
+    // let carz = [
+    //     {
+    //         make: 'Volvo',
+    //         color: 'red',
+    //         year: 1996,
+    //         isDirty: true
+    //     },
+    //     {
+    //         make: 'Toyota',
+    //         color: 'black',
+    //         year: 2004,
+    //         isDirty: false
+    //     },
+    //     {
+    //         make: 'Ford',
+    //         color: 'white',
+    //         year: 2007,
+    //         isDirty: true
+    //     }
+    // ];
 
-    let carz = [
-        {
-            make: 'Volvo',
-            color: 'red',
-            year: 1996,
-            isDirty: true
-        },
-        {
-            make: 'Toyota',
-            color: 'black',
-            year: 2004,
-            isDirty: false
-        },
-        {
-            make: 'Ford',
-            color: 'white',
-            year: 2007,
-            isDirty: true
-        }
-    ];
-
-    carz = washCars(carz);
-    console.log(carz);
+    // carz = washCars(carz);
+    // console.log(carz);
 
     /*
 1. Write a function, `adminList()` that takes in an array of user objects and
@@ -1133,55 +1133,55 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
         ]
 
 */
-    function adminList(arr) {
-        let total = 0;
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i].isAdmin == true) {
-                total++;
-            }
-        }
-        return total;
-    }
+    // function adminList(arr) {
+    //     let total = 0;
+    //     for (let i = 0; i < arr.length; i++) {
+    //         if (arr[i].isAdmin == true) {
+    //             total++;
+    //         }
+    //     }
+    //     return total;
+    // }
 
-    function adminList2(arr) {
-        let res = [];
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i].isAdmin == true) {
-                res.push(arr[i].email);
-            }
-        }
-        return res;
-    }
+    // function adminList2(arr) {
+    //     let res = [];
+    //     for (let i = 0; i < arr.length; i++) {
+    //         if (arr[i].isAdmin == true) {
+    //             res.push(arr[i].email);
+    //         }
+    //     }
+    //     return res;
+    // }
 
-    function adminList3(arr) {
-        let res = [];
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i].isAdmin == true) {
-                res.push(arr[i]);
-            }
-        }
-        return res;
-    }
+    // function adminList3(arr) {
+    //     let res = [];
+    //     for (let i = 0; i < arr.length; i++) {
+    //         if (arr[i].isAdmin == true) {
+    //             res.push(arr[i]);
+    //         }
+    //     }
+    //     return res;
+    // }
 
-    let userz = [
-        {
-            isAdmin: true,
-            email: 'user1@email.com'
-        },
-        {
-            isAdmin: true,
-            email: 'user2@email.com'
-        },
-        {
-            isAdmin: false,
-            email: 'user3@email.com'
-        }
-    ];
-    console.log("Admin list");
-    console.log(adminList(userz));
-    console.log(adminList2(userz));
-    console.log(adminList3(userz));
-
+    // let userz = [
+    //     {
+    //         isAdmin: true,
+    //         email: 'user1@email.com'
+    //     },
+    //     {
+    //         isAdmin: true,
+    //         email: 'user2@email.com'
+    //     },
+    //     {
+    //         isAdmin: false,
+    //         email: 'user3@email.com'
+    //     }
+    // ];
+    // console.log("Admin list");
+    // console.log(adminList(userz));
+    // console.log(adminList2(userz));
+    // console.log(adminList3(userz));
+    //
 
     /*
 1. Create a function, `makeSandwhichObjects()` that takes in two array of
@@ -1233,30 +1233,30 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
 
      */
 
-    function makeSandwhichObjects(breads, fillings) {
-        let res = [];
-        for (let i = 0; i < breads.length; i++) {
-            res.push({bread: breads[i], filling: fillings[i]});
-        }
-        return res;
-    }
-
-    let breads = [
-        "white",
-        "wheat",
-        "rhy",
-        "white"
-    ];
-
-    let fillings = [
-        "pb&j",
-        "ham",
-        "cheese steak",
-        "tuna"
-    ];
-
-    console.log("Make sandwiches");
-    console.log(makeSandwhichObjects(breads, fillings));
+    // function makeSandwhichObjects(breads, fillings) {
+    //     let res = [];
+    //     for (let i = 0; i < breads.length; i++) {
+    //         res.push({bread: breads[i], filling: fillings[i]});
+    //     }
+    //     return res;
+    // }
+    //
+    // let breads = [
+    //     "white",
+    //     "wheat",
+    //     "rhy",
+    //     "white"
+    // ];
+    //
+    // let fillings = [
+    //     "pb&j",
+    //     "ham",
+    //     "cheese steak",
+    //     "tuna"
+    // ];
+    //
+    // console.log("Make sandwiches");
+    // console.log(makeSandwhichObjects(breads, fillings));
 
 
     /*  functions
@@ -1470,7 +1470,53 @@ Functions using conditionals but not loops or arrays:
     - `fix()` - will set sterile to true if dog sterilized property is false
     - `vaccinate()` - takes in an argument for the name of the shot and adds a
       new shot with the current date to the shotRecords array
+*/
+    class Dog {
+        breed;
+        weightInPounds;
+        age;
+        color;
+        sterilized;
+        shotRecords;
 
+        constructor(_breed, _lbs, _age, _col, _sterilized, _shots) {
+            this.breed = _breed;
+            this.weightInPounds = _lbs;
+            this.age = _age;
+            this.color = _col;
+            this.sterilized = _sterilized;
+            this.shotRecords = _shots;
+        }
+
+        bark() {
+            console.log("Woof!");
+        }
+
+        getOlder() {
+            this.age++;
+        }
+
+        fix() {
+            if (this.sterilized == false) {
+                this.sterilized = true;
+            }
+        }
+
+        vaccinate(which) { //takes in an argument for the name of the shot and adds a
+            //new shot with the current date to the shotRecords array
+            this.shotRecords.push({date: new Date().toISOString().substring(0, 10), typeOfShot: which,});
+            // get date: https://stackoverflow.com/questions/3066586/get-string-in-yyyymmdd-format-from-js-date-object
+        }
+    }
+
+    let d1 = new Dog("Australian Shepherd", 17, 5, "grey spotted", false, []);
+    //   console.log(d1);
+    d1.bark();
+    d1.getOlder();
+    d1.fix();
+    d1.vaccinate("rabies");
+    console.log(d1);
+    /*
 1. Expanding on the books object exercise:
 
     - Add a property `keywords` that contains an array of possible genres the
