@@ -176,7 +176,7 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
         "I like going out to parties with friends or watching TV." => 8
 */
     // function longestWordLength(sentence) {
-    //     let myArray = str.split(" ");
+    //     let myArray = sentence.split(" ");
     //     let max = 0;
     //     for (let i = 0; i < myArray.length; i++) {
     //         if (myArray[i].length > max) max = myArray[i].length;
@@ -527,28 +527,162 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
 
 
  // Exercise 0. Write a function named first() that returns only the first element of an array
+*/
+    function first(arr) {
+        return arr[0];
+    }
 
+    console.log("first");
+    console.log(first([0, 1, 2, 3]));
+
+    /*
  // Exercise 1. Write a function named secondToLast() that returns the second to last element
+*/
+    function secondToLast(arr) {
+        return arr[arr.length - 2];
+    }
+
+    console.log("2nd to last");
+    console.log(secondToLast([0, 1, 2, 3]));
+
+    /*
 
  // Exercise 2. Write a function named rest() that takes an an array and returns an array containing everything except the first element.
+*/
+    function rest(arr) {
+        return arr.slice(1, arr.length);
+    }
+
+    console.log("rest");
+    console.log(rest([0, 1, 2, 3]));
+
+    /*
 
  // Exercise 3. Write a function named getLongestString that takes in an array of strings and returns the longest string of that array
+*/
+    function longestWord(array) {
+        let max = 0;
+        let maxIdx = 0;
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].length > max) {
+                max = array[i].length;
+                maxIdx = i;
+            }
+        }
+        return array[maxIdx];
+    }
+
+    console.log("longest word");
+    console.log(longestWord(["Free", "your", "mind", "and", "your", "ass", "will", "follow"]))
+
+    /*
 
  // Exercise 3.1 Write a function named getShortestString that takes in an array of strings and returns the shortest string in that array.
+*/
+    function shortestWord(array) {
+        let min = Infinity;
+        let minIdx = 0;
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].length < min) {
+                min = array[i].length;
+                minIdx = i;
+            }
+        }
+        return array[minIdx];
+    }
+
+    console.log("shortest word");
+    console.log(shortestWord(["Free", "your", "mind", "and", "your", "ass", "will", "follow"]))
+
+    /*
 
  // Exercise 4. Write a function named addTwoArrays that takes in two, one dimensional arrays. The function should return a single array containing all of the elements of the first array along with all of the elements of the second array
+*/
+
+    function addTwoArrays(arr1, arr2) {
+        let res = [];
+        for (let i = 0; i < arr1.length; i++) {
+            res.push(arr1[i]);
+        }
+        for (let i = 0; i < arr1.length; i++) {
+            res.push(arr2[i]);
+        }
+        return res;
+    }
+
+    console.log("Add two arrays");
+    console.log(addTwoArrays([1, 2, 3], ["a", "b", "c"]));
+
+    /*
  // Example: addTwoArrays([1, 2, 3], [4, 5, 6]) should return [1, 2, 3, 4, 5, 6]
 
- // Exercise 5. Write a function named getUniqueValues that takes in an array and returns the array without any duplicates
+  // Exercise 5. Write a function named getUniqueValues that takes in an array and returns the array without any duplicates
+*/
+
+    function getUniqueValues(anArray) {
+        let res = [];
+        for (let i = 0; i < anArray.length; i++) {
+            let match = false;
+            for (let j = i + 1; j < anArray.length; j++) {
+                if (anArray[i] == anArray[j]) {
+                    match = true;
+                }
+            }
+            if (match == false) {
+                res.push(anArray[i]);
+            }
+        }
+        return res;
+    }
+
+    console.log("Gt unique values");
+    console.log(getUniqueValues(["a", "b", "a", "b", "c", "c"]));
+    console.log(getUniqueValues(["a", "a", "a", "a", "a", "a"]));
+    console.log(getUniqueValues(["a", "a", "a", "a", "a", "c"]));
+    console.log(getUniqueValues(["a", "b", "c", "d", "e", "f"]));
+
+    /*
  // Example: getUniqueValues(["a", "b", "a", "b", "c", "c"]) should return ["a", "b", "c"]
 
  // Exercise 6. Write a function named reverseArray that takes in an array and returns it reversed, but without altering the original array.
+*/
+    function reverseArray(anArray) {
+        let res = [];
+        for (let i = 0; i < anArray.length; i++) {
+            res.push(anArray[anArray.length - 1 - i]);
+        }
+        return res;
+    }
+
+    let anArray = ["1", "2", "3", "4", "5", "6"];
+    console.log("Reverse array");
+    console.log(reverseArray(anArray));
+    console.log(anArray);
+    anArray = ["a", "b", "c", "d", "e", "f"];
+    console.log(reverseArray(anArray));
+    console.log(anArray);
+
+    /*
 
  // Exercies 7. Write a function named getRandomQuote().
  //   Inside of the function, create an array of strings where each string is a quote or thought you find inspirational
  //   getRandomQuote should generate a random number between 0 and the array's length minus 1
  //   use the randomly generated number as your index
  //   return a random quote.
+*/
+    function getRandomQuote(quotes) {
+        let which = Math.floor(Math.random() * quotes.length);
+        return quotes[which];
+    }
+
+    let quotes = ["Free your mind and your ass will follow.", "Yeh, Johnny, yeah!", "No, No.", "Yes, Yes.", "Don't hold me!", "No balls in the hallways, boys!"];
+    console.log(getRandomQuote(quotes));
+    console.log(getRandomQuote(quotes));
+    console.log(getRandomQuote(quotes));
+    console.log(getRandomQuote(quotes));
+    console.log(getRandomQuote(quotes));
+
+    /*
 
  // Exercise 8. Write a function named getIndexesOf() that takes in two arguments.
  // The first argument should be a specific numeral or character
@@ -556,6 +690,22 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
  // getIndexesOf() should return an array containing all of the indexes of that character in the string
  // Example: getIndexesOf("a", "banana") should return the array [1, 3, 5]
  // Example: getIndexesOf("z", "banana") should return an empty array [] since there are no "z" characters in "banana"
+*/
+    function getIndexesOf(symbol, string) {
+        let res = [];
+        for (let i = 0; i < string.length; i++) {
+            if (string[i] == symbol) {
+                res.push(i);
+            }
+        }
+        return res;
+    }
+
+    console.log("get indexes of");
+    console.log(getIndexesOf("a", "banana"));
+    console.log(getIndexesOf("z", "banana"));
+
+    /*
 
  // Exercise 9. Write a function named removeAll.
  // It should accept an array and a value
@@ -564,14 +714,84 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
  // output array
  // Example: removeAll([1, 2, 3], 2) should return [1, 3]
  // Example 2: removeAll([2, 2, 3, 4, 5, 2, 2], 2) should return [3, 4, 5]
+*/
+    function removeAll(arr, val) {
+        let res = [];
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] != val) {
+                res.push(arr[i]);
+            }
+        }
+        return res;
+    }
+
+    console.log("Remove all");
+    console.log(removeAll([1, 2, 3], 2));
+    console.log(removeAll([2, 2, 3, 4, 5, 2, 2], 2));
+
+    /*
 
  // Exercise 10. Write a function named firstTenFibonacciNumbers() that returns an array of the first ten fibonacci numbers
+*/
+    function firstTenFibonacci() {
+        let res = [1, 2];
+        let num = 0;
+        for (let i = 2; i < 10; i++) {
+            num = res[i - 2] + res[i - 1];
+            res.push(num);
+        }
+        return res;
+    }
+
+    console.log("First ten fibonacci.");
+    console.log(firstTenFibonacci());
+
+    /*
 
  // Exercise 11. Write a function named getNFibonacci(n) that returns an array containing the first n fibonacci numbers
+*/
+    function getNFibonacci(n) {
+        if (n == 0) {
+            return [];
+        }
+        if (n == 1) {
+            return [1];
+        }
+        let res = [1, 2];
+        let num = 0;
+        for (let i = 2; i < n; i++) {
+            num = res[i - 2] + res[i - 1];
+            res.push(num);
+        }
+        return res;
+    }
+
+    console.log("n fibonacci.");
+    console.log(getNFibonacci(0));
+    console.log(getNFibonacci(1));
+    console.log(getNFibonacci(2));
+    console.log(getNFibonacci(7));
+
+    /*
 
  // Exercise 12. Write a function named moveFirstToLast() that takes in an array
  // the function should return the array with the first element at the end
  // Example: moveFirstToLast([1, 2, 3, 4]) should return [2, 3, 4, 1]
+*/
+    function firstToLast(arr) {
+        let res = [];
+        for (let i = 1; i < arr.length; i++) {
+            res.push(arr[i]);
+        }
+        res.push(arr[0]);
+        return res;
+    }
+
+    console.log("first to last");
+    console.log(firstToLast([1, 2, 3, 4]));
+    console.log(firstToLast(["a", "b", "c", "d"]));
+
+    /*
 
 
  // Exercise 13. Write a function named zip() that takes in two arrays with the same number of elements
@@ -579,6 +799,22 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
  // Example: zip([1, 2, 3], [4, 5, 6]) returns [[1, 4], [2, 5], [3, 6])
  // Example: zip(["a", "b", "c"], ["x", "y", "z"]) returns [["a", "x"], ["b", "y"], ["c", "z"]]
      ```
+*/
+    function zip(arr1, arr2) {
+        let res = [];
+        for (let i = 0; i < arr1.length; i++) {
+            let mini = [];
+            mini.push(arr1[i]);
+            mini.push(arr2[i]);
+            res.push(mini);
+        }
+        return res;
+    }
+
+    console.log("zip");
+    console.log(zip([1, 2, 3], [4, 5, 6]));
+    console.log(zip(["a", "b", "c"], ["x", "y", "z"]));
+    /*
 
  ---
 
@@ -588,12 +824,24 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
      – prompt the user to search for a specific shape
      – using a for loop, iterate through the array to log the shapes until the matching shape is found
      – once the shape is found, log a message (“Shape is found”) and use a break statement to exit loop.
- 2.  Create a function that returns a random day of the week
- 3.  Create a function that takes a single letter and returns what number the letter is in the alphabet. Ignore case.
+ */
+
+    /*
+2.  Create a function that returns a random day of the week
+ */
+
+    /*
+3.  Create a function that takes a single letter and returns what number the letter is in the alphabet. Ignore case.
      – someFunction("a") // returns 1
      – someFunction("z") // returns 26
- 4.  Create a function that returns the longest string in a given array of string elements.
- 5.   Create a function that takes in two arrays of elements, including numbers. If all numbers added together in the first array is equal to all the number inputs added in the second array, return true, otherwise, false. Only add together numeric elements but either array may contain non-numeric elements.
+ */
+
+    /*
+4.  Create a function that returns the longest string in a given array of string elements.
+ */
+
+    /*
+5.   Create a function that takes in two arrays of elements, including numbers. If all numbers added together in the first array is equal to all the number inputs added in the second array, return true, otherwise, false. Only add together numeric elements but either array may contain non-numeric elements.
      – var arr1 = ['bob', 1, true, 1, 2];
      – var arr2 = [2, null, undefined, 0, 2, "apple"]
      – exampleFunction(arr1, arr2) // returns true
