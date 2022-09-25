@@ -293,16 +293,16 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
         - `allIndexesOf(fruits, "pineapple")` should return [4]
 
     */
-    function allIndexesOf(searchArea, searchCriteria) {
-        let foundAt = [];
-        searchArea.forEach((element, index) => (element == searchCriteria ? foundAt.push(index) : null));
-        return foundAt;
-    }
-
-    let fruits = ["apple", "banana", "orange", "apple", "pineapple"];
-    console.log(allIndexesOf(fruits, "apple"));
-    console.log(allIndexesOf(fruits, "guava"));
-    console.log(allIndexesOf(fruits, "pineapple"));
+    // function allIndexesOf(searchArea, searchCriteria) {
+    //     let foundAt = [];
+    //     searchArea.forEach((element, index) => (element == searchCriteria ? foundAt.push(index) : null));
+    //     return foundAt;
+    // }
+    //
+    // let fruits = ["apple", "banana", "orange", "apple", "pineapple"];
+    // console.log(allIndexesOf(fruits, "apple"));
+    // console.log(allIndexesOf(fruits, "guava"));
+    // console.log(allIndexesOf(fruits, "pineapple"));
 
     /*
 
@@ -325,20 +325,20 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
 
 ---
 */
-    function removeAll(array, value) {
-        let res = [];
-        array.forEach((element, index) => (element != value) ? res.push(element) : null);
-        if (res == []) {
-            return array;
-        } else {
-            return res;
-        }
-    }
-
-    let bugs = ["mosquito", "ant", "scorpion", "ant", "ant", "mosquito", "typo", "reference error", "type error"];
-    console.log(removeAll(bugs, "ant"));
-    console.log(removeAll(bugs, "mosquito"));
-    console.log(removeAll(bugs, "roach"));
+    // function removeAll(array, value) {
+    //     let res = [];
+    //     array.forEach((element, index) => (element != value) ? res.push(element) : null);
+    //     if (res == []) {
+    //         return array;
+    //     } else {
+    //         return res;
+    //     }
+    // }
+    //
+    // let bugs = ["mosquito", "ant", "scorpion", "ant", "ant", "mosquito", "typo", "reference error", "type error"];
+    // console.log(removeAll(bugs, "ant"));
+    // console.log(removeAll(bugs, "mosquito"));
+    // console.log(removeAll(bugs, "roach"));
 
 
     /*
@@ -346,100 +346,100 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
 - Make a function called randomIntBetween(min, max) that returns a random number
   between the min and the max.
   */
-    function randomInBetween(min, max) {
-        return (Math.random() * Math.abs(max - min)) + min;
-    }
-
-    console.log("Random between 1 and 5: " + randomInBetween(1, 5));
-    console.log("Random between 98 and 100: " + randomInBetween(98, 100));
-    console.log("Random between -5 and -2: " + randomInBetween(-5, -2));
+    // function randomInBetween(min, max) {
+    //     return (Math.random() * Math.abs(max - min)) + min;
+    // }
+    //
+    // console.log("Random between 1 and 5: " + randomInBetween(1, 5));
+    // console.log("Random between 98 and 100: " + randomInBetween(98, 100));
+    // console.log("Random between -5 and -2: " + randomInBetween(-5, -2));
 
     /*
  - Make a function called `coinFlip()` that returns either 0 or 1, randomly
    */
-    function coinFlip() {
-        let coin = Math.random();
-        if (coin < .5) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
-    console.log(coinFlip());
-    console.log(coinFlip());
-    console.log(coinFlip());
-    console.log(coinFlip());
-    console.log(coinFlip());
-    console.log(coinFlip());
-    console.log(coinFlip());
+    // function coinFlip() {
+    //     let coin = Math.random();
+    //     if (coin < .5) {
+    //         return 1;
+    //     } else {
+    //         return 0;
+    //     }
+    // }
+    //
+    // console.log(coinFlip());
+    // console.log(coinFlip());
+    // console.log(coinFlip());
+    // console.log(coinFlip());
+    // console.log(coinFlip());
+    // console.log(coinFlip());
+    // console.log(coinFlip());
 
     /*
 - Make a function called `twoDice()` that returns the sum of rolling two six
   sided dice.
   */
-    function twoDice() {
-        let d1 = Math.ceil(Math.random() * 6);
-        let d2 = Math.ceil(Math.random() * 6);
-        return d1 + d2;
-    }
-
-    console.log("Roll 2 Dice");
-    console.log(twoDice());
-    console.log(twoDice());
-    console.log(twoDice());
+    // function twoDice() {
+    //     let d1 = Math.ceil(Math.random() * 6);
+    //     let d2 = Math.ceil(Math.random() * 6);
+    //     return d1 + d2;
+    // }
+    //
+    // console.log("Roll 2 Dice");
+    // console.log(twoDice());
+    // console.log(twoDice());
+    // console.log(twoDice());
 
     /*
 - Make a function called `twentySidedDie()` that returns a random integer
   between 1 and 20.
   */
 
-    function twentySidedDie() {
-        return Math.ceil(Math.random() * 20);
-    }
-
-    console.log("Roll 20 sided Die");
-    console.log(twentySidedDie());
-    console.log(twentySidedDie());
-    console.log(twentySidedDie());
-    console.log(twentySidedDie());
-    console.log(twentySidedDie());
-    console.log(twentySidedDie());
-    console.log(twentySidedDie());
+    // function twentySidedDie() {
+    //     return Math.ceil(Math.random() * 20);
+    // }
+    //
+    // console.log("Roll 20 sided Die");
+    // console.log(twentySidedDie());
+    // console.log(twentySidedDie());
+    // console.log(twentySidedDie());
+    // console.log(twentySidedDie());
+    // console.log(twentySidedDie());
+    // console.log(twentySidedDie());
+    // console.log(twentySidedDie());
 
     /*
  - Make a function called `twelveSidedDie()` that returns a random integer
    between 1 and 12.
    */
-    function twelveSidedDie() {
-        return Math.ceil(Math.random() * 12);
-    }
-
-    console.log("Roll 12 sided Die");
-    console.log(twelveSidedDie());
-    console.log(twelveSidedDie());
-    console.log(twelveSidedDie());
-    console.log(twelveSidedDie());
-    console.log(twelveSidedDie());
-    console.log(twelveSidedDie());
-    console.log(twelveSidedDie());
+    // function twelveSidedDie() {
+    //     return Math.ceil(Math.random() * 12);
+    // }
+    //
+    // console.log("Roll 12 sided Die");
+    // console.log(twelveSidedDie());
+    // console.log(twelveSidedDie());
+    // console.log(twelveSidedDie());
+    // console.log(twelveSidedDie());
+    // console.log(twelveSidedDie());
+    // console.log(twelveSidedDie());
+    // console.log(twelveSidedDie());
 
     /*
  - Make a function called `tetrahedron()` that returns a random integer between 1
    and 4.
  */
-    function tetrahedron() {
-        return Math.ceil(Math.random() * 4);
-    }
-
-    console.log("tetrahedron");
-    console.log(tetrahedron());
-    console.log(tetrahedron());
-    console.log(tetrahedron());
-    console.log(tetrahedron());
-    console.log(tetrahedron());
-    console.log(tetrahedron());
-    console.log(tetrahedron());
+    // function tetrahedron() {
+    //     return Math.ceil(Math.random() * 4);
+    // }
+    //
+    // console.log("tetrahedron");
+    // console.log(tetrahedron());
+    // console.log(tetrahedron());
+    // console.log(tetrahedron());
+    // console.log(tetrahedron());
+    // console.log(tetrahedron());
+    // console.log(tetrahedron());
+    // console.log(tetrahedron());
 
     /*
  ---
@@ -447,18 +447,18 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
  - Make a function called `rollDie()` that returns an integer between 1 and 6.
 
  */
-    function rollDie() {
-        return Math.ceil(Math.random() * 6);
-    }
-
-    console.log("RollDie");
-    console.log(rollDie());
-    console.log(rollDie());
-    console.log(rollDie());
-    console.log(rollDie());
-    console.log(rollDie());
-    console.log(rollDie());
-    console.log(rollDie());
+    // function rollDie() {
+    //     return Math.ceil(Math.random() * 6);
+    // }
+    //
+    // console.log("RollDie");
+    // console.log(rollDie());
+    // console.log(rollDie());
+    // console.log(rollDie());
+    // console.log(rollDie());
+    // console.log(rollDie());
+    // console.log(rollDie());
+    // console.log(rollDie());
 
     /*
  - Make a function called `listOfRolls(num)` that takes in a number containing
@@ -466,22 +466,22 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
    should return an array of that length, where each element of the array is the
    result of the `rollDie` function.
   */
-    function listOfRolls(num) {
-        let rolls = [];
-        for (let i = 0; i < num; i++) {
-            rolls.push(Math.ceil(Math.random() * 6));
-        }
-        return rolls;
-    }
-
-    console.log("List of Dice Rolls");
-    console.log(listOfRolls(1));
-    console.log(listOfRolls(2));
-    console.log(listOfRolls(3));
-    console.log(listOfRolls(4));
-    console.log(listOfRolls(5));
-    console.log(listOfRolls(6));
-    console.log(listOfRolls(7));
+    // function listOfRolls(num) {
+    //     let rolls = [];
+    //     for (let i = 0; i < num; i++) {
+    //         rolls.push(Math.ceil(Math.random() * 6));
+    //     }
+    //     return rolls;
+    // }
+    //
+    // console.log("List of Dice Rolls");
+    // console.log(listOfRolls(1));
+    // console.log(listOfRolls(2));
+    // console.log(listOfRolls(3));
+    // console.log(listOfRolls(4));
+    // console.log(listOfRolls(5));
+    // console.log(listOfRolls(6));
+    // console.log(listOfRolls(7));
 
     /*
 
@@ -497,23 +497,23 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
      function will return an array containing one value that is the result of
      calling the `tetrahedron` function.
   */
-    function listOfRollsFromDie(numberOfRolls, diceFunction) {
-        let rolls = [];
-        for (let i = 0; i < numberOfRolls; i++) {
-            rolls.push(diceFunction());
-        }
-        return rolls;
-    }
-
-    console.log("Dice roll from functions");
-    console.log(listOfRollsFromDie(1, twelveSidedDie));
-    console.log(listOfRollsFromDie(2, twentySidedDie));
-    console.log(listOfRollsFromDie(3, twoDice));
-    console.log(listOfRollsFromDie(4, tetrahedron));
-    console.log(listOfRollsFromDie(5, rollDie));
-    console.log(listOfRollsFromDie(6, twentySidedDie));
-    console.log(listOfRollsFromDie(7, twelveSidedDie));
-
+    // function listOfRollsFromDie(numberOfRolls, diceFunction) {
+    //     let rolls = [];
+    //     for (let i = 0; i < numberOfRolls; i++) {
+    //         rolls.push(diceFunction());
+    //     }
+    //     return rolls;
+    // }
+    //
+    // console.log("Dice roll from functions");
+    // console.log(listOfRollsFromDie(1, twelveSidedDie));
+    // console.log(listOfRollsFromDie(2, twentySidedDie));
+    // console.log(listOfRollsFromDie(3, twoDice));
+    // console.log(listOfRollsFromDie(4, tetrahedron));
+    // console.log(listOfRollsFromDie(5, rollDie));
+    // console.log(listOfRollsFromDie(6, twentySidedDie));
+    // console.log(listOfRollsFromDie(7, twelveSidedDie));
+    //
 
     /*
 
@@ -528,90 +528,90 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
 
  // Exercise 0. Write a function named first() that returns only the first element of an array
 */
-    function first(arr) {
-        return arr[0];
-    }
-
-    console.log("first");
-    console.log(first([0, 1, 2, 3]));
+    // function first(arr) {
+    //     return arr[0];
+    // }
+    //
+    // console.log("first");
+    // console.log(first([0, 1, 2, 3]));
 
     /*
  // Exercise 1. Write a function named secondToLast() that returns the second to last element
 */
-    function secondToLast(arr) {
-        return arr[arr.length - 2];
-    }
-
-    console.log("2nd to last");
-    console.log(secondToLast([0, 1, 2, 3]));
+    // function secondToLast(arr) {
+    //     return arr[arr.length - 2];
+    // }
+    //
+    // console.log("2nd to last");
+    // console.log(secondToLast([0, 1, 2, 3]));
 
     /*
 
  // Exercise 2. Write a function named rest() that takes an an array and returns an array containing everything except the first element.
 */
-    function rest(arr) {
-        return arr.slice(1, arr.length);
-    }
-
-    console.log("rest");
-    console.log(rest([0, 1, 2, 3]));
+    // function rest(arr) {
+    //     return arr.slice(1, arr.length);
+    // }
+    //
+    // console.log("rest");
+    // console.log(rest([0, 1, 2, 3]));
 
     /*
 
  // Exercise 3. Write a function named getLongestString that takes in an array of strings and returns the longest string of that array
 */
-    function longestWord(array) {
-        let max = 0;
-        let maxIdx = 0;
-        for (let i = 0; i < array.length; i++) {
-            if (array[i].length > max) {
-                max = array[i].length;
-                maxIdx = i;
-            }
-        }
-        return array[maxIdx];
-    }
-
-    console.log("longest word");
-    console.log(longestWord(["Free", "your", "mind", "and", "your", "ass", "will", "follow"]))
+    // function longestWord(array) {
+    //     let max = 0;
+    //     let maxIdx = 0;
+    //     for (let i = 0; i < array.length; i++) {
+    //         if (array[i].length > max) {
+    //             max = array[i].length;
+    //             maxIdx = i;
+    //         }
+    //     }
+    //     return array[maxIdx];
+    // }
+    //
+    // console.log("longest word");
+    // console.log(longestWord(["Free", "your", "mind", "and", "your", "ass", "will", "follow"]))
 
     /*
 
  // Exercise 3.1 Write a function named getShortestString that takes in an array of strings and returns the shortest string in that array.
 */
-    function shortestWord(array) {
-        let min = Infinity;
-        let minIdx = 0;
-        for (let i = 0; i < array.length; i++) {
-            if (array[i].length < min) {
-                min = array[i].length;
-                minIdx = i;
-            }
-        }
-        return array[minIdx];
-    }
-
-    console.log("shortest word");
-    console.log(shortestWord(["Free", "your", "mind", "and", "your", "ass", "will", "follow"]))
+    // function shortestWord(array) {
+    //     let min = Infinity;
+    //     let minIdx = 0;
+    //     for (let i = 0; i < array.length; i++) {
+    //         if (array[i].length < min) {
+    //             min = array[i].length;
+    //             minIdx = i;
+    //         }
+    //     }
+    //     return array[minIdx];
+    // }
+    //
+    // console.log("shortest word");
+    // console.log(shortestWord(["Free", "your", "mind", "and", "your", "ass", "will", "follow"]))
 
     /*
 
  // Exercise 4. Write a function named addTwoArrays that takes in two, one dimensional arrays. The function should return a single array containing all of the elements of the first array along with all of the elements of the second array
 */
 
-    function addTwoArrays(arr1, arr2) {
-        let res = [];
-        for (let i = 0; i < arr1.length; i++) {
-            res.push(arr1[i]);
-        }
-        for (let i = 0; i < arr1.length; i++) {
-            res.push(arr2[i]);
-        }
-        return res;
-    }
-
-    console.log("Add two arrays");
-    console.log(addTwoArrays([1, 2, 3], ["a", "b", "c"]));
+    // function addTwoArrays(arr1, arr2) {
+    //     let res = [];
+    //     for (let i = 0; i < arr1.length; i++) {
+    //         res.push(arr1[i]);
+    //     }
+    //     for (let i = 0; i < arr1.length; i++) {
+    //         res.push(arr2[i]);
+    //     }
+    //     return res;
+    // }
+    //
+    // console.log("Add two arrays");
+    // console.log(addTwoArrays([1, 2, 3], ["a", "b", "c"]));
 
     /*
  // Example: addTwoArrays([1, 2, 3], [4, 5, 6]) should return [1, 2, 3, 4, 5, 6]
@@ -619,48 +619,48 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
   // Exercise 5. Write a function named getUniqueValues that takes in an array and returns the array without any duplicates
 */
 
-    function getUniqueValues(anArray) {
-        let res = [];
-        for (let i = 0; i < anArray.length; i++) {
-            let match = false;
-            for (let j = i + 1; j < anArray.length; j++) {
-                if (anArray[i] == anArray[j]) {
-                    match = true;
-                }
-            }
-            if (match == false) {
-                res.push(anArray[i]);
-            }
-        }
-        return res;
-    }
-
-    console.log("Gt unique values");
-    console.log(getUniqueValues(["a", "b", "a", "b", "c", "c"]));
-    console.log(getUniqueValues(["a", "a", "a", "a", "a", "a"]));
-    console.log(getUniqueValues(["a", "a", "a", "a", "a", "c"]));
-    console.log(getUniqueValues(["a", "b", "c", "d", "e", "f"]));
+    // function getUniqueValues(anArray) {
+    //     let res = [];
+    //     for (let i = 0; i < anArray.length; i++) {
+    //         let match = false;
+    //         for (let j = i + 1; j < anArray.length; j++) {
+    //             if (anArray[i] == anArray[j]) {
+    //                 match = true;
+    //             }
+    //         }
+    //         if (match == false) {
+    //             res.push(anArray[i]);
+    //         }
+    //     }
+    //     return res;
+    // }
+    //
+    // console.log("Gt unique values");
+    // console.log(getUniqueValues(["a", "b", "a", "b", "c", "c"]));
+    // console.log(getUniqueValues(["a", "a", "a", "a", "a", "a"]));
+    // console.log(getUniqueValues(["a", "a", "a", "a", "a", "c"]));
+    // console.log(getUniqueValues(["a", "b", "c", "d", "e", "f"]));
 
     /*
  // Example: getUniqueValues(["a", "b", "a", "b", "c", "c"]) should return ["a", "b", "c"]
 
  // Exercise 6. Write a function named reverseArray that takes in an array and returns it reversed, but without altering the original array.
 */
-    function reverseArray(anArray) {
-        let res = [];
-        for (let i = 0; i < anArray.length; i++) {
-            res.push(anArray[anArray.length - 1 - i]);
-        }
-        return res;
-    }
-
-    let anArray = ["1", "2", "3", "4", "5", "6"];
-    console.log("Reverse array");
-    console.log(reverseArray(anArray));
-    console.log(anArray);
-    anArray = ["a", "b", "c", "d", "e", "f"];
-    console.log(reverseArray(anArray));
-    console.log(anArray);
+    // function reverseArray(anArray) {
+    //     let res = [];
+    //     for (let i = 0; i < anArray.length; i++) {
+    //         res.push(anArray[anArray.length - 1 - i]);
+    //     }
+    //     return res;
+    // }
+    //
+    // let anArray = ["1", "2", "3", "4", "5", "6"];
+    // console.log("Reverse array");
+    // console.log(reverseArray(anArray));
+    // console.log(anArray);
+    // anArray = ["a", "b", "c", "d", "e", "f"];
+    // console.log(reverseArray(anArray));
+    // console.log(anArray);
 
     /*
 
@@ -670,17 +670,17 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
  //   use the randomly generated number as your index
  //   return a random quote.
 */
-    function getRandomQuote(quotes) {
-        let which = Math.floor(Math.random() * quotes.length);
-        return quotes[which];
-    }
-
-    let quotes = ["Free your mind and your ass will follow.", "Yeh, Johnny, yeah!", "No, No.", "Yes, Yes.", "Don't hold me!", "No balls in the hallways, boys!"];
-    console.log(getRandomQuote(quotes));
-    console.log(getRandomQuote(quotes));
-    console.log(getRandomQuote(quotes));
-    console.log(getRandomQuote(quotes));
-    console.log(getRandomQuote(quotes));
+    // function getRandomQuote(quotes) {
+    //     let which = Math.floor(Math.random() * quotes.length);
+    //     return quotes[which];
+    // }
+    //
+    // let quotes = ["Free your mind and your ass will follow.", "Yeh, Johnny, yeah!", "No, No.", "Yes, Yes.", "Don't hold me!", "No balls in the hallways, boys!"];
+    // console.log(getRandomQuote(quotes));
+    // console.log(getRandomQuote(quotes));
+    // console.log(getRandomQuote(quotes));
+    // console.log(getRandomQuote(quotes));
+    // console.log(getRandomQuote(quotes));
 
     /*
 
@@ -691,19 +691,19 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
  // Example: getIndexesOf("a", "banana") should return the array [1, 3, 5]
  // Example: getIndexesOf("z", "banana") should return an empty array [] since there are no "z" characters in "banana"
 */
-    function getIndexesOf(symbol, string) {
-        let res = [];
-        for (let i = 0; i < string.length; i++) {
-            if (string[i] == symbol) {
-                res.push(i);
-            }
-        }
-        return res;
-    }
-
-    console.log("get indexes of");
-    console.log(getIndexesOf("a", "banana"));
-    console.log(getIndexesOf("z", "banana"));
+    // function getIndexesOf(symbol, string) {
+    //     let res = [];
+    //     for (let i = 0; i < string.length; i++) {
+    //         if (string[i] == symbol) {
+    //             res.push(i);
+    //         }
+    //     }
+    //     return res;
+    // }
+    //
+    // console.log("get indexes of");
+    // console.log(getIndexesOf("a", "banana"));
+    // console.log(getIndexesOf("z", "banana"));
 
     /*
 
@@ -715,62 +715,62 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
  // Example: removeAll([1, 2, 3], 2) should return [1, 3]
  // Example 2: removeAll([2, 2, 3, 4, 5, 2, 2], 2) should return [3, 4, 5]
 */
-    function removeAll(arr, val) {
-        let res = [];
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i] != val) {
-                res.push(arr[i]);
-            }
-        }
-        return res;
-    }
-
-    console.log("Remove all");
-    console.log(removeAll([1, 2, 3], 2));
-    console.log(removeAll([2, 2, 3, 4, 5, 2, 2], 2));
+    // function removeAll(arr, val) {
+    //     let res = [];
+    //     for (let i = 0; i < arr.length; i++) {
+    //         if (arr[i] != val) {
+    //             res.push(arr[i]);
+    //         }
+    //     }
+    //     return res;
+    // }
+    //
+    // console.log("Remove all");
+    // console.log(removeAll([1, 2, 3], 2));
+    // console.log(removeAll([2, 2, 3, 4, 5, 2, 2], 2));
 
     /*
 
  // Exercise 10. Write a function named firstTenFibonacciNumbers() that returns an array of the first ten fibonacci numbers
 */
-    function firstTenFibonacci() {
-        let res = [1, 2];
-        let num = 0;
-        for (let i = 2; i < 10; i++) {
-            num = res[i - 2] + res[i - 1];
-            res.push(num);
-        }
-        return res;
-    }
-
-    console.log("First ten fibonacci.");
-    console.log(firstTenFibonacci());
+    // function firstTenFibonacci() {
+    //     let res = [1, 2];
+    //     let num = 0;
+    //     for (let i = 2; i < 10; i++) {
+    //         num = res[i - 2] + res[i - 1];
+    //         res.push(num);
+    //     }
+    //     return res;
+    // }
+    //
+    // console.log("First ten fibonacci.");
+    // console.log(firstTenFibonacci());
 
     /*
 
  // Exercise 11. Write a function named getNFibonacci(n) that returns an array containing the first n fibonacci numbers
 */
-    function getNFibonacci(n) {
-        if (n == 0) {
-            return [];
-        }
-        if (n == 1) {
-            return [1];
-        }
-        let res = [1, 2];
-        let num = 0;
-        for (let i = 2; i < n; i++) {
-            num = res[i - 2] + res[i - 1];
-            res.push(num);
-        }
-        return res;
-    }
-
-    console.log("n fibonacci.");
-    console.log(getNFibonacci(0));
-    console.log(getNFibonacci(1));
-    console.log(getNFibonacci(2));
-    console.log(getNFibonacci(7));
+    // function getNFibonacci(n) {
+    //     if (n == 0) {
+    //         return [];
+    //     }
+    //     if (n == 1) {
+    //         return [1];
+    //     }
+    //     let res = [1, 2];
+    //     let num = 0;
+    //     for (let i = 2; i < n; i++) {
+    //         num = res[i - 2] + res[i - 1];
+    //         res.push(num);
+    //     }
+    //     return res;
+    // }
+    //
+    // console.log("n fibonacci.");
+    // console.log(getNFibonacci(0));
+    // console.log(getNFibonacci(1));
+    // console.log(getNFibonacci(2));
+    // console.log(getNFibonacci(7));
 
     /*
 
@@ -778,18 +778,18 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
  // the function should return the array with the first element at the end
  // Example: moveFirstToLast([1, 2, 3, 4]) should return [2, 3, 4, 1]
 */
-    function firstToLast(arr) {
-        let res = [];
-        for (let i = 1; i < arr.length; i++) {
-            res.push(arr[i]);
-        }
-        res.push(arr[0]);
-        return res;
-    }
-
-    console.log("first to last");
-    console.log(firstToLast([1, 2, 3, 4]));
-    console.log(firstToLast(["a", "b", "c", "d"]));
+    // function firstToLast(arr) {
+    //     let res = [];
+    //     for (let i = 1; i < arr.length; i++) {
+    //         res.push(arr[i]);
+    //     }
+    //     res.push(arr[0]);
+    //     return res;
+    // }
+    //
+    // console.log("first to last");
+    // console.log(firstToLast([1, 2, 3, 4]));
+    // console.log(firstToLast(["a", "b", "c", "d"]));
 
     /*
 
@@ -800,35 +800,51 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
  // Example: zip(["a", "b", "c"], ["x", "y", "z"]) returns [["a", "x"], ["b", "y"], ["c", "z"]]
      ```
 */
-    function zip(arr1, arr2) {
-        let res = [];
-        for (let i = 0; i < arr1.length; i++) {
-            let mini = [];
-            mini.push(arr1[i]);
-            mini.push(arr2[i]);
-            res.push(mini);
-        }
-        return res;
-    }
-
-    console.log("zip");
-    console.log(zip([1, 2, 3], [4, 5, 6]));
-    console.log(zip(["a", "b", "c"], ["x", "y", "z"]));
+    // function zip(arr1, arr2) {
+    //     let res = [];
+    //     for (let i = 0; i < arr1.length; i++) {
+    //         let mini = [];
+    //         mini.push(arr1[i]);
+    //         mini.push(arr2[i]);
+    //         res.push(mini);
+    //     }
+    //     return res;
+    // }
+    //
+    // console.log("zip");
+    // console.log(zip([1, 2, 3], [4, 5, 6]));
+    // console.log(zip(["a", "b", "c"], ["x", "y", "z"]));
     /*
 
- ---
+---
 
- ## Loops & Arrays
+## Loops & Arrays
 
- 1.  create an array of shapes
-     – prompt the user to search for a specific shape
-     – using a for loop, iterate through the array to log the shapes until the matching shape is found
-     – once the shape is found, log a message (“Shape is found”) and use a break statement to exit loop.
- */
+1.  create an array of shapes
+    – prompt the user to search for a specific shape
+    – using a for loop, iterate through the array to log the shapes until the matching shape is found
+    – once the shape is found, log a message (“Shape is found”) and use a break statement to exit loop.
+*/
+    let shapes = ["circle", "torus", "cube", "tetrahedron", "dodecahedron"];
+    for (let i = 0; i < shapes.length; i++) {
+        if (shapes[i] == "tetrahedron") {
+            console.log("Shape is found");
+            break;
+        }
+    }
 
     /*
 2.  Create a function that returns a random day of the week
  */
+    function randomDay() {
+        let day = Math.floor(Math.random() * 7);
+        let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+        return days[day];
+    }
+
+    console.log(randomDay());
+    console.log(randomDay());
+    console.log(randomDay());
 
     /*
 3.  Create a function that takes a single letter and returns what number the letter is in the alphabet. Ignore case.
@@ -836,9 +852,33 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
      – someFunction("z") // returns 26
  */
 
+    function whereInAlphabet(letter) {
+        let alphabet = "abcdefghijklmnopqrstuvwxyz";
+        let newStr = letter.toLowerCase();
+        return alphabet.indexOf(newStr) + 1;
+    }
+
+    console.log("Letter in alphabet");
+    console.log(whereInAlphabet("A"));
+    console.log(whereInAlphabet("z"));
+
     /*
 4.  Create a function that returns the longest string in a given array of string elements.
  */
+    function longest(array) {
+        let max = 0;
+        let maxIdx = 0;
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].length > max) {
+                max = array[i].length;
+                maxIdx = i;
+            }
+        }
+        return array[maxIdx];
+    }
+
+    console.log("longest");
+    console.log(longest(["Free", "your", "mind", "and", "your", "ass", "will", "follow"]))
 
     /*
 5.   Create a function that takes in two arrays of elements, including numbers. If all numbers added together in the first array is equal to all the number inputs added in the second array, return true, otherwise, false. Only add together numeric elements but either array may contain non-numeric elements.
@@ -847,6 +887,29 @@ Reverse a String: Write a JS function that accepts a string and returns the stri
      – exampleFunction(arr1, arr2) // returns true
 
   */
+    function compareNumsInTwoArrays(arr1, arr2) {
+        let total1 = 0;
+        let total2 = 0;
+        for (let i = 0; i < arr1.length; i++) {
+            if ((!(isNaN(arr1[i]) === true) && !(typeof arr1[i] === "boolean") && !(arr1[i] === null))) {
+                total1 += Number(arr1[i]);
+            }
+        }
+        for (let i = 0; i < arr2.length; i++) {
+            if ((!(isNaN(arr2[i]) === true) && !(typeof arr2[i] === "boolean") && !(arr2[i] === null))) {
+                total2 += arr2[i];
+            }
+        }
+        return (total1 == total2);
+    }
+
+    console.log("Compare numbers in two arrays");
+    let arr1 = ['bob', 1, true, 1, 2];
+    let arr2 = [2, null, undefined, 0, 2, "apple"]
+    console.log(compareNumsInTwoArrays(arr1, arr2));
+    arr1 = ['bob', 2, true, 1, 2];
+    arr2 = [2, null, undefined, 0, 2, "apple"]
+    console.log(compareNumsInTwoArrays(arr1, arr2));
 
 
     /* arrays and objects
