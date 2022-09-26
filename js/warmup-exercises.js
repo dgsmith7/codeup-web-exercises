@@ -1471,52 +1471,53 @@ Functions using conditionals but not loops or arrays:
     - `vaccinate()` - takes in an argument for the name of the shot and adds a
       new shot with the current date to the shotRecords array
 */
-    class Dog {
-        breed;
-        weightInPounds;
-        age;
-        color;
-        sterilized;
-        shotRecords;
-
-        constructor(_breed, _lbs, _age, _col, _sterilized, _shots) {
-            this.breed = _breed;
-            this.weightInPounds = _lbs;
-            this.age = _age;
-            this.color = _col;
-            this.sterilized = _sterilized;
-            this.shotRecords = _shots;
-        }
-
-        bark() {
-            console.log("Woof!");
-        }
-
-        getOlder() {
-            this.age++;
-        }
-
-        fix() {
-            if (this.sterilized == false) {
-                this.sterilized = true;
-            }
-        }
-
-        vaccinate(which) { //takes in an argument for the name of the shot and adds a
-            //new shot with the current date to the shotRecords array
-            this.shotRecords.push({date: new Date().toISOString().substring(0, 10), typeOfShot: which,});
-            // get date: https://stackoverflow.com/questions/3066586/get-string-in-yyyymmdd-format-from-js-date-object
-        }
-    }
-
-    let d1 = new Dog("Australian Shepherd", 17, 5, "grey spotted", false, []);
-    //   console.log(d1);
-    d1.bark();
-    d1.getOlder();
-    d1.fix();
-    d1.vaccinate("rabies");
-    console.log(d1);
+    // class Dog {
+    //     breed;
+    //     weightInPounds;
+    //     age;
+    //     color;
+    //     sterilized;
+    //     shotRecords;
+    //
+    //     constructor(_breed, _lbs, _age, _col, _sterilized, _shots) {
+    //         this.breed = _breed;
+    //         this.weightInPounds = _lbs;
+    //         this.age = _age;
+    //         this.color = _col;
+    //         this.sterilized = _sterilized;
+    //         this.shotRecords = _shots;
+    //     }
+    //
+    //     bark() {
+    //         console.log("Woof!");
+    //     }
+    //
+    //     getOlder() {
+    //         this.age++;
+    //     }
+    //
+    //     fix() {
+    //         if (this.sterilized == false) {
+    //             this.sterilized = true;
+    //         }
+    //     }
+    //
+    //     vaccinate(which) { //takes in an argument for the name of the shot and adds a
+    //         //new shot with the current date to the shotRecords array
+    //         this.shotRecords.push({date: new Date().toISOString().substring(0, 10), typeOfShot: which,});
+    //         // get date: https://stackoverflow.com/questions/3066586/get-string-in-yyyymmdd-format-from-js-date-object
+    //     }
+    // }
+    //
+    // let d1 = new Dog("Australian Shepherd", 17, 5, "grey spotted", false, []);
+    // //   console.log(d1);
+    // d1.bark();
+    // d1.getOlder();
+    // d1.fix();
+    // d1.vaccinate("rabies");
+    // console.log(d1);
     /*
+
 1. Expanding on the books object exercise:
 
     - Add a property `keywords` that contains an array of possible genres the
@@ -1591,5 +1592,36 @@ Functions using conditionals but not loops or arrays:
     `reset()` - stops counter and resets count to zero
      */
 
+    /*
+        Write a function to return an array of only the Even numbers from an array with the numbers 1 through 10
+        example input: [1,2,3,4,5] expected output: [2,4]
+
+     */
+    function evenArray(arr) {
+        let res = [];
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] % 2 == 0 && arr[i] <= 10) {
+                res.push(arr[i]);
+            }
+        }
+        return res;
+    }
+
+    console.log(evenArray([1, 2, 3, 4, 5]));
+
+    /*
+    Write a function that takes an array of objects and a string as arguments. Add a property with key ‘continent’ and value equal to the string to each of the objects. Return the new array of objects. Don’t mutate the original array.
+example input: [{ city: 'Tokyo', country: 'Japan' }, { city: 'Bangkok', country: 'Thailand' }], 'Asia'
+expected output: [{ city: 'Tokyo', country: 'Japan', continent: 'Asia' }, { city: 'Bangkok', country: 'Thailand', continent: 'Asia' }]
+     */
+
+    function appendContinent(arrOfCityCountry, continent) {
+        for (let i = 0; i < arrOfCityCountry.length; i++) {
+            arrOfCityCountry[i]["continent"] = continent;
+        }
+        return arrOfCityCountry;
+    }
+
+    console.log(appendContinent([{city: 'Tokyo', country: 'Japan'}, {city: 'Bangkok', country: 'Thailand'}], 'Asia'));
 }());
 
