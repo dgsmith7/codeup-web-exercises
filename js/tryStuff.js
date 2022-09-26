@@ -40,24 +40,24 @@
 //     };
 // }
 // another synch - lazy
-function addAsync2(x, y, callback) {
-    // setTimeout(function(){
-    //     cb( x + y );
-    // }, 1000);
-    (function(){ //an immediately executed function
-        callback( x + y );
-    })();
-}
+// function addAsync2(x, y, callback) {
+//     // setTimeout(function(){
+//     //     cb( x + y );
+//     // }, 1000);
+//     (function () { //an immediately executed function
+//         callback(x + y);
+//     })();
+// }
 
 //let asyncThunk2 = makeThunk(addAsync2,12, 15);
-let asyncThunk2 = function(callbackFunction) {  // this is a function expression declaration
-    addAsync2(10, 15, callbackFunction);
-};
-
-
-asyncThunk2(function(thePassedFunction){ // this is a function call that passes a function as arg, and
-    console.log("Test it - " + thePassedFunction);     // the passed function passes a function as an arg too then calls it
-});                                                    // recall that this called function was declared above with an expression
+// let asyncThunk2 = function (callbackFunction) {  // this is a function expression declaration
+//     addAsync2(10, 15, callbackFunction);
+// };
+//
+//
+// asyncThunk2(function (thePassedFunction) { // this is a function call that passes a function as arg, and
+//     console.log("Test it - " + thePassedFunction);     // the passed function passes a function as an arg too then calls it
+// });                                                    // recall that this called function was declared above with an expression
 
 // function* anotherGenerator(i) {
 //     yield i + 1;
@@ -99,15 +99,15 @@ asyncThunk2(function(thePassedFunction){ // this is a function call that passes 
 (function () {
     'use strict';
 
-let myArr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0];
-console.log(myArr);
-console.log(myArr.sort());
-console.log(myArr.sort((a, b) => (a - b) ));
-console.log(myArr);
-console.log(myArr.sort(() => Math.random() - 0.5));
-    console.log(myArr.sort(() => Math.random() - 0.5));
-    console.log(myArr.sort(() => Math.random() - 0.5));
-    console.log(myArr.sort(() => Math.random() - 0.5));
+// let myArr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0];
+// console.log(myArr);
+// console.log(myArr.sort());
+// console.log(myArr.sort((a, b) => (a - b) ));
+// console.log(myArr);
+// console.log(myArr.sort(() => Math.random() - 0.5));
+//     console.log(myArr.sort(() => Math.random() - 0.5));
+//     console.log(myArr.sort(() => Math.random() - 0.5));
+//     console.log(myArr.sort(() => Math.random() - 0.5));
 //    console.log(window.navigator.clipboard);
 
 // this code will produce a console log every second
@@ -227,6 +227,51 @@ console.log(myArr.sort(() => Math.random() - 0.5));
     //
     // ////////////////////////////////////
     //
+    /*
+        "use strict";
+        (function() {
+            let o = {
+                fp: 7,
+                sp: 12,
+                tp: {
+                    fp: 9,
+                    sayFp: function () {
+                        return(this.fp);
+                    },
+                    arrowSayFp: () => (this.fp)
+                }
+            }
+
+            console.log(o.tp.sayFp());
+            console.log(o.tp.arrowSayFp());   // this won't bind in arrow func:https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this
+            // Get the main heading h1 by id
+            var mainHeading = document.getElementById('main-heading');
+
+            console.log(mainHeading.innerHTML); // Prints Hello World!
+
+            // Assign a new value to the inner HTML of the main heading
+            mainHeading.innerHTML = "Hello Codeup!";
+
+            console.log(mainHeading.innerHTML); // Prints Hello Codeup!
+
+            // Get the main section div by id
+            var mainSection = document.getElementById('main-section');
+
+            console.log(mainSection.innerHTML);
+            // Prints
+            // <p>Paragraph 1</p>
+            // <p>Paragraph 2</p>
+        })();
+     */
+
+    /*
+        (function() {
+        let btnToClick = document.getElementById('btnToClick');
+
+        console.log(btnToClick); // prints <button id="btnToClick">Click Me</button>
+    })();
+
+     */
 
 
 })();

@@ -11,87 +11,65 @@
 </head>
 <body>
 
-<h1 id="main-heading">Hello World!</h1>
-<div id="main-section">
-    <p>Paragraph 1</p>
-    <p>Paragraph 2</p>
-</div>
-<script>
-    "use strict";
-    (function() {
-        let o = {
-            fp: 7,
-            sp: 12,
-            tp: {
-                fp: 9,
-                sayFp: function () {
-                    return(this.fp);
-                },
-                arrowSayFp: () => (this.fp)
-            }
-        }
 
-        console.log(o.tp.sayFp());
-        console.log(o.tp.arrowSayFp());   // this won't bind in arrow func:https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this
-        // Get the main heading h1 by id
-        var mainHeading = document.getElementById('main-heading');
+<section>
+    <p>
+    <form method="POST" action="https://request-inspector.glitch.me">
+    <!--form method="GET" action="https://hookb.in/yDp39qw6ZPhGkPZGaJPY"-->
+ <!-- action WHERE method HOW-->
+    <!-- adds query string to request--   We saw key value pairs in query string  e.g.; https://url.com/?key=value where the query string is: ?key=value>  multi key-value pairs separated with & symbol-->
+    <!--  POST - info goes into body, empty query   GET info in query, body empty-->
+  <!-- POST - CRUD ops are done by POST- Create, Read, Update, Delete -->
+    <!-- GET - read only - go GET something from server-->
+        <label for="email"><!-- needs for and name and id -->
+            <input name="email" id="email" type="text">
+        </label>
+    <button type="submit" >Submit information</button>
+    </form>
+    </p>
+</section>
 
-        console.log(mainHeading.innerHTML); // Prints Hello World!
 
-        // Assign a new value to the inner HTML of the main heading
-        mainHeading.innerHTML = "Hello Codeup!";
+<section style="visibility: hidden">
+    <h1 id="main-heading">Hello World!</h1>
+    <div id="main-section">
+        <p>Paragraph 1</p>
+        <p>Paragraph 2</p>
+    </div>
+</section>
+<section style="visibility: hidden">
+    <button id="btnToClick">Click Me</button>
 
-        console.log(mainHeading.innerHTML); // Prints Hello Codeup!
+    <!-- Button to Open the Modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Open modal
+    </button>
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-        // Get the main section div by id
-        var mainSection = document.getElementById('main-section');
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Heading</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
 
-        console.log(mainSection.innerHTML);
-        // Prints
-        // <p>Paragraph 1</p>
-        // <p>Paragraph 2</p>
-    })();
-</script>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Modal body..
+                </div>
 
-<button id="btnToClick">Click Me</button>
-<script>
-    "use strict";
-    (function() {
-        let btnToClick = document.getElementById('btnToClick');
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
 
-        console.log(btnToClick); // prints <button id="btnToClick">Click Me</button>
-    })();
-</script>
-
-<!-- Button to Open the Modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    Open modal
-</button>
-<!-- The Modal -->
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Modal Heading</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                Modal body..
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-
         </div>
     </div>
-</div>
-
+</section>
+<script></script>
 <script src="./js/tryStuff.js"></script>
 </body>
 </html>

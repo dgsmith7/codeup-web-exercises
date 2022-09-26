@@ -57,6 +57,7 @@ section {
     /* enter needed declarations here */
     display: flex;
     flex-direction: row;
+    align-content: space-evenly;
 }
 
 section:nth-of-type(1) {
