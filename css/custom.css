@@ -1,0 +1,13 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+.jumbotron {
+    background-image: url("./assets/images/pizza.png");
+    height: 346px;
+    background-size: cover
+}
