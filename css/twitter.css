@@ -56,16 +56,18 @@ a {
 .media {
     width: 100%;
     background-color: var(--light-bg);
-    border: 1px solid var(--separator-color);
+    border-bottom: 1px solid var(--separator-color);
     padding: .5em;
+    overflow: auto;
 }
 
 .media-body {
     width: calc(100% - 50px);
+    float: left;
 }
 
 .media-image {
-    margin: 1.33em;
+    margin-top: 1.33em;
     float: left;
     max-width: 50px;
 }
@@ -108,7 +110,7 @@ a {
 
 .profile-image {
     position: absolute;
-    top: 40%;
+    top: 250px;
 }
 
 .profile-items {
