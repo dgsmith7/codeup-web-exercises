@@ -1623,5 +1623,7 @@ expected output: [{ city: 'Tokyo', country: 'Japan', continent: 'Asia' }, { city
     }
 
     console.log(appendContinent([{city: 'Tokyo', country: 'Japan'}, {city: 'Bangkok', country: 'Thailand'}], 'Asia'));
+    let f = (con, cont) => con.map(c => ({...c, continent: cont}));
+    console.log(f([{city: 'Tokyo', country: 'Japan'}, {city: 'Bangkok', country: 'Thailand'}], 'Asia'));
 }());
 
