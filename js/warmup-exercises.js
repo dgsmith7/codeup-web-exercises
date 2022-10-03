@@ -1597,17 +1597,17 @@ Functions using conditionals but not loops or arrays:
         example input: [1,2,3,4,5] expected output: [2,4]
 
      */
-    function evenArray(arr) {
-        let res = [];
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i] % 2 == 0 && arr[i] <= 10) {
-                res.push(arr[i]);
-            }
-        }
-        return res;
-    }
-
-    console.log(evenArray([1, 2, 3, 4, 5]));
+    // function evenArray(arr) {
+    //     let res = [];
+    //     for (let i = 0; i < arr.length; i++) {
+    //         if (arr[i] % 2 == 0 && arr[i] <= 10) {
+    //             res.push(arr[i]);
+    //         }
+    //     }
+    //     return res;
+    // }
+    //
+    // console.log(evenArray([1, 2, 3, 4, 5]));
 
     /*
     Write a function that takes an array of objects and a string as arguments. Add a property with key ‘continent’ and value equal to the string to each of the objects. Return the new array of objects. Don’t mutate the original array.
@@ -1615,15 +1615,32 @@ example input: [{ city: 'Tokyo', country: 'Japan' }, { city: 'Bangkok', country:
 expected output: [{ city: 'Tokyo', country: 'Japan', continent: 'Asia' }, { city: 'Bangkok', country: 'Thailand', continent: 'Asia' }]
      */
 
-    function appendContinent(arrOfCityCountry, continent) {
-        for (let i = 0; i < arrOfCityCountry.length; i++) {
-            arrOfCityCountry[i]["continent"] = continent;
-        }
-        return arrOfCityCountry;
+    // function appendContinent(arrOfCityCountry, continent) {
+    //     for (let i = 0; i < arrOfCityCountry.length; i++) {
+    //         arrOfCityCountry[i]["continent"] = continent;
+    //     }
+    //     return arrOfCityCountry;
+    // }
+    //
+    // console.log(appendContinent([{city: 'Tokyo', country: 'Japan'}, {city: 'Bangkok', country: 'Thailand'}], 'Asia'));
+    // let f = (con, cont) => con.map(c => ({...c, continent: cont}));
+    // console.log(f([{city: 'Tokyo', country: 'Japan'}, {city: 'Bangkok', country: 'Thailand'}], 'Asia'));
+
+    //re-write the following using a for loop: var i = 20; while (i >= 0) { console.log(i); i--; }
+    
+
+    for (let i = 20; i >= 0; i--) {
+        console.log(i);
     }
 
-    console.log(appendContinent([{city: 'Tokyo', country: 'Japan'}, {city: 'Bangkok', country: 'Thailand'}], 'Asia'));
-    let f = (con, cont) => con.map(c => ({...c, continent: cont}));
-    console.log(f([{city: 'Tokyo', country: 'Japan'}, {city: 'Bangkok', country: 'Thailand'}], 'Asia'));
+    //Add ‘strawberry’ to the beginning, middle, and end of the array.
+    //
+    let fruits = ["mango", "blueberries", "oranges", "banana", "papaya", "kiwi"];
+    fruits.unshift("strawberry");
+    fruits.push("strawberry");
+    fruits.splice(4, 0, "strawberry");
+    console.table(fruits);
+
+
 }());
 
