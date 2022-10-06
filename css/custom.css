@@ -7,7 +7,12 @@ html {
 }
 
 .jumbotron {
-    background-image: url("./assets/images/pizza.png");
+    background-image: url("../assets/images/pizza.png");
     height: 346px;
     background-size: cover
 }
+
+#search-stores {
+    min-width: 200px;
+}
+
