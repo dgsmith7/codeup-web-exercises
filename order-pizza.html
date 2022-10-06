@@ -87,19 +87,75 @@
     </div>
 
     <div class="container tab-content" id="myTabContent">
-        <div class="card tab-pane fade show active" id="size-and-crust-tab-pane" role="tabpanel"
+        <div class="tab-pane fade show active" id="size-and-crust-tab-pane" role="tabpanel"
              aria-labelledby="size-and-crust-tab" tabindex="0">
             <div class="card-body">
-                <div class="card">
-                    <div class="card-body">
-                        Size and Crust 1
+                <ul class="list-group">
+                    <li class="list-group-item active">Choose Size and Crust</li>
+                    <li class="list-group-item">
+                        <div class="card">
+                            <ul class="list-group">
+                                <li class="list-group-item">Hand Tossed</li>
+                                <li class="list-group-item">Garlic seasoned crust with a rich, buttery taste.</li>
+                                <li class="list-group-item" aria-current="true">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pizza-size"
+                                               id="ht-small-pizza">
+                                        <label class="form-check-label" for="ht-small-pizza">
+                                            Small (10")
+                                        </label>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pizza-size"
+                                               id="ht-med-pizza" checked>
+                                        <label class="form-check-label" for="ht-med-pizza">
+                                            Medium (12")
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <br/>
+                        <div class="card">
+                            <ul class="list-group">
+                                <li class="list-group-item active">Crispy Thin</li>
+                                <li class="list-group-item">Garlic seasoned crust with a rich, buttery taste.</li>
+                                <li class="list-group-item" aria-current="true">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pizza-size"
+                                               id="ct-small-pizza">
+                                        <label class="form-check-label" for="ct-small-pizza">
+                                            Medium (12")
+                                        </label>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pizza-size"
+                                               id="ct-med-pizza" checked>
+                                        <label class="form-check-label" for="ct-med-pizza">
+                                            Large (14")
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!--                    <li class="list-group-item">-->
+                    <!--                        <a class="d-flex justify-content-end btn btn-primary" href="#cheese-and-sauce-tab-pane"-->
+                    <!--                           role="button">Next-->
+                    <!--                            Step-->
+                    <!--                            ></a>-->
+                    <!--                    </li>-->
+                </ul>
+                <div class="card-footer text-muted">
+                    <div class="justify-content-md-end d-grid">
+                        <button class="btn btn-primary">Next Step ></button>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-body">
-                        Size and Crust 2
-                    </div>
-                </div>
+
             </div>
         </div>
         <div class="card tab-pane fade" id="cheese-and-sauce-tab-pane" role="tabpanel"
