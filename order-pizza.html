@@ -10,31 +10,6 @@
     <link rel="stylesheet" href="./css/custom.css">
 </head>
 <body>
-
-
-<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
-<!--    <ul class="d-flex navbar-nav me-auto mb-2 mb-lg-0">-->
-<!--        <li class="nav-item">-->
-<!--            <a class="nav-link active" aria-current="page" href="#">Order Online</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--            <a class="nav-link" href="#">Menu</a>-->
-<!--        </li>-->
-
-<!--    </ul>-->
-<!--    <form class="d-flex align-items-center">-->
-<!--        <input class="form-control me-2" type="search" placeholder="Zip Code" aria-label="Search">-->
-<!--        <button id="search-stores" class="btn btn-outline-primary" type="submit">Search stores near you!-->
-<!--        </button>-->
-<!--    </form>-->
-<!--    <div class="d-flex" id="right-nav">-->
-<!--        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill"-->
-<!--             viewBox="0 0 16 16">-->
-<!--            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>-->
-<!--        </svg>-->
-<!--        <a class="nav-link active" aria-current="page" href="#">Order Online</a>-->
-<!--    </div>-->
-<!--</nav>-->
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Pizza World</a>
@@ -58,9 +33,9 @@
                     </form>
                 </li>
             </ul>
-            <div class="d-flex" id="right-nav">
+            <div class="d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                     class="bi bi-person-fill"
+                     class="bi bi-person-fill me-2"
                      viewBox="0 0 16 16">
                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                 </svg>
@@ -70,50 +45,80 @@
     </div>
 </nav>
 
-
-<div class="jumbotron">
-    <div id="title-bar"
-         class="position-relative top-50 d-none
+<div class="container">
+    <div class="jumbotron">
+        <div id="title-bar"
+             class="position-relative top-50 d-none
          d-xs-none d-sm-none d-md-block bg-light
          opacity-75
          fs-2
          text-center">
-        Welcome to
-        Pizza
-        World!
-    </div>
-</div>
-<h2>Build your own pizza!</h2>
-<div>
-    <ul class="nav nav-tabs">
-        <li class="nav-item"><a class="nav-link text-primary" aria-current="page" href="#size-and-crust"><span
-                class="badge rounded-pill text-bg-secondary">1</span> Size and Crust</a></li>
-        <li class="nav-item"><a class="nav-link text-primary" aria-current="page" href="#cheese-and-sauce"><span
-                class="badge rounded-pill text-bg-secondary">2</span> Cheese and Sauce</a></li>
-        <li class="nav-item"><a class="nav-link text-primary" aria-current="page" href="#toppings"><span
-                class="badge rounded-pill text-bg-secondary">3</span> Toppings</a></li>
-    </ul>
-</div>
-<div class="container">
-    <div id="size-and-crust" class="card">
-        <div class="card-body">
-            Size and Crust Placeholder Text
+            Welcome to
+            Pizza
+            World!
         </div>
     </div>
-    <div id="cheese-and-sauce" class="card">
-        <div class="card-body">
-            Cheese and Sauce Placeholder Text
-        </div>
+    <h2>Build your own pizza!</h2>
+
+    <div>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="size-and-crust-tab" data-bs-toggle="tab"
+                        data-bs-target="#size-and-crust-tab-pane" type="button" role="tab"
+                        aria-controls="size-and-crust-tab-pane" aria-selected="true"><span
+                        class="badge rounded-pill text-bg-secondary">1</span> Size and Crust
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" aria-current="page" id="cheese-and-sauce-tab" data-bs-toggle="tab"
+                        data-bs-target="#cheese-and-sauce-tab-pane" type="button" role="tab"
+                        aria-controls="cheese-and-sauce-tab-pane" aria-selected="false"><span
+                        class="badge rounded-pill text-bg-secondary">2</span> Cheese and Sauce
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" aria-current="page" id="toppings-tab" data-bs-toggle="tab"
+                        data-bs-target="#toppings-tab-pane" type="button" role="tab"
+                        aria-controls="toppings-tab-pane" aria-selected="false"><span
+                        class="badge rounded-pill text-bg-secondary">3</span> Toppings
+                </button>
+            </li>
+        </ul>
     </div>
-    <div id="toppings" class="card">
-        <div class="card-body">
-            Toppings Placeholder Text
+
+    <div class="container tab-content" id="myTabContent">
+        <div class="card tab-pane fade show active" id="size-and-crust-tab-pane" role="tabpanel"
+             aria-labelledby="size-and-crust-tab" tabindex="0">
+            <div class="card-body">
+                <div class="card">
+                    <div class="card-body">
+                        Size and Crust 1
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        Size and Crust 2
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="card tab-pane fade" id="cheese-and-sauce-tab-pane" role="tabpanel"
+             aria-labelledby="cheese-and-sauce-tab" tabindex="0">
+            <div class="card-body">
+                Cheese and Sauce Placeholder Text
+            </div>
+        </div>
+        <div id="toppings-tab-pane" class="card tab-pane fade" role="tabpanel"
+             aria-labelledby="toppings-tab" tabindex="0">
+            <div class="card-body">
+                Toppings Placeholder Text
+            </div>
+        </div>
+        <header>
+        </header>
+        <footer>
+        </footer>
     </div>
-    <header>
-    </header>
-    <footer>
-    </footer>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
