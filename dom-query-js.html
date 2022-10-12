@@ -29,7 +29,7 @@
 <button id="b3">Gray list odd items</button>
 <button id="b4">Blue list 1</button>
 <script>
-    (function() {
+    (function () {
         "use strict";
 
         document.getElementById("b1").addEventListener('click', changeHeader);
@@ -56,7 +56,7 @@
             let listItems = document.getElementsByTagName("li");
             // TODO: Set text color on every other list item to grey
             for (let i = 0; i < listItems.length; i++) {
-                if (i % 2 == 0) listItems[i].style.color = "#888";
+                if (i % 2 == 0) listItems[i].style.color = "#ddd";
             }
         }
 
