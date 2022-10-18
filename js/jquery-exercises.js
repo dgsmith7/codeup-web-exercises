@@ -1,6 +1,5 @@
 "use strict";
 
 (function () {
-    var contents = $('#todo-item5').html();
-    alert(contents);
+    $('.codeup').css('border', '1px solid #F00');
 }());
