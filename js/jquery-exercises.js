@@ -1,5 +1,8 @@
 "use strict";
 
 (function () {
-    $('.codeup').css('border', '1px solid #F00');
+    $('hi').css('background-color', 'yellow');
+    $('p').css('background-color', 'yellow');
+    $('li').css('background-color', 'yellow');
+    alert($('h1').html());
 }());
