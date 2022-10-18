@@ -1,5 +1,6 @@
 "use strict";
 
-$(function () {
-    alert("Finished loading DOM");
+(function () {
+    var contents = $('#todo-item5').html();
+    alert(contents);
 }());
