@@ -12,6 +12,7 @@
         console.log(typeof event.keyCode);
     });
 
+
     function addReward() {
         $('.animated').css('visibility', 'visible');
         $('.animated').css('animation-name', 'text-color-flash');

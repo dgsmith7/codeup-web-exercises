@@ -1,0 +1,21 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+.invisible {
+    /*visibility: hidden;*/
+    display: none;
+}
+
+dd {
+    color: blue;
+}
+
+dt {
+    margin: 10px;
+}
+
