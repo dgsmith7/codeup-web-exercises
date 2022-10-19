@@ -1,0 +1,37 @@
+/*.message {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    margin: auto 0;*/
+/*}*/
+
+@keyframes text-color-flash {
+    0% {
+        color: red;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    25% {
+        color: yellow;
+    }
+    50% {
+        color: blue;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        color: green;
+        opacity: 0;
+    }
+}
+
+/* The element to apply the animation to */
+.animated {
+    color: red;
+    animation-name: none;
+    animation-duration: 5s;
+    visibility: hidden;
+    opacity: 0;
+}
