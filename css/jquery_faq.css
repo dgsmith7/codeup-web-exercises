@@ -8,11 +8,16 @@ html {
 
 .invisible {
     /*visibility: hidden;*/
+    /* I used display instead because I like how it looks better than visibility (above) */
     display: none;
 }
 
 dd {
     color: blue;
+}
+
+.sel {
+    background-color: yellow;
 }
 
 dt {
