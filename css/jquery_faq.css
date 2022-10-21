@@ -12,7 +12,7 @@ body {
 
 .invisible {
     visibility: hidden;
-    /* I used display instead because I like how it looks better than visibility (above) */
+    /* I used display below because I like how it looks better than visibility (above) */
     /*display: none;*/
 }
 
