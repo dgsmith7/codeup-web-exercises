@@ -11,9 +11,9 @@ body {
 }
 
 .invisible {
-    visibility: hidden;
+    /*visibility: hidden;*/
     /* I used display below because I like how it looks better than visibility (above) */
-    /*display: none;*/
+    display: none;
 }
 
 dd {
