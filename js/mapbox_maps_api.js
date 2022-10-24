@@ -14,10 +14,6 @@ const map = new mapboxgl.Map({
 });
 
 /*
-Pizza:
-Kožná 481/11, 110 00 Staré Město, Czechia
-50.0865816,14.4193266
-
 Clock:
 Staroměstské nám. 1, 110 00 Josefov, Czechia
 14.4185178, 50.0870215
@@ -32,47 +28,58 @@ Karlův most, 110 00 Praha 1, Czechia
 //     map.setFog({}); // Set the default atmosphere style
 // });
 
-// let marker = new mapboxgl.Marker()
-//     .setLngLat([14.42153, 50.08665])
-//     .addTo(map);
+// Pizza:
+//     Kožná 481/11, 110 00 Staré Město, Czechia
+//     14.4193266, 50.0865816
+let marker = new mapboxgl.Marker()
+    .setLngLat([14.4193266, 50.0865816])
+    .addTo(map);
 
-//map.setZoom(5);
+$('#cont').on('click', (e) => {
+//    console.log('clicked');
+    // if (e.key === 'r') {
+    map.setZoom(5);
+    //
+    // }
+});
 
-let praguePopup = new mapboxgl.Popup()
-    .setHTML("<p>Prague</p>")
+// let praguePopup = new mapboxgl.Popup()
+//     .setHTML("<p>Prague</p>")
 
 //marker.setPopup(praguePopup);
 
-geocode("Staroměstské nám. 1, 110 00 Josefov, Czechia", 'pk.eyJ1IjoiZGdzbWl0aDciLCJhIjoiY2l3bDZ5c2gwMDAyaTJvbm4xbTBpNGgzNCJ9.Ue5-g-SMk3KXCHdpGidvug').then(function (result) {
-    console.log("Astronomical Clock Lng Lat", result);
-    // map.setCenter(result);
-    // map.setZoom(20);
-});
+// geocode("Staroměstské nám. 1, 110 00 Josefov, Czechia", 'pk.eyJ1IjoiZGdzbWl0aDciLCJhIjoiY2l3bDZ5c2gwMDAyaTJvbm4xbTBpNGgzNCJ9.Ue5-g-SMk3KXCHdpGidvug').then(function (result) {
+//     console.log("Astronomical Clock Lng Lat", result);
+//     // map.setCenter(result);
+//     // map.setZoom(20);
+// });
 
-reverseGeocode({  // prague
-    lng: 14.4185178,
-    lat: 50.0870215
-}, 'pk.eyJ1IjoiZGdzbWl0aDciLCJhIjoiY2l3bDZ5c2gwMDAyaTJvbm4xbTBpNGgzNCJ9.Ue5-g-SMk3KXCHdpGidvug').then(function (results) {
-    // logs the address for The Astronomical Clock
-    console.log("Astronomical Clock Address", results);
-});
+// reverseGeocode({  // prague
+//     lng: 14.4185178,
+//     lat: 50.0870215
+// }, 'pk.eyJ1IjoiZGdzbWl0aDciLCJhIjoiY2l3bDZ5c2gwMDAyaTJvbm4xbTBpNGgzNCJ9.Ue5-g-SMk3KXCHdpGidvug').then(function (results) {
+//     // logs the address for The Astronomical Clock
+//     console.log("Astronomical Clock Address", results);
+// });
 
-let pizzaInfo = {
-    address: "Kožná 481/11, 110 00 Staré Město, Czechia",
-    popupHTML: "<p>Pizzeria Giovanni</p>"
-};
+// let pizzaInfo = {
+//     address: "Kožná 481/11, 110 00 Staré Město, Czechia",
+//     popupHTML: "<p>Pizzeria Giovanni</p>"
+// };
+//
+// function placeMarkerAndPopup(info, token, map) {
+//     geocode(info.address, token).then(function (coordinates) {
+//         let popup = new mapboxgl.Popup()
+//             .setHTML(info.popupHTML);
+//         let marker = new mapboxgl.Marker()
+//             .setLngLat(coordinates)
+//             .addTo(map)
+//             .setPopup(popup);
+//         popup.addTo(map);
+//     });
+// }
 
-function placeMarkerAndPopup(info, token, map) {
-    geocode(info.address, token).then(function (coordinates) {
-        let popup = new mapboxgl.Popup()
-            .setHTML(info.popupHTML);
-        let marker = new mapboxgl.Marker()
-            .setLngLat(coordinates)
-            .addTo(map)
-            .setPopup(popup);
-        popup.addTo(map);
-    });
-}
+// placeMarkerAndPopup(pizzaInfo, 'pk.eyJ1IjoiZGdzbWl0aDciLCJhIjoiY2l3bDZ5c2gwMDAyaTJvbm4xbTBpNGgzNCJ9.Ue5-g-SMk3KXCHdpGidvug', map);
 
-placeMarkerAndPopup(pizzaInfo, 'pk.eyJ1IjoiZGdzbWl0aDciLCJhIjoiY2l3bDZ5c2gwMDAyaTJvbm4xbTBpNGgzNCJ9.Ue5-g-SMk3KXCHdpGidvug', map);
+
 //}());
