@@ -19,7 +19,8 @@
 //        console.log(data);
         let newHTML = '';
         for (let i = 0; i < data.length; i++) {
-            newHTML += `<div class="card m-3"><img src="http://placekitten.com/350/350" class="card-img-top img-thumbnail" style="max-width: 25vw; height: auto;" alt="A kitten"><div class="card-body"><div><h5 class="card-title">${data[i].title}</h5></div>
+            let picUrl = 'http://placekitten.com/' + (Math.floor(Math.random() * 750) + 150) + '/' + (Math.floor(Math.random() * 500) + 150);  //ask different size each time to randomize because same size always retuns same image
+            newHTML += `<div class="card m-3"><img src="${picUrl}" class="card-img-top img-thumbnail m-2" style="max-width: 25vw; height: auto;" alt="A kitten"><div class="card-body"><div><h5 class="card-title">${data[i].title}</h5></div>
                         <div><h6 class="card-subtitle mt-1 text-muted">${data[i].date}</h6></div><div class="row mt-3 mb-3">
                         <div>${data[i].content}</div></div><div><h6 class="card-subtitle mt-1 text-muted">Categories:</h6></div><div class="row m-2"><ul class="list-group list-group-horizontal">`
             for (let j = 0; j < data[i].categories.length; j++) {

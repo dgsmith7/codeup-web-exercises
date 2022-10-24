@@ -18,33 +18,9 @@
 <header></header>
 <main>
 
-
-    <div id='map' style='width: 400px; height: 300px;'></div>
-    <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoiZGdzbWl0aDciLCJhIjoiY2l3bDZ5c2gwMDAyaTJvbm4xbTBpNGgzNCJ9.Ue5-g-SMk3KXCHdpGidvug';
-        const map = new mapboxgl.Map({
-            container: 'map', // container ID
-            style: 'mapbox://styles/mapbox/streets-v11', // style URL
-            center: [14.42526, 50.0525], // starting position [lng, lat]
-            zoom: 9, // starting zoom
-            projection: 'globe' // display the map as a 3D globe
-        });
-        map.on('style.load', () => {
-            map.setFog({}); // Set the default atmosphere style
-        });
-
-        var marker = new mapboxgl.Marker()
-            .setLngLat([14.42153, 50.08665])
-            .addTo(map);
-
-        map.setZoom(4);
-
-        var pizzaPopup = new mapboxgl.Popup()
-            .setHTML("<p>Pizzeria Giovanni</p>")
-
-        marker.setPopup(pizzaPopup);
-    </script>
-
+    <div class="container-fluid">
+        <div id='map' style='width: 500px; height: 500px;'></div>
+    </div>
 
 </main>
 <footer></footer>
