@@ -31,11 +31,13 @@ function loadRestaurantData() {
 function buildMarkersAndPopups() {
     restaurants.forEach((element) => {
         let popup = new mapboxgl.Popup()
+            .setLngLat(element.lngLat)
             .setHTML(`<div>${element.name}</div><div>${element.address}</div><div>${element.info}</div>`)
+            .addTo(map);
         let marker = new mapboxgl.Marker()
             .setLngLat(element.lngLat)
             .addTo(map);
-        popup.addTo(map);
+        marker.setPopup(popup);
         places.push({popup, marker});
     });
 }
