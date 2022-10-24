@@ -4,10 +4,12 @@
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZGdzbWl0aDciLCJhIjoiY2l3bDZ5c2gwMDAyaTJvbm4xbTBpNGgzNCJ9.Ue5-g-SMk3KXCHdpGidvug';
 const map = new mapboxgl.Map({
+    // Prague:
+    //     14.4481066, 50.0788674
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v11', // style URL
-    center: [14.42526, 50.0525], // starting position [lng, lat]
-    zoom: 15, // starting zoom
+    center: [14.4481066, 50.0788674], // starting position [lng, lat]
+    zoom: 11, // starting zoom
     projection: 'globe' // display the map as a 3D globe
 });
 
@@ -20,8 +22,6 @@ Clock:
 Staroměstské nám. 1, 110 00 Josefov, Czechia
 14.4185178, 50.0870215
 
-Prague:
-14.4481066, 50.0788674
 
 Charels Bridge:
 Karlův most, 110 00 Praha 1, Czechia
