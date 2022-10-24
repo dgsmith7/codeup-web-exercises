@@ -2,21 +2,46 @@
   {
     "name": "Pizzeria Giovanni",
     "address": "Kožná 481/11, 110 00 Staré Město, Czechia",
+    "lngLat": {
+      "lng": 14.4215153,
+      "lat": 50.0865816
+    },
     "info": "A really tasty pizza-joint right near the Old Town Square"
   },
   {
     "name": "U Zlateho Tygra (The Golden Tiger)",
     "address": "Husova 228/17 Staré Město, Czechia",
+    "lngLat": {
+      "lng": 14.4158562,
+      "lat": 50.0857716
+    },
     "info": "One of the oldest beer halls in Prague from about 1700."
   },
   {
     "name": "Lokál Dlouhá",
     "address": "Dlouhá 33, 110 00 Staré Město, Czechia",
+    "lngLat": {
+      "lng": 14.4235687,
+      "lat": 50.0906931
+    },
     "info": "It’s only a few minutes walk from Old Town Square. It’s in a very long, narrow building with a cool atmosphere, and the food is amazing!"
   },
   {
     "name": "Absintheria Franz Kafka",
     "address": "U Radnice 13/8, 110 00 Staré Město, Czechia",
+    "lngLat": {
+      "lng": 14.4172323,
+      "lat": 50.0874436
+    },
     "info": "You can taste about 100 absinthes. Enjoy a special experience and come to sample unique absinthe cocktails, beer, ice cream or chocolate."
+  },
+  {
+    "name": "Jizerske Pekarny",
+    "address": "Dlouhá 928, 110 00 Staré Město, Czechia",
+    "lngLat": {
+      "lng": 14.4197614,
+      "lat": 50.0878508
+    },
+    "info": "One of the last true bakeries in the city center. Forget about breakfast at the hotel, eat here! Definitely a must visit place while in Prague."
   }
 ]
