@@ -14,3 +14,61 @@ body {
     width: 100%;
     height: 500px;
 }
+
+.animated-marker {
+    background-image: url('../assets/icons/caret-down-fill.svg');
+    background-size: cover;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    animation: bounceAnimation ease 2s;
+    animation-iteration-count: 1;
+    /*animation-fill-mode: forwards;*/
+    /*transform-origin: 50% 50%;*/
+}
+
+@keyframes bounceAnimation {
+    10% {
+        transform: scale(1);
+    }
+    20% {
+        transform: scale(1.5);
+    }
+    30% {
+        transform: scale(1);
+    }
+    39% {
+        transform: scale(1.3);
+    }
+    48% {
+        transform: scale(1);
+    }
+    56% {
+        transform: scale(1.1);
+    }
+    62% {
+        transform: scale(1);
+    }
+    69% {
+        transform: scale(0.9);
+    }
+    76% {
+        transform: scale(1);
+    }
+    80% {
+        transform: scale(0.7);
+    }
+    86% {
+        transform: scale(1);
+    }
+    91% {
+        transform: scale(0.5);
+    }
+    96% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

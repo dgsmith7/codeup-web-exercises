@@ -34,11 +34,15 @@
     }
 
     function buildMarkersAndPopups() {
+
         restaurants.forEach((element) => {
+            // create a HTML element for each feature
+            const el = document.createElement('div');
+            el.className = 'animated-marker';
             let popup = new mapboxgl.Popup()
                 .setLngLat(element.lngLat)
                 .setHTML(`<div>${element.name}</div><div>${element.address}</div><div>${element.info}</div>`)
-            let marker = new mapboxgl.Marker()
+            let marker = new mapboxgl.Marker(el)
                 .setLngLat(element.lngLat)
                 .addTo(map)
                 .setPopup(popup);
@@ -58,7 +62,34 @@
 
     function recenter(e) {
         e.preventDefault();
-
+        let newAddress = document.querySelector('#recenter-address').value;
+        geocode(newAddress, MAPBOX_KEY).then(function (coordinates) {
+            // create a HTML element for each feature
+            const el = document.createElement('div');
+            el.className = 'animated-marker';
+            let popup = new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(`<div>${coordinates}</div><div>${newAddress}</div>`);
+            let marker = new mapboxgl.Marker(el)
+                .setLngLat(coordinates)
+                .addTo(map)
+                .setPopup(popup);
+            popup.addTo(map);
+            if (popup.isOpen) {
+                marker.togglePopup();
+            }
+            places.push({popup, marker});
+            //    map.setCenter(coordinates);
+            map.flyTo({
+                center: coordinates,
+                speed: 0.5,
+                curve: 0.5,
+                duration: 5000,
+                easing(t) {
+                    return t;
+                }
+            });
+        });
     }
 
     function toggleMarkers(e) {
