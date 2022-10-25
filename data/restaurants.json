@@ -6,7 +6,8 @@
       "lng": 14.4215153,
       "lat": 50.0865816
     },
-    "info": "A really tasty pizza-joint right near the Old Town Square"
+    "info": "A really tasty pizza-joint right near the Old Town Square",
+    "iconFile": "noun-pizza-1619398.png"
   },
   {
     "name": "U Zlateho Tygra (The Golden Tiger)",
@@ -15,7 +16,8 @@
       "lng": 14.4158562,
       "lat": 50.0857716
     },
-    "info": "One of the oldest beer halls in Prague from about 1700."
+    "info": "One of the oldest beer halls in Prague from about 1700.",
+    "iconFile": "noun-bowl-1957262.png"
   },
   {
     "name": "Lokál Dlouhá",
@@ -24,7 +26,8 @@
       "lng": 14.4235687,
       "lat": 50.0906931
     },
-    "info": "It’s only a few minutes walk from Old Town Square. It’s in a very long, narrow building with a cool atmosphere, and the food is amazing!"
+    "info": "It’s only a few minutes walk from Old Town Square. It’s in a very long, narrow building with a cool atmosphere, and the food is amazing!",
+    "iconFile": "noun-food-4830799.png"
   },
   {
     "name": "Absintheria Franz Kafka",
@@ -33,7 +36,8 @@
       "lng": 14.4172323,
       "lat": 50.0874436
     },
-    "info": "You can taste about 100 absinthes. Enjoy a special experience and come to sample unique absinthe cocktails, beer, ice cream or chocolate."
+    "info": "You can taste about 100 absinthes. Enjoy a special experience and come to sample unique absinthe cocktails, beer, ice cream or chocolate.",
+    "iconFile": "noun-absinthe-3768564.png"
   },
   {
     "name": "Jizerske Pekarny",
@@ -42,6 +46,7 @@
       "lng": 14.4197614,
       "lat": 50.0878508
     },
-    "info": "One of the last true bakeries in the city center. Forget about breakfast at the hotel, eat here! Definitely a must visit place while in Prague."
+    "info": "One of the last true bakeries in the city center. Forget about breakfast at the hotel, eat here! Definitely a must visit place while in Prague.",
+    "iconFile": "noun-croissant-1070797.png"
   }
 ]
