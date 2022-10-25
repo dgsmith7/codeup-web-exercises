@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapbox</title>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet">
+    <style>
+        #map {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+<script src="./js/keys.js"></script>
+
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
+<script>
+    const key = MAPBOX_KEY;//PASTE_KEY_HERE;
+
+    mapboxgl.accessToken = key;
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        //TODO: Set your own zoom and center
+        zoom: 10,
+        center: [86.92344448292124, 27.997005122857352]
+    });
+    //TODO: Set zoom on your own with a map.setZoom call in your console
+
+    //TODO: Add your own marker to where we've aligned your map so far
+    var marker1 = new mapboxgl.Marker()
+        .setLngLat([86.92344448292124, 27.997005122857352])
+        .addTo(map);
+
+    var popup1 = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false
+    });
+
+    //TODO: Use the geocode method to add a 2nd marker and popup to your map, then center your map over it
+    var marker2 = new mapboxgl.Marker()
+        .setLngLat([86.85247434602961, 28.002432547102284])
+        .addTo(map);
+
+    var popup2 = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false
+    });
+
+    map.on('mouseenter', (e) => {
+        console.log("hover");
+        map.getCanvas().style.cursor = 'pointer';
+        const coordinates = e.features[0].geometry.coordinates.slice();
+
+// Ensure that if the map is zoomed out such that multiple
+// copies of the feature are visible, the popup appears
+// over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+        popup1.setLngLat(coordinates/*[86.92344448292124, 27.997005122857352]*/)
+            .setHTML("<p>Everest summit</p>")
+            .addTo(map);
+    });
+
+    // marker2.on('mouseenter', (e) => {
+    //     popup2.setLngLat([86.85247434602961, 28.002432547102284])
+    //         .setHTML("<p>Everest Nepali base-camp</p>")
+    //         .addTo(map)
+    // });
+
+    //TODO: Try a reverse geocode yourself and see what address you get back for your coordinates - remember to send up a {lng: <lng>, lat: <lat>} object
+</script>
+</body>
+</html>

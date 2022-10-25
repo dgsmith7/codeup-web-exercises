@@ -5,7 +5,7 @@
 let map;
 let places = [];
 let restaurants;
-mapboxgl.accessToken = 'pk.eyJ1IjoiZGdzbWl0aDciLCJhIjoiY2l3bDZ5c2gwMDAyaTJvbm4xbTBpNGgzNCJ9.Ue5-g-SMk3KXCHdpGidvug';
+mapboxgl.accessToken = MAPBOX_KEY;//'pk.eyJ1IjoiZGdzbWl0aDciLCJhIjoiY2l3bDZ5c2gwMDAyaTJvbm4xbTBpNGgzNCJ9.Ue5-g-SMk3KXCHdpGidvug';
 
 function createMap() {// Create and set map on City Center
     map = new mapboxgl.Map({

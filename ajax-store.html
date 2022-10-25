@@ -6,18 +6,8 @@
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
-
 <div class="container text-center">
     <h1>My Tool Store</h1>
-    <!-- Your online tool store should load data
-    from the JSON file using a get request and append
-    the data to the table. You will need to use
-    either $.ajax() or $.get(), and a .done() callback.
-    Add some new entries to inventory.json and see how the data on the page gets updated.
-    Add a "Refresh" button that will load inventory.json for you without having to refresh the entire page.
-    Add Twitter Bootstrap to your online store with some custom CSS to make the style your own.
-
-    -->
     <table id="products"
            class="table table-striped table-hover table-bordered border-secondary table-responsive m-3">
         <thead>
@@ -30,33 +20,31 @@
         </thead>
         <tbody id="insertProducts"></tbody>
     </table>
+    <button id="reload">Reload Inventory</button>
 </div>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
-
 <script>
     (function () {
         "use strict";
-        // TODO: Create an AJAX GET request for the file under data/inventory.json
-        $.ajax("./data/inventory.json").done(function (data, status, jqXhr) {
-            //alert("Everything went great! Check out the server's response in the console.");
-            //console.log(data);
-            appendDataToTable(data);
-        }).fail(function (jqXhr, status, error) {
-            //alert("There was an error! Check the console for details");
-            //console.log("Response status: " + status);
-            //console.log("Error object: " + error);
-        }).always(function () {
-            //alert("This function always runs!");
-        });
 
-        // TODO: Take the data from inventory.json and append it to the products table
-        //       HINT: Your data should come back as a JSON object; use console.log() to inspect
-        //             its contents and fields
-        //       HINT: You will want to target #insertProducts for your new HTML elements
+        function loadInventoryData() {
+            // TODO: Create an AJAX GET request for the file under data/inventory.json
+            $.ajax("./data/inventory.json").done(function (data, status, jqXhr) {
+                //alert("Everything went great! Check out the server's response in the console.");
+                appendDataToTable(data);
+            }).fail(function (jqXhr, status, error) {
+                alert("There was an error! Check the console for details");
+                console.log("Response status: " + status);
+                console.log("Error object: " + error);
+                // }).always(function () {
+                //alert("This function always runs!");
+            });
+        }
+
         function appendDataToTable(data) {
             console.log(data);
             let newHTML = '';
@@ -72,8 +60,13 @@
             }
             $('#insertProducts').html(newHTML);
         }
+
+        loadInventoryData();
+        $('#reload').on('click', () => {
+            loadInventoryData();
+        });
+
     })();
 </script>
-
 </body>
 </html>
