@@ -15,6 +15,9 @@ function createMap() {// Create and set map on City Center
         zoom: 15, // starting zoom
         projection: 'globe' // display the map as a 3D globe
     });
+    map.on('style.load', () => {
+        map.setFog({}); // Set the default atmosphere style
+    });
 }
 
 function loadRestaurantData() {
@@ -33,11 +36,14 @@ function buildMarkersAndPopups() {
         let popup = new mapboxgl.Popup()
             .setLngLat(element.lngLat)
             .setHTML(`<div>${element.name}</div><div>${element.address}</div><div>${element.info}</div>`)
-            .addTo(map);
         let marker = new mapboxgl.Marker()
             .setLngLat(element.lngLat)
-            .addTo(map);
-        marker.setPopup(popup);
+            .addTo(map)
+            .setPopup(popup);
+        popup.addTo(map);
+        if (popup.isOpen) {
+            marker.togglePopup();
+        }
         places.push({popup, marker});
     });
 }
