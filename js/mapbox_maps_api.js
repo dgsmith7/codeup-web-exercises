@@ -5,7 +5,8 @@
     let map;
     let places = [];
     let restaurants;
-    mapboxgl.accessToken = MAPBOX_KEY;//'pk.eyJ1IjoiZGdzbWl0aDciLCJhIjoiY2l3bDZ5c2gwMDAyaTJvbm4xbTBpNGgzNCJ9.Ue5-g-SMk3KXCHdpGidvug';
+    let markerVisibility = true;
+    mapboxgl.accessToken = MAPBOX_KEY;
 
     function createMap() {// Create and set map on City Center
         map = new mapboxgl.Map({
@@ -16,7 +17,7 @@
             projection: 'globe' // display the map as a 3D globe
         });
         map.on('style.load', () => {
-            map.setFog({}); // Set the default atmosphere style
+//            map.setFog({}); // Set the default atmosphere style
             buildMarkersAndPopups();
         });
     }
@@ -50,12 +51,31 @@
     }
 
     function setZoomLevel(e) {
-        e.preventDefault(); // don't submit the form, we just want to update the data
+        e.preventDefault();
         let zl = document.querySelector('#zoom-level').value;
         map.setZoom(zl);
+    }
+
+    function recenter(e) {
+        e.preventDefault();
+
+    }
+
+    function toggleMarkers(e) {
+        e.preventDefault();
+        markerVisibility = !markerVisibility;
+        places.forEach((element) => {
+            if (markerVisibility === true) {
+                element.marker.addTo(map);
+            } else {
+                element.marker.remove();
+            }
+        });
     }
 
     loadRestaurantData();
     createMap();
     $('#zoom-level').on('change', setZoomLevel);
+    $('#recenter').on('click', recenter);
+    $('#toggle-markers').on('click', toggleMarkers);
 }());
