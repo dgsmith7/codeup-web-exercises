@@ -1,0 +1,46 @@
+[
+  {
+    "desc": "clear sky",
+    "file": "sun-fill.svg"
+  },
+  {
+    "desc": "clear sky night",
+    "file": "moon-fill.svg"
+  },
+  {
+    "desc": "few clouds",
+    "file": "cloud-sun-fill.svg"
+  },
+  {
+    "desc": "few clouds night",
+    "file": "cloud-moon-fill.svg"
+  },
+  {
+    "desc": "scattered clouds",
+    "file": "cloudy-fill.svg"
+  },
+  {
+    "desc": "broken clouds",
+    "file": "clouds-fill.svg"
+  },
+  {
+    "desc": "shower rain",
+    "file": "cloud-rain-fill.svg"
+  },
+  {
+    "desc": "rain",
+    "file": "cloud-rain-heavy-fill.svg"
+  },
+  {
+    "desc": "thunderstorm",
+    "file": "cloud-lightning-rain-fill.svg"
+  },
+  {
+    "desc": "snow",
+    "file": "snow.svg"
+  },
+  {
+    "desc": "mist",
+    "file": "cloud-haze-fill.svg"
+  }
+]

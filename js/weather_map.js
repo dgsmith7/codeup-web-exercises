@@ -12,12 +12,13 @@ accessibility?
  */
 (function () {
     let wx;
-    let newZipCode = "99762";// 96707 75238
+    let newZipCode = "02108";//"75238";//"99762";// "96707";
     let zipCode = "";
     let newLocation = {"lat": 32.869, "lon": -96.703};
     let location = "";
     let newLocName = "Dallas";
     let locName = "";
+    let fileMap = new Map();
 
     function getLocalWxData() {  // use ajax to get restaurant dat from file
         let url = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&units=imperial&appid=${OPEN_WX_MAP_KEY}`
@@ -60,13 +61,40 @@ accessibility?
         });
     }
 
+    function getFileMap() {
+        let url = `./data/icon-map.json`
+        $.ajax(url).done(function (data) {// once we have lat lon from zip code get the local area name
+            data.forEach((element) => {
+                fileMap.set(element.desc, element.file);
+            });
+            //    console.log(fileMap.get('clear sky'));
+            lookUpLatLongByZip(newZipCode);  // start with zip code
+        }).fail(function (jqXhr, status, error) {
+            alert("There was an error with the file map! Check the console for details");
+            console.log("Response status: " + status);
+            console.log("Error object: " + error);
+        });
+    }
+
     function getSunAndMoonData() {
-        // https://aa.usno.navy.mil/api/rstt/oneday?date=2005-09-20 &coords=47.60, -122.33&tz=-8 &dst=true
+        // let url = `https://aa.usno.navy.mil/api/rstt/oneday?date=2005-09-20 &coords=${location.lat},${location.lon}&tz=-8 &dst=true`;
+        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&units=imperial&appid=${OPEN_WX_MAP_KEY}`
+        console.log(url);
+        $.get(url).done(function (data) {// once we have lat lon from zip code get the local area name
+            wx = data;  // assign file contents to global variable
+            //console.log("weather: ", wx)
+            lookUpLocationNameByLatLon(location.lat, location.lon);
+        }).fail(function (jqXhr, status, error) {
+            alert("There was an error getting local conditions! Check the console for details");
+            console.log("Response status: " + status);
+            console.log("Error object: " + error);
+        });
     }
 
     function populateDisplay() {
         $('#map-area').html(`<div>The map will go here, centered on ${JSON.stringify(location)}</div>`);
-        let imgURL = getImageName();//`http://openweathermap.org/img/wn/${wx.weather[0].icon}@4x.png`;
+        let imgURL = `./assets/images/weather/${fileMap.get(wx.weather[0].description)}`;
+        //  if it is night sub moon for sun: imgURL something
         setDayNightBG();
         $('#current-img').attr("src", imgURL);
         $('#current-banner').html("Current Conditions for " + locName);
@@ -120,5 +148,5 @@ accessibility?
         return "./assets/images/weather/sun-fill.svg";
     }
 
-    lookUpLatLongByZip(newZipCode);  // start with zip code
+    getFileMap();
 }());

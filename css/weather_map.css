@@ -159,10 +159,16 @@ div {
     background: linear-gradient(to top, #C8C8DC, #0A0A1E);
 }
 
-.header {
+header {
+    background-image: url("../assets/images/wx-banner.jpg");
+    background-size: cover;
+    min-height: 15vw;
+}
 
+#banner-text {
+    color: white;
 }
 
 #current-image {
-        
+
 }
