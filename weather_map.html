@@ -6,6 +6,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Station</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js'></script>
@@ -21,82 +24,129 @@
 <main>
     <div class="container">
         <hr/>
-        <div class="row m-2 text-center">
-            <div id="current-banner" class="h2">Current Conditions</div>
+        <div class="row m-2 d-flex justify-content-between">
+            <div class="col-12 col-md-6">
+                <div id="current-banner" class="h2">Current Conditions</div>
+            </div>
+            <div class="col-12 col-md-6">
+                <form>
+                    <fieldset>
+                        <div>
+                            <button>Select a new location button</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
         </div>
         <div class="row m-2">
-            <div class="col-4">
+            <div class="col-12 col-md-4">
                 <div class="col" id="current">
                     <div class="card text-center">
-                        <img id="current-img" src="assets/images/kittens1.jpg" class="card-img-top"
+                        <img id="current-img" src="" class="card-img-top"
                              alt="icon for current condition">
                         <div class="card-body">
                             <h5 id="current-date" class="card-title">The date</h5>
                             <p id="current-desc" class="card-text">Description of current condition.</p>
+                            <ul class="current-list list-group list-group-flush">
+                                <li id="current-temps" class="list-group-item">HI/LO temps</li>
+                                <li id="current-humid" class="list-group-item">Humidity</li>
+                                <li id="current-wind" class="list-group-item">Winds</li>
+                                <li id="current-baro" class="list-group-item">Barometric Pressure</li>
+                            </ul>
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li id="current-temps" class="list-group-item">HI/LO temps</li>
-                            <li id="current-humid" class="list-group-item">Humidity</li>
-                            <li id="current-wind" class="list-group-item">Winds</li>
-                            <li id="current-baro" class="list-group-item">Barometric Pressure</li>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="row m-3" id="map-area"></div>
+            </div>
+        </div>
+        <hr/>
+        <!-- Forecast area -->
+        <div class="row m-2">
+            <div id="forecast-banner" class="h2">5-day Forecast</div>
+        </div>
+        <!-- forecast cards -->
+        <div class="row m-2" id="five-day-cards">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg" id="day-one">
+                <div class="card text-center">
+                    <img id="day-one-img" src="" class="card-img-top"
+                         alt="icon for day 1 condition">
+                    <div class="card-body">
+                        <h5 id="day-one-date" class="card-title">The date</h5>
+                        <p id="day-one-desc" class="card-text">Description of day 1 condition.</p>
+                        <ul class="day-one-list list-group list-group-flush">
+                            <li id="day-one-temps" class="list-group-item">HI/LO temps</li>
+                            <li id="day-one-humid" class="list-group-item">Humidity</li>
+                            <li id="day-one-wind" class="list-group-item">Winds</li>
+                            <li id="day-one-baro" class="list-group-item">Barometric Pressure</li>
                         </ul>
                     </div>
                 </div>
 
             </div>
-            <div class="col-8">
-                <div class="row m-3" id="inputs">
-                    <from>
-                        <fieldset>
-                            <div>
-                                <button>Select a new location button</button>
-                            </div>
-                        </fieldset>
-                    </from>
-                </div>
-                <div class="row m-3" id="map-area"></div>
-            </div>
-        </div>
-        <hr/>
-        <div class="row m-2 text-center">
-            <div class="h2">5-day Forecast</div>
-        </div>
-
-        <div class="row m-2" id="five-day-cards">
-            <div class="col" id="day-one">
-                <div class="card">
-                    <img id="day-one-img" src="assets/images/kittens1.jpg" class="card-img-top"
-                         alt="icon for current condition">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg" id="day-two">
+                <div class="card text-center">
+                    <img id="day-two-img" src="" class="card-img-top"
+                         alt="icon for day 2 condition">
                     <div class="card-body">
-                        <h5 id="day-one-date" class="card-title">The date</h5>
-                        <p id="day-one-desc" class="card-text">Description of current condition.</p>
+                        <h5 id="day-two-date" class="card-title">The date</h5>
+                        <p id="day-two-desc" class="card-text">Description of day 2 condition.</p>
+                        <ul class="day-two-list list-group list-group-flush">
+                            <li id="day-two-temps" class="list-group-item">HI/LO temps</li>
+                            <li id="day-two-humid" class="list-group-item">Humidity</li>
+                            <li id="day-two-wind" class="list-group-item">Winds</li>
+                            <li id="day-two-baro" class="list-group-item">Barometric Pressure</li>
+                        </ul>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li id="day-one-temps" class="list-group-item">HI/LO temps</li>
-                        <li id="day-one-humid" class="list-group-item">Humidity</li>
-                        <li id="day-one-wind" class="list-group-item">Winds</li>
-                        <li id="day-one-baro" class="list-group-item">Barometric Pressure</li>
-                    </ul>
                 </div>
             </div>
-            <div class="col" id="day-two">
-                <div class="card">
-
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg" id="day-three">
+                <div class="card text-center">
+                    <img id="day-three-img" src="" class="card-img-top"
+                         alt="icon for day 3 condition">
+                    <div class="card-body">
+                        <h5 id="day-three-date" class="card-title">The date</h5>
+                        <p id="day-three-desc" class="card-text">Description of day 3 condition.</p>
+                        <ul class="day-three-list list-group list-group-flush">
+                            <li id="day-three-temps" class="list-group-item">HI/LO temps</li>
+                            <li id="day-three-humid" class="list-group-item">Humidity</li>
+                            <li id="day-three-wind" class="list-group-item">Winds</li>
+                            <li id="day-three-baro" class="list-group-item">Barometric Pressure</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="col" id="day-three">
-                <div class="card">
-
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg" id="day-four">
+                <div class="card text-center">
+                    <img id="day-four-img" src="" class="card-img-top"
+                         alt="icon for day 4 condition">
+                    <div class="card-body">
+                        <h5 id="day-four-date" class="card-title">The date</h5>
+                        <p id="day-four-desc" class="card-text">Description of day 4 condition.</p>
+                        <ul class="day-four-list list-group list-group-flush">
+                            <li id="day-four-temps" class="list-group-item">HI/LO temps</li>
+                            <li id="day-four-humid" class="list-group-item">Humidity</li>
+                            <li id="day-four-wind" class="list-group-item">Winds</li>
+                            <li id="day-four-baro" class="list-group-item">Barometric Pressure</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="col" id="day-four">
-                <div class="card">
-
-                </div>
-            </div>
-            <div class="col" id="day-five">
-                <div class="card">
-
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg" id="day-five">
+                <div class="card text-center">
+                    <img id="day-five-img" src="" class="card-img-top"
+                         alt="icon for day 5 condition">
+                    <div class="card-body">
+                        <h5 id="day-five-date" class="card-title">The date</h5>
+                        <p id="day-five-desc" class="card-text">Description of day 5 condition.</p>
+                        <ul class="day-five-list list-group list-group-flush">
+                            <li id="day-five-temps" class="list-group-item">HI/LO temps</li>
+                            <li id="day-five-humid" class="list-group-item">Humidity</li>
+                            <li id="day-five-wind" class="list-group-item">Winds</li>
+                            <li id="day-five-baro" class="list-group-item">Barometric Pressure</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
