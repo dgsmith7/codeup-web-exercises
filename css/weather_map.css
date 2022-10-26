@@ -150,3 +150,19 @@ div {
 #current-banner, #forecast-banner {
     color: #ffffff;
 }
+
+.day-bg {
+    background: linear-gradient(to top, #92C0DC, #366DC3);
+}
+
+.night-bg {
+    background: linear-gradient(to top, #C8C8DC, #0A0A1E);
+}
+
+.header {
+
+}
+
+#current-image {
+        
+}

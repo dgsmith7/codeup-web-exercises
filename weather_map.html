@@ -11,13 +11,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet'/>
     <link rel="stylesheet" href="./css/weather_map.css">
 </head>
 <body>
 <header>
-    <div class="row m-2 text-center">
+    <div id="header" class="row m-2 text-center">
         <div class="h1">Weather Station</div>
     </div>
 </header>
@@ -42,8 +43,10 @@
             <div class="col-12 col-md-4">
                 <div class="col" id="current">
                     <div class="card text-center">
-                        <img id="current-img" src="" class="card-img-top"
-                             alt="icon for current condition">
+                        <div id="current-img-cont" class="p-5">
+                            <img id="current-img" src="" class="card-img-top"
+                                 alt="icon for current condition">
+                        </div>
                         <div class="card-body">
                             <h5 id="current-date" class="card-title">The date</h5>
                             <p id="current-desc" class="card-text">Description of current condition.</p>

@@ -33,6 +33,8 @@ accessibility?
         });
     }
 
+//Clouds - <a href="https://www.freepik.com/free-vector/day-night-weather-forecast-app-realistic-vector-icons-set-isolated-transparent-background-su_3823997.htm">Image by vectorpocket</a> on Freepik
+//Moons - Image by <a href="https://www.freepik.com/free-vector/realistic-moon-phases_1087009.htm#page=2&query=moon%20phases&position=6&from_view=search&track=sph">Freepik</a>
     function lookUpLocationNameByLatLon(lat, lon) {
         let url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${OPEN_WX_MAP_KEY}`
         $.get(url).done(function (data) { // now that we have lat lon, local wx, and local name from zip, update page
@@ -58,9 +60,14 @@ accessibility?
         });
     }
 
+    function getSunAndMoonData() {
+        // https://aa.usno.navy.mil/api/rstt/oneday?date=2005-09-20 &coords=47.60, -122.33&tz=-8 &dst=true
+    }
+
     function populateDisplay() {
         $('#map-area').html(`<div>The map will go here, centered on ${JSON.stringify(location)}</div>`);
-        let imgURL = `http://openweathermap.org/img/wn/${wx.weather[0].icon}@4x.png`;
+        let imgURL = getImageName();//`http://openweathermap.org/img/wn/${wx.weather[0].icon}@4x.png`;
+        setDayNightBG();
         $('#current-img').attr("src", imgURL);
         $('#current-banner').html("Current Conditions for " + locName);
         $('#current-date').html(`<b>${convertDate(wx.dt)}</b>`);
@@ -73,6 +80,11 @@ accessibility?
 
     function convertDate(epoch) {
         return new Date(epoch * 1000).toLocaleString();
+    }
+
+    function setDayNightBG() {
+        // if it is day time toggle the daybg/nightbg classes for the card images
+        $('#current-img-cont').toggleClass("day-bg");//<i class="bi bi-clouds-fill"></i>
     }
 
     function formatDirection(dir) {
@@ -102,6 +114,10 @@ accessibility?
             dirStr = "NW"
         }
         return dirStr;
+    }
+
+    function getImageName() {
+        return "./assets/images/weather/sun-fill.svg";
     }
 
     lookUpLatLongByZip(newZipCode);  // start with zip code
