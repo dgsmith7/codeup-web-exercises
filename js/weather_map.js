@@ -1,14 +1,14 @@
 "use strict";
 /*
 TODO:
-turn button into text input for zipcode and add evnt handler
-complete card style then use on all forecast cards
+turn button into text input for zipcode, add event handler and clientside validation
 incorporate map
 use flyto anim for new zipcode
 add comments
 remove superfluous comments and garbage
 organize and consolidate css file
 review and remove superfluous html
+accessibility?
  */
 (function () {
     let wx;
@@ -24,7 +24,7 @@ review and remove superfluous html
         console.log(url);
         $.get(url).done(function (data) {// once we have lat lon from zip code get the local area name
             wx = data;  // assign file contents to global variable
-            // console.log("weather: ", wx)
+            //console.log("weather: ", wx)
             lookUpLocationNameByLatLon(location.lat, location.lon);
         }).fail(function (jqXhr, status, error) {
             alert("There was an error getting local conditions! Check the console for details");
@@ -36,8 +36,8 @@ review and remove superfluous html
     function lookUpLocationNameByLatLon(lat, lon) {
         let url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${OPEN_WX_MAP_KEY}`
         $.get(url).done(function (data) { // now that we have lat lon, local wx, and local name from zip, update page
-//            console.log("name lookup:", data);
-            locName = data[0].name;
+            console.log("name lookup:", data);
+            locName = data[0].name + ", " + data[0].state;
             populateDisplay();
         }).fail(function (jqXhr, status, error) {
             alert("There was an error with name lookup! Check the console for details");
