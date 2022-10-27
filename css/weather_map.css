@@ -159,15 +159,32 @@ div {
     background: linear-gradient(to top, #C8C8DC, #0A0A1E);
 }
 
-header {
-    background-image: url("../assets/images/wx-banner.jpg");
-    background-size: cover;
-    min-height: 15vw;
-}
-
 #banner-text {
     font-family: 'Bebas Neue', sans-serif;
+    background-image: url("../assets/images/wx-banner.jpg");
+    background-size: cover;
+    min-height: 250px;
+    position: relative;
+}
+
+#banner-weather {
+    max-height: 225px;
+    position: absolute;
+    right: 0%;
+    top: 0%;
     color: white;
+    font-size: 13em;
+}
+
+#banner-central {
+    max-height: 225px;
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    color: black;
+    font-size: 4.5em;
+    z-index: 1;
+
 }
 
 #current-image {
