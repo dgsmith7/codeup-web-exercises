@@ -1,8 +1,12 @@
 "use strict";
 /*
 TODO:
-turn button into text input for zipcode, add event handler and clientside validation
+big weather little central (in black)
+get comprehensive API call for wx
+add naval observatory API call and show sun/moon data
 incorporate map
+marker drag = new api call
+form - turn button into text input for zipcode, add event handler and clientside validation
 use flyto anim for new zipcode
 add comments
 remove superfluous comments and garbage
@@ -12,7 +16,7 @@ accessibility?
  */
 (function () {
     let wx;
-    let newZipCode = "02108";//"75238";//"99762";// "96707";
+    let newZipCode = "75238";//"02108";//"99762";// "96707";
     let zipCode = "";
     let newLocation = {"lat": 32.869, "lon": -96.703};
     let location = "";
