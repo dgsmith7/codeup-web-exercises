@@ -1,74 +1,74 @@
 [
   {
-    "code": "01d.png",
+    "code": "01d",
     "file": "sun-fill.svg"
   },
   {
-    "code": "01n.png",
+    "code": "01n",
     "file": "moon-fill.svg"
   },
   {
-    "code": "02d.png",
+    "code": "02d",
     "file": "cloud-sun-fill.svg"
   },
   {
-    "code": "01n.png",
+    "code": "01n",
     "file": "cloud-moon-fill.svg"
   },
   {
-    "code": "03d.png",
+    "code": "03d",
     "file": "cloudy-fill.svg"
   },
   {
-    "code": "03n.png",
+    "code": "03n",
     "file": "cloudy-fill.svg"
   },
   {
-    "code": "04d.png",
+    "code": "04d",
     "file": "clouds-fill.svg"
   },
   {
-    "code": "04n.png",
+    "code": "04n",
     "file": "clouds-fill.svg"
   },
   {
-    "code": "09d.png",
+    "code": "09d",
     "file": "cloud-rain-fill.svg"
   },
   {
-    "code": "09n.png",
+    "code": "09n",
     "file": "cloud-rain-fill.svg"
   },
   {
-    "code": "10d.png",
+    "code": "10d",
     "file": "cloud-rain-heavy-fill.svg"
   },
   {
-    "code": "10n.png",
+    "code": "10n",
     "file": "cloud-rain-heavy-fill.svg"
   },
   {
-    "code": "11d.png",
+    "code": "11d",
     "file": "cloud-lightning-rain-fill.svg"
   },
   {
-    "code": "11n.png",
+    "code": "11n",
     "file": "cloud-lightning-rain-fill.svg"
   },
   {
-    "code": "13d.png",
+    "code": "13d",
     "file": "snow.svg"
   },
   {
-    "code": "13n.png",
+    "code": "13n",
     "file": "snow.svg"
   },
   {
-    "code": "50d.png",
+    "code": "50d",
     "file": "cloud-haze-fill.svg"
   },
   {
-    "code": "50n.png",
+    "code": "50n",
     "file": "cloud-haze-fill.svg"
   }
 ]

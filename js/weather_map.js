@@ -1,8 +1,7 @@
 "use strict";
 /*
 TODO:
-get comprehensive API call for wx
-add naval observatory API call and show sun/moon data
+
 incorporate map
 marker drag = new api call
 form - turn button into text input for zipcode, add event handler and clientside validation
@@ -22,13 +21,16 @@ accessibility?
     let newLocName = "Dallas";
     let locName = "";
     let fileMap = new Map();
+    let timeShift;
+    let sunMoon;
 
     function getLocalWxData() {  // use ajax to get restaurant dat from file
         let url = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&units=imperial&appid=${OPEN_WX_MAP_KEY}`
-        console.log(url);
+        //console.log(url);
         $.get(url).done(function (data) {// once we have lat lon from zip code get the local area name
             wx = data;  // assign file contents to global variable
-            //console.log("weather: ", wx)
+            timeShift = wx.timezone / 3600;
+            console.log("weather: ", wx)
             lookUpLocationNameByLatLon(location.lat, location.lon);
         }).fail(function (jqXhr, status, error) {
             alert("There was an error getting local conditions! Check the console for details");
@@ -37,14 +39,13 @@ accessibility?
         });
     }
 
-//Clouds - <a href="https://www.freepik.com/free-vector/day-night-weather-forecast-app-realistic-vector-icons-set-isolated-transparent-background-su_3823997.htm">Image by vectorpocket</a> on Freepik
 //Moons - Image by <a href="https://www.freepik.com/free-vector/realistic-moon-phases_1087009.htm#page=2&query=moon%20phases&position=6&from_view=search&track=sph">Freepik</a>
     function lookUpLocationNameByLatLon(lat, lon) {
         let url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${OPEN_WX_MAP_KEY}`
         $.get(url).done(function (data) { // now that we have lat lon, local wx, and local name from zip, update page
             console.log("name lookup:", data);
             locName = data[0].name + ", " + data[0].state;
-            populateDisplay();
+            getSunAndMoonData();
         }).fail(function (jqXhr, status, error) {
             alert("There was an error with name lookup! Check the console for details");
             console.log("Response status: " + status);
@@ -68,9 +69,9 @@ accessibility?
         let url = `./data/icon-map.json`
         $.ajax(url).done(function (data) {// once we have lat lon from zip code get the local area name
             data.forEach((element) => {
-                fileMap.set(element.desc, element.file);
+                fileMap.set(element.code, element.file);
             });
-            //    console.log(fileMap.get('clear sky'));
+            //console.log(fileMap.get('04d'));
             lookUpLatLongByZip(newZipCode);  // start with zip code
         }).fail(function (jqXhr, status, error) {
             alert("There was an error with the file map! Check the console for details");
@@ -79,24 +80,33 @@ accessibility?
         });
     }
 
-    function getSunAndMoonData() {
-        // let url = `https://aa.usno.navy.mil/api/rstt/oneday?date=2005-09-20 &coords=${location.lat},${location.lon}&tz=-8 &dst=true`;
-        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&units=imperial&appid=${OPEN_WX_MAP_KEY}`
-        console.log(url);
-        $.get(url).done(function (data) {// once we have lat lon from zip code get the local area name
-            wx = data;  // assign file contents to global variable
-            //console.log("weather: ", wx)
-            lookUpLocationNameByLatLon(location.lat, location.lon);
-        }).fail(function (jqXhr, status, error) {
-            alert("There was an error getting local conditions! Check the console for details");
-            console.log("Response status: " + status);
-            console.log("Error object: " + error);
-        });
+
+    function getSunAndMoonData(url) {
+        let callUrl = `https://aa.usno.navy.mil/api/rstt/oneday?date=2005-09-20&coords=${(location.lat).toFixed(2)},${(location.lon.toFixed(2))}&tz=${timeShift}&dst=true`;
+
+        fetch(callUrl, {
+            method: 'GET',
+            mode: 'no-cors',
+            credentials: 'same-origin',
+            headers: {
+                'Accept': 'application/json',
+            },
+        })
+            .then((data) => {
+                sunMoon = data;
+                console.log("sun and moon: ", sunMoon);
+                populateDisplay();
+            })
+            .catch(errorMsg => {
+                console.log(errorMsg);
+            });
     }
 
     function populateDisplay() {
         $('#map-area').html(`<div>The map will go here, centered on ${JSON.stringify(location)}</div>`);
-        let imgURL = `./assets/images/weather/${fileMap.get(wx.weather[0].description)}`;
+        console.log(typeof wx.weather[0].icon);
+        let imgURL = `./assets/images/weather/${fileMap.get(wx.weather[0].icon)}`;
+        console.log("image look up", imgURL);
         //  if it is night sub moon for sun: imgURL something
         setDayNightBG();
         $('#current-img').attr("src", imgURL);
@@ -145,10 +155,6 @@ accessibility?
             dirStr = "NW"
         }
         return dirStr;
-    }
-
-    function getImageName() {
-        return "./assets/images/weather/sun-fill.svg";
     }
 
     getFileMap();
