@@ -70,5 +70,37 @@
   {
     "code": "50n",
     "file": "cloud-haze-fill.svg"
+  },
+  {
+    "code": "First Quarter",
+    "file": "first-quarter.png"
+  },
+  {
+    "code": "Full Moon",
+    "file": "full.png"
+  },
+  {
+    "code": "Last Quarter",
+    "file": "last-quarter.png"
+  },
+  {
+    "code": "New Moon",
+    "file": "new.png"
+  },
+  {
+    "code": "Waxing Crescent",
+    "file": "waxing-crescent.png"
+  },
+  {
+    "code": "Waning Crescent",
+    "file": "waning-crescent.png"
+  },
+  {
+    "code": "Waxing Gibbous",
+    "file": "waxing-gibbous.png"
+  },
+  {
+    "code": "Waning Gibbous",
+    "file": "waning-gibbous.png"
   }
 ]

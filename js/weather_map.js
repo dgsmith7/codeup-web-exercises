@@ -23,31 +23,19 @@ accessibility?
     let fileMap = new Map();
     let timeShift;
     let sunMoon;
-
-    function getLocalWxData() {  // use ajax to get restaurant dat from file
-        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&units=imperial&appid=${OPEN_WX_MAP_KEY}`
-        //console.log(url);
-        $.get(url).done(function (data) {// once we have lat lon from zip code get the local area name
-            wx = data;  // assign file contents to global variable
-            timeShift = wx.timezone / 3600;
-            console.log("weather: ", wx)
-            lookUpLocationNameByLatLon(location.lat, location.lon);
-        }).fail(function (jqXhr, status, error) {
-            alert("There was an error getting local conditions! Check the console for details");
-            console.log("Response status: " + status);
-            console.log("Error object: " + error);
-        });
-    }
+    let fiveDay;
 
 //Moons - Image by <a href="https://www.freepik.com/free-vector/realistic-moon-phases_1087009.htm#page=2&query=moon%20phases&position=6&from_view=search&track=sph">Freepik</a>
-    function lookUpLocationNameByLatLon(lat, lon) {
-        let url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${OPEN_WX_MAP_KEY}`
-        $.get(url).done(function (data) { // now that we have lat lon, local wx, and local name from zip, update page
-            console.log("name lookup:", data);
-            locName = data[0].name + ", " + data[0].state;
-            getSunAndMoonData();
+    function getFileMap() {
+        let url = `./data/icon-map.json`
+        $.ajax(url).done(function (data) {// once we have lat lon from zip code get the local area name
+            data.forEach((element) => {
+                fileMap.set(element.code, element.file);
+            });
+            //console.log(fileMap.get('04d'));
+            lookUpLatLongByZip(newZipCode);  // start with zip code
         }).fail(function (jqXhr, status, error) {
-            alert("There was an error with name lookup! Check the console for details");
+            alert("There was an error with the file map! Check the console for details");
             console.log("Response status: " + status);
             console.log("Error object: " + error);
         });
@@ -65,41 +53,72 @@ accessibility?
         });
     }
 
-    function getFileMap() {
-        let url = `./data/icon-map.json`
-        $.ajax(url).done(function (data) {// once we have lat lon from zip code get the local area name
-            data.forEach((element) => {
-                fileMap.set(element.code, element.file);
-            });
-            //console.log(fileMap.get('04d'));
-            lookUpLatLongByZip(newZipCode);  // start with zip code
+    function getLocalWxData() {  // use ajax to get restaurant dat from file
+        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&units=imperial&appid=${OPEN_WX_MAP_KEY}`
+        //console.log(url);
+        $.get(url).done(function (data) {// once we have lat lon from zip code get the local area name
+            wx = data;  // assign file contents to global variable
+            timeShift = wx.timezone / 3600;
+            console.log("weather: ", wx)
+            lookUpLocationNameByLatLon(location.lat, location.lon);
         }).fail(function (jqXhr, status, error) {
-            alert("There was an error with the file map! Check the console for details");
+            alert("There was an error getting local conditions! Check the console for details");
             console.log("Response status: " + status);
             console.log("Error object: " + error);
         });
     }
 
+    function lookUpLocationNameByLatLon(lat, lon) {
+        let url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${OPEN_WX_MAP_KEY}`
+        $.get(url).done(function (data) { // now that we have lat lon, local wx, and local name from zip, update page
+            console.log("name lookup:", data);
+            locName = data[0].name + ", " + data[0].state;
+            getSunAndMoonData();
+        }).fail(function (jqXhr, status, error) {
+            alert("There was an error with name lookup! Check the console for details");
+            console.log("Response status: " + status);
+            console.log("Error object: " + error);
+        });
+    }
 
     function getSunAndMoonData(url) {
-        let callUrl = `https://aa.usno.navy.mil/api/rstt/oneday?date=2005-09-20&coords=${(location.lat).toFixed(2)},${(location.lon.toFixed(2))}&tz=${timeShift}&dst=true`;
-
+        let callUrl = `https://aa.usno.navy.mil/api/rstt/oneday?date=${makeSunMoonDate(wx.dt)}&coords=${(location.lat).toFixed(2)},${(location.lon.toFixed(2))}&tz=${timeShift}&dst=true`;
         fetch(callUrl, {
             method: 'GET',
             mode: 'no-cors',
             credentials: 'same-origin',
             headers: {
                 'Accept': 'application/json',
-            },
+            }
         })
+            .then((response) => (response.json()))
             .then((data) => {
                 sunMoon = data;
+            })
+            .then(() => {
                 console.log("sun and moon: ", sunMoon);
-                populateDisplay();
+                getFiveDayData();
             })
             .catch(errorMsg => {
                 console.log(errorMsg);
             });
+    }
+
+    function getFiveDayData() {  // use ajax to get restaurant dat from file
+        console.log(convertDate(wx.dt));
+        console.log(makeSunMoonDate(wx.dt));
+        let url = `https://api.openweathermap.org/data/2.5/forecast?lat=${location.lat}&lon=${location.lon}&units=imperial&appid=${OPEN_WX_MAP_KEY}`
+        //console.log(url);
+        $.get(url).done(function (data) {// once we have lat lon from zip code get the local area name
+            fiveDay = data;  // assign file contents to global variable
+            timeShift = wx.timezone / 3600;
+            console.log("forecast: ", fiveDay)
+            populateDisplay();
+        }).fail(function (jqXhr, status, error) {
+            alert("There was an error getting forecast! Check the console for details");
+            console.log("Response status: " + status);
+            console.log("Error object: " + error);
+        });
     }
 
     function populateDisplay() {
@@ -121,6 +140,15 @@ accessibility?
 
     function convertDate(epoch) {
         return new Date(epoch * 1000).toLocaleString();
+    }
+
+    function makeSunMoonDate(epoch) {
+        let s = new Date(epoch * 1000).toLocaleString();
+        s = s.split(',')[0];
+        let sArr = s.split('/');
+        console.log(s);
+        s = sArr[2] + "-" + sArr[0] + "-" + sArr[1];
+        return s;
     }
 
     function setDayNightBG() {
