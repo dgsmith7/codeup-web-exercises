@@ -104,6 +104,18 @@ accessibility?
             });
     }
 
+    /*
+    const apiCall = async () => {
+    let endpoint = 'https://aa.usno.navy.mil/api/rstt/oneday?date=2005-09-20&coords=32.88,-96.71&tz=-5&dst=true'
+    let data = await fetch(endpoint,{
+        datatype : 'jsonp'
+    })
+    let json = await data.json()
+    console.log(json)
+}
+apiCall()
+     */
+
     function getFiveDayData() {  // use ajax to get restaurant dat from file
         console.log(convertDate(wx.dt));
         console.log(makeSunMoonDate(wx.dt));
