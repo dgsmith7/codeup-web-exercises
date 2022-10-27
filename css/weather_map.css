@@ -184,7 +184,13 @@ div {
     color: black;
     font-size: 4.5em;
     z-index: 1;
+}
 
+#screen {
+    color: black;
+    background-color: rgba(200, 200, 200, .25);
+    padding: 5px;
+    border-radius: 10px
 }
 
 #current-image {

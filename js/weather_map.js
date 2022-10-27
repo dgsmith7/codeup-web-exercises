@@ -1,7 +1,6 @@
 "use strict";
 /*
 TODO:
-big weather little central (in black)
 get comprehensive API call for wx
 add naval observatory API call and show sun/moon data
 incorporate map

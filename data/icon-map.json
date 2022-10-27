@@ -1,46 +1,74 @@
 [
   {
-    "desc": "clear sky",
+    "code": "01d.png",
     "file": "sun-fill.svg"
   },
   {
-    "desc": "clear sky night",
+    "code": "01n.png",
     "file": "moon-fill.svg"
   },
   {
-    "desc": "few clouds",
+    "code": "02d.png",
     "file": "cloud-sun-fill.svg"
   },
   {
-    "desc": "few clouds night",
+    "code": "01n.png",
     "file": "cloud-moon-fill.svg"
   },
   {
-    "desc": "scattered clouds",
+    "code": "03d.png",
     "file": "cloudy-fill.svg"
   },
   {
-    "desc": "broken clouds",
+    "code": "03n.png",
+    "file": "cloudy-fill.svg"
+  },
+  {
+    "code": "04d.png",
     "file": "clouds-fill.svg"
   },
   {
-    "desc": "shower rain",
+    "code": "04n.png",
+    "file": "clouds-fill.svg"
+  },
+  {
+    "code": "09d.png",
     "file": "cloud-rain-fill.svg"
   },
   {
-    "desc": "rain",
+    "code": "09n.png",
+    "file": "cloud-rain-fill.svg"
+  },
+  {
+    "code": "10d.png",
     "file": "cloud-rain-heavy-fill.svg"
   },
   {
-    "desc": "thunderstorm",
+    "code": "10n.png",
+    "file": "cloud-rain-heavy-fill.svg"
+  },
+  {
+    "code": "11d.png",
     "file": "cloud-lightning-rain-fill.svg"
   },
   {
-    "desc": "snow",
+    "code": "11n.png",
+    "file": "cloud-lightning-rain-fill.svg"
+  },
+  {
+    "code": "13d.png",
     "file": "snow.svg"
   },
   {
-    "desc": "mist",
+    "code": "13n.png",
+    "file": "snow.svg"
+  },
+  {
+    "code": "50d.png",
+    "file": "cloud-haze-fill.svg"
+  },
+  {
+    "code": "50n.png",
     "file": "cloud-haze-fill.svg"
   }
 ]
