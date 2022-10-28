@@ -73,7 +73,7 @@ accessibility?
         $.get(url).done(function (data) { // now that we have lat lon, local wx, and local name from zip, update page
             console.log("name lookup:", data);
             locName = data[0].name + ", " + data[0].state;
-            getSunAndMoonData();//apiCAll();//
+            getFiveDayData();//getSunAndMoonData();//apiCall();//
         }).fail(function (jqXhr, status, error) {
             alert("There was an error with name lookup! Check the console for details");
             console.log("Response status: " + status);
@@ -82,21 +82,26 @@ accessibility?
     }
 
     function getSunAndMoonData(url) {
-        let callUrl = `https://aa.usno.navy.mil/api/rstt/oneday?date=${makeSunMoonDate(wx.dt)}&coords=${(location.lat).toFixed(2)},${(location.lon.toFixed(2))}&tz=${timeShift}&dst=true`;
+        let callUrl = `https://aa.usno.navy.mil/api/rstt/oneday?date=${makeSunMoonDate(wx.dt)}&coords=${(location.lat).toFixed(2)},${(location.lon.toFixed(2))}&tz=${timeShift}&dst=true&id=joeybaga`;
         fetch(callUrl, {
             method: 'GET',
             mode: 'no-cors',
-            datatype: 'jsonp',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            crossOrigin: true,
+            dataType: 'jsonp',
+//            credentials: 'same-origin',
+//            headers: {
+            // 'Access-Control-Allow-Origin': 'http://localhost:8080',
+            // 'Vary': 'Origin',
+            // 'Accept': 'application/json',
+//            },
         })
             .then((response) => {
                 console.log("response - ", response);
                 response.text()
             })
             .then((data) => {
+                console.log(data ? JSON.parse(data) : {});
+                []
                 //sunMoon = data;
                 //console.log("sunMoon - ", sunMoon);
                 console.log("data - ", data);
@@ -110,19 +115,74 @@ accessibility?
             });
     }
 
-    function apiCAll() {
-        let callUrl = `https://aa.usno.navy.mil/api/rstt/oneday?date=${makeSunMoonDate(wx.dt)}&coords=${(location.lat).toFixed(2)},${(location.lon.toFixed(2))}&tz=${timeShift}&dst=true`;
-        fetch(callUrl, {
-            method: 'GET',
-            mode: 'no-cors',
-            datatype: 'jsonp',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
+    function apiCall() {
+        const Http = new XMLHttpRequest();
+        const url = `https://aa.usno.navy.mil/api/rstt/oneday?date=${makeSunMoonDate(wx.dt)}&coords=${(location.lat).toFixed(2)},${(location.lon.toFixed(2))}&tz=${timeShift}&dst=true&id=joeybaga`;
+        Http.open("GET", url);
+        Http.send();
+
+        Http.onreadystatechange = function (e) {
+            if (this.readyState == 4 && this.status === 200) {
+                data = JSON.parse(Http.responseText);
+
+                if (data.error) {
+                    var errmsg = document.getElementById('location-message')
+                    errmsg.style.display = "";
+                    errmsg.style.height = "80px";
+                    errmsg.classList.add('usa-alert--error');
+                    var errtxt = document.getElementsByClassName('usa-alert__text')[0]
+                    errtxt.innerHTML = "Error: " + data.error;
+                } else {
+                    var lat = document.getElementById('lat');
+                    var lon = document.getElementById('lon');
+
+                    // If daylight saving time applies for this
+                    // data service, check the appropriate radio button
+                    if (document.getElementById('dst-radio-1')) {
+                        if (data.dstexempt === false) {
+                            var dst_radio_1 = document.getElementById('dst-radio-1');
+                            dst_radio_1.checked = true;
+                        } else {
+                            var dst_radio_0 = document.getElementById('dst-radio-0');
+                            dst_radio_0.checked = true;
+                        }
+                    }
+
+                    if (document.getElementById('tz')) {
+                        var tz = document.getElementById('tz');
+                        var tz_sign_0 = document.getElementById('tz_sign-0');
+                        var tz_sign_1 = document.getElementById('tz_sign-1');
+
+                        tz.value = Math.abs(data.tz);
+
+                        if (parseInt(data.tz) < 0) {
+                            tz_sign_1.checked = true
+                        } else {
+                            tz_sign_0.checked = true
+                        }
+                    }
+
+                    //var height = document.getElementById('height');
+
+                    lat.value = data.latitude;
+                    lon.value = data.longitude;
+
+                    if (document.getElementById('label')) {
+                        document.getElementById('label').value = data.city + ", " + data.state;
+                    }
+
+                    // Check the box to use US TZ labels in printout
+                    if (document.getElementById('tz-label-1')) {
+                        var tz_label = document.getElementById('tz-label-1');
+                        tz_label.checked = true;
+                    }
+
+                    document.getElementById('location-message').display = "hidden";
+                    //height.value = data.height
+                    modal.style.display = "none";
+                }
             }
-        })
-            .then((response) => response.json())
-            .then((data) => console.log(data));
+        }
     }
 
     function getFiveDayData() {  // use ajax to get restaurant dat from file
