@@ -73,7 +73,7 @@ accessibility?
         $.get(url).done(function (data) { // now that we have lat lon, local wx, and local name from zip, update page
             console.log("name lookup:", data);
             locName = data[0].name + ", " + data[0].state;
-            getSunAndMoonData();
+            getSunAndMoonData();//apiCAll();//
         }).fail(function (jqXhr, status, error) {
             alert("There was an error with name lookup! Check the console for details");
             console.log("Response status: " + status);
@@ -86,35 +86,44 @@ accessibility?
         fetch(callUrl, {
             method: 'GET',
             mode: 'no-cors',
+            datatype: 'jsonp',
             credentials: 'same-origin',
             headers: {
-                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         })
-            .then((response) => (response.json()))
+            .then((response) => {
+                console.log("response - ", response);
+                response.text()
+            })
             .then((data) => {
-                sunMoon = data;
+                //sunMoon = data;
+                //console.log("sunMoon - ", sunMoon);
+                console.log("data - ", data);
             })
             .then(() => {
                 console.log("sun and moon: ", sunMoon);
                 getFiveDayData();
             })
             .catch(errorMsg => {
-                console.log(errorMsg);
+                console.log("error - ", errorMsg);
             });
     }
 
-    /*
-    const apiCall = async () => {
-    let endpoint = 'https://aa.usno.navy.mil/api/rstt/oneday?date=2005-09-20&coords=32.88,-96.71&tz=-5&dst=true'
-    let data = await fetch(endpoint,{
-        datatype : 'jsonp'
-    })
-    let json = await data.json()
-    console.log(json)
-}
-apiCall()
-     */
+    function apiCAll() {
+        let callUrl = `https://aa.usno.navy.mil/api/rstt/oneday?date=${makeSunMoonDate(wx.dt)}&coords=${(location.lat).toFixed(2)},${(location.lon.toFixed(2))}&tz=${timeShift}&dst=true`;
+        fetch(callUrl, {
+            method: 'GET',
+            mode: 'no-cors',
+            datatype: 'jsonp',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => console.log(data));
+    }
 
     function getFiveDayData() {  // use ajax to get restaurant dat from file
         console.log(convertDate(wx.dt));
