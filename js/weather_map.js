@@ -29,6 +29,7 @@ accessibility?
     let geocoder;
     let gcFlag = false;
     let marker;
+    let dragFlag = false;
     let popup;
 
 //Moons - Image by <a href="https://www.freepik.com/free-vector/realistic-moon-phases_1087009.htm#page=2&query=moon%20phases&position=6&from_view=search&track=sph">Freepik</a>
@@ -295,6 +296,7 @@ accessibility?
             mapboxgl: mapboxgl
         });
         map.addControl(geocoder);
+        $('.mapboxgl-ctrl-geocoder--input').attr('placeholder', 'New location');
         console.log("prox - ", geocoder.getProximity());
         map.on('style.load', () => {  // don't do stuff until map loads
             setTimeout(() => {  // after style loads on map, wait 1.5 seconds to build markers and start icon animations
@@ -302,18 +304,29 @@ accessibility?
             }, 1500)
             map.resize();
         }).on('moveend', () => {
-            let nc = map.getCenter();
-            console.log("new center - ", nc);
-            location = {
-                "lat": nc.lat, "lon": nc.lng
-            };
-            if (gcFlag === true) {
-                gcFlag = false;
-                getLocalWxData();
+            if (dragFlag === true) {
+                console.log('reset dragging flag');
+                dragFlag = false;
+            } else {
+                let nc = map.getCenter();
+                console.log("new center - ", nc);
+                location = {
+                    "lat": nc.lat, "lon": nc.lng
+                };
+                if (gcFlag === true) {
+                    gcFlag = false;
+                    console.log(map);
+                    marker
+                        .setLngLat([location.lon, location.lat])
+                        .addTo(map);
+                    ;
+                    getLocalWxData();
+                }
             }
         });
         geocoder.on('result', () => {
             console.log('geocoder relocate event has occurred.');
+            map._markers[1].remove();
             gcFlag = true;
         });
     }
@@ -344,9 +357,25 @@ accessibility?
     }
 
     function onDragEnd() {
+        dragFlag = true;
         let reposition = marker.getLngLat();
         location = {"lat": reposition.lat, "lon": reposition.lng};
-        console.log(location);
+        console.log("dragged - ", location);
+        // map.flyTo({  // recenters map with a flight animation
+        //     center: [location.lon, location.lat],
+        //     speed: 0.5,
+        //     curve: 0.5,
+        //     duration: 5000,
+        //     easing(t) {
+        //         return t;
+        //     }
+        // });
+        //
+        marker
+            .setLngLat([location.lon, location.lat])
+            .addTo(map);
+        ;
+
         map.setZoom(10);
         getLocalWxData();
     }
