@@ -193,6 +193,20 @@ div {
     border-radius: 10px
 }
 
-#current-image {
-
+#map {
+    height: 100%;
+    width: 100%
 }
+
+/*.geocoder {*/
+/*    !*position: absolute;*!*/
+/*    z-index: 1;*/
+/*    !*width: 50%;*!*/
+/*    !*left: 50%;*!*/
+/*    !*margin-left: -25%;*!*/
+/*    !*top: 10px;*!*/
+/*}*/
+
+/*.mapboxgl-ctrl-geocoder {*/
+/*    min-width: 100%;*/
+/*}*/

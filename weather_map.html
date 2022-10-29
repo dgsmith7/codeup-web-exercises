@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="./css/weather_map.css">
 </head>
 <body>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
+      type="text/css">
 <header>
     <div id="banner-text" class="p-1">
         <div id="banner-weather" class="mb-0 me-5 p-0">WEATHER</div>
@@ -30,24 +34,15 @@
     <div class="container">
         <hr/>
         <div class="row m-2 d-flex justify-content-between">
-            <div class="col-12 col-md-9">
+            <div class="col-12">
                 <div id="current-banner" class="h2">Current Conditions</div>
             </div>
-            <div class="col-12 col-md-3">
-                <form>
-                    <fieldset>
-                        <div>
-                            <button>Select a new location button</button>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
         </div>
-        <div class="row m-2">
+        <div class="row">
             <div class="col-12 col-md-4">
                 <div class="col" id="current">
                     <div class="card text-center">
-                        <div id="current-img-cont" class="p-5">
+                        <div id="current-img-cont" class="p-5 night-bg">
                             <img id="current-img" src="" class="card-img-top"
                                  alt="icon for current condition">
                         </div>
@@ -64,27 +59,31 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-4">
-                <div class="row m-3" id="map-area"></div>
+            <div class="container col-12 col-md-8">
+                <!--                <div>-->
+                <!--                    <span>New location: </span>-->
+                <!--                    <div id="geocoder" class="geocoder m-2"></div>-->
+                <!--                </div>-->
+                <div class="row m-0 p-0" id="map"></div>
             </div>
-            <div class="col" id="sun-and-moon">
-                <div class="card text-center">
-                    <div id="sun-and-moon-img-cont" class="p-5">
-                        <img id="sun-and-moon-img" src="" class="card-img-top"
-                             alt="icon for sun-and-moon condition">
-                    </div>
-                    <div class="card-body">
-                        <h5 id="sun-and-moon-date" class="card-title">The date</h5>
-                        <p id="sun-and-moon-desc" class="card-text">Description of sun-and-moon condition.</p>
-                        <ul class="sun-and-moon-list list-group list-group-flush">
-                            <li id="sun-and-moon-temps" class="list-group-item">HI/LO temps</li>
-                            <li id="sun-and-moon-humid" class="list-group-item">Humidity</li>
-                            <li id="sun-and-moon-wind" class="list-group-item">Winds</li>
-                            <li id="sun-and-moon-baro" class="list-group-item">Barometric Pressure</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <!--            <div class="col-12 col-md-4" id="sun-and-moon">-->
+            <!--                <div class="card text-center">-->
+            <!--                    <div id="sun-and-moon-img-cont" class="p-5">-->
+            <!--                        <img id="sun-and-moon-img" src="" class="card-img-top"-->
+            <!--                             alt="icon for sun-and-moon condition">-->
+            <!--                    </div>-->
+            <!--                    <div class="card-body">-->
+            <!--                        <h5 id="sun-and-moon-date" class="card-title">The date</h5>-->
+            <!--                        <p id="sun-and-moon-desc" class="card-text">Description of sun-and-moon condition.</p>-->
+            <!--                        <ul class="sun-and-moon-list list-group list-group-flush">-->
+            <!--                            <li id="sun-and-moon-temps" class="list-group-item">HI/LO temps</li>-->
+            <!--                            <li id="sun-and-moon-humid" class="list-group-item">Humidity</li>-->
+            <!--                            <li id="sun-and-moon-wind" class="list-group-item">Winds</li>-->
+            <!--                            <li id="sun-and-moon-baro" class="list-group-item">Barometric Pressure</li>-->
+            <!--                        </ul>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
         </div>
         <hr/>
         <!-- Forecast area -->
@@ -92,7 +91,7 @@
             <div id="forecast-banner" class="h2">5-day Forecast</div>
         </div>
         <!-- forecast cards -->
-        <div class="row m-2" id="five-day-cards">
+        <div class="row" id="five-day-cards">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg" id="day-one">
                 <div class="card text-center">
                     <img id="day-one-img" src="" class="card-img-top"

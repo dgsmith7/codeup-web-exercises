@@ -24,6 +24,12 @@ accessibility?
     let timeShift;
     let sunMoon;
     let fiveDay;
+    mapboxgl.accessToken = MAPBOX_KEY;
+    let map;
+    let geocoder;
+    let gcFlag = false;
+    let marker;
+    let popup;
 
 //Moons - Image by <a href="https://www.freepik.com/free-vector/realistic-moon-phases_1087009.htm#page=2&query=moon%20phases&position=6&from_view=search&track=sph">Freepik</a>
     function getFileMap() {
@@ -81,109 +87,109 @@ accessibility?
         });
     }
 
-    function getSunAndMoonData(url) {
-        let callUrl = `https://aa.usno.navy.mil/api/rstt/oneday?date=${makeSunMoonDate(wx.dt)}&coords=${(location.lat).toFixed(2)},${(location.lon.toFixed(2))}&tz=${timeShift}&dst=true&id=joeybaga`;
-        fetch(callUrl, {
-            method: 'GET',
-            mode: 'no-cors',
-            crossOrigin: true,
-            dataType: 'jsonp',
-//            credentials: 'same-origin',
-//            headers: {
-            // 'Access-Control-Allow-Origin': 'http://localhost:8080',
-            // 'Vary': 'Origin',
-            // 'Accept': 'application/json',
-//            },
-        })
-            .then((response) => {
-                console.log("response - ", response);
-                response.text()
-            })
-            .then((data) => {
-                console.log(data ? JSON.parse(data) : {});
-                []
-                //sunMoon = data;
-                //console.log("sunMoon - ", sunMoon);
-                console.log("data - ", data);
-            })
-            .then(() => {
-                console.log("sun and moon: ", sunMoon);
-                getFiveDayData();
-            })
-            .catch(errorMsg => {
-                console.log("error - ", errorMsg);
-            });
-    }
-
-    function apiCall() {
-        const Http = new XMLHttpRequest();
-        const url = `https://aa.usno.navy.mil/api/rstt/oneday?date=${makeSunMoonDate(wx.dt)}&coords=${(location.lat).toFixed(2)},${(location.lon.toFixed(2))}&tz=${timeShift}&dst=true&id=joeybaga`;
-        Http.open("GET", url);
-        Http.send();
-
-        Http.onreadystatechange = function (e) {
-            if (this.readyState == 4 && this.status === 200) {
-                data = JSON.parse(Http.responseText);
-
-                if (data.error) {
-                    var errmsg = document.getElementById('location-message')
-                    errmsg.style.display = "";
-                    errmsg.style.height = "80px";
-                    errmsg.classList.add('usa-alert--error');
-                    var errtxt = document.getElementsByClassName('usa-alert__text')[0]
-                    errtxt.innerHTML = "Error: " + data.error;
-                } else {
-                    var lat = document.getElementById('lat');
-                    var lon = document.getElementById('lon');
-
-                    // If daylight saving time applies for this
-                    // data service, check the appropriate radio button
-                    if (document.getElementById('dst-radio-1')) {
-                        if (data.dstexempt === false) {
-                            var dst_radio_1 = document.getElementById('dst-radio-1');
-                            dst_radio_1.checked = true;
-                        } else {
-                            var dst_radio_0 = document.getElementById('dst-radio-0');
-                            dst_radio_0.checked = true;
-                        }
-                    }
-
-                    if (document.getElementById('tz')) {
-                        var tz = document.getElementById('tz');
-                        var tz_sign_0 = document.getElementById('tz_sign-0');
-                        var tz_sign_1 = document.getElementById('tz_sign-1');
-
-                        tz.value = Math.abs(data.tz);
-
-                        if (parseInt(data.tz) < 0) {
-                            tz_sign_1.checked = true
-                        } else {
-                            tz_sign_0.checked = true
-                        }
-                    }
-
-                    //var height = document.getElementById('height');
-
-                    lat.value = data.latitude;
-                    lon.value = data.longitude;
-
-                    if (document.getElementById('label')) {
-                        document.getElementById('label').value = data.city + ", " + data.state;
-                    }
-
-                    // Check the box to use US TZ labels in printout
-                    if (document.getElementById('tz-label-1')) {
-                        var tz_label = document.getElementById('tz-label-1');
-                        tz_label.checked = true;
-                    }
-
-                    document.getElementById('location-message').display = "hidden";
-                    //height.value = data.height
-                    modal.style.display = "none";
-                }
-            }
-        }
-    }
+//     function getSunAndMoonData(url) {
+//         let callUrl = `https://aa.usno.navy.mil/api/rstt/oneday?date=${makeSunMoonDate(wx.dt)}&coords=${(location.lat).toFixed(2)},${(location.lon.toFixed(2))}&tz=${timeShift}&dst=true&id=joeybaga`;
+//         fetch(callUrl, {
+//             method: 'GET',
+//             mode: 'no-cors',
+//             crossOrigin: true,
+//             dataType: 'jsonp',
+// //            credentials: 'same-origin',
+// //            headers: {
+//             // 'Access-Control-Allow-Origin': 'http://localhost:8080',
+//             // 'Vary': 'Origin',
+//             // 'Accept': 'application/json',
+// //            },
+//         })
+//             .then((response) => {
+//                 console.log("response - ", response);
+//                 response.text()
+//             })
+//             .then((data) => {
+//                 console.log(data ? JSON.parse(data) : {});
+//                 []
+//                 //sunMoon = data;
+//                 //console.log("sunMoon - ", sunMoon);
+//                 console.log("data - ", data);
+//             })
+//             .then(() => {
+//                 console.log("sun and moon: ", sunMoon);
+//                 getFiveDayData();
+//             })
+//             .catch(errorMsg => {
+//                 console.log("error - ", errorMsg);
+//             });
+//     }
+//
+//     function apiCall() {
+//         const Http = new XMLHttpRequest();
+//         const url = `https://aa.usno.navy.mil/api/rstt/oneday?date=${makeSunMoonDate(wx.dt)}&coords=${(location.lat).toFixed(2)},${(location.lon.toFixed(2))}&tz=${timeShift}&dst=true&id=joeybaga`;
+//         Http.open("GET", url);
+//         Http.send();
+//
+//         Http.onreadystatechange = function (e) {
+//             if (this.readyState == 4 && this.status === 200) {
+//                 data = JSON.parse(Http.responseText);
+//
+//                 if (data.error) {
+//                     var errmsg = document.getElementById('location-message')
+//                     errmsg.style.display = "";
+//                     errmsg.style.height = "80px";
+//                     errmsg.classList.add('usa-alert--error');
+//                     var errtxt = document.getElementsByClassName('usa-alert__text')[0]
+//                     errtxt.innerHTML = "Error: " + data.error;
+//                 } else {
+//                     var lat = document.getElementById('lat');
+//                     var lon = document.getElementById('lon');
+//
+//                     // If daylight saving time applies for this
+//                     // data service, check the appropriate radio button
+//                     if (document.getElementById('dst-radio-1')) {
+//                         if (data.dstexempt === false) {
+//                             var dst_radio_1 = document.getElementById('dst-radio-1');
+//                             dst_radio_1.checked = true;
+//                         } else {
+//                             var dst_radio_0 = document.getElementById('dst-radio-0');
+//                             dst_radio_0.checked = true;
+//                         }
+//                     }
+//
+//                     if (document.getElementById('tz')) {
+//                         var tz = document.getElementById('tz');
+//                         var tz_sign_0 = document.getElementById('tz_sign-0');
+//                         var tz_sign_1 = document.getElementById('tz_sign-1');
+//
+//                         tz.value = Math.abs(data.tz);
+//
+//                         if (parseInt(data.tz) < 0) {
+//                             tz_sign_1.checked = true
+//                         } else {
+//                             tz_sign_0.checked = true
+//                         }
+//                     }
+//
+//                     //var height = document.getElementById('height');
+//
+//                     lat.value = data.latitude;
+//                     lon.value = data.longitude;
+//
+//                     if (document.getElementById('label')) {
+//                         document.getElementById('label').value = data.city + ", " + data.state;
+//                     }
+//
+//                     // Check the box to use US TZ labels in printout
+//                     if (document.getElementById('tz-label-1')) {
+//                         var tz_label = document.getElementById('tz-label-1');
+//                         tz_label.checked = true;
+//                     }
+//
+//                     document.getElementById('location-message').display = "hidden";
+//                     //height.value = data.height
+//                     modal.style.display = "none";
+//                 }
+//             }
+//         }
+//     }
 
     function getFiveDayData() {  // use ajax to get restaurant dat from file
         console.log(convertDate(wx.dt));
@@ -203,7 +209,8 @@ accessibility?
     }
 
     function populateDisplay() {
-        $('#map-area').html(`<div>The map will go here, centered on ${JSON.stringify(location)}</div>`);
+        createMap();
+        //$('#map-area').html(`<div>The map will go here, centered on ${JSON.stringify(location)}</div>`);
         console.log(typeof wx.weather[0].icon);
         let imgURL = `./assets/images/weather/${fileMap.get(wx.weather[0].icon)}`;
         console.log("image look up", imgURL);
@@ -233,8 +240,13 @@ accessibility?
     }
 
     function setDayNightBG() {
-        // if it is day time toggle the daybg/nightbg classes for the card images
-        $('#current-img-cont').toggleClass("day-bg");//<i class="bi bi-clouds-fill"></i>
+        if (wx.dt < wx.sys.sunrise || wx.dt > wx.sys.sunset) {
+            $('#current-img-cont')
+                .attr('class', 'night-bg');
+        } else {
+            $('#current-img-cont')
+                .attr('class', 'day-bg');
+        }
     }
 
     function formatDirection(dir) {
@@ -266,5 +278,119 @@ accessibility?
         return dirStr;
     }
 
+    function createMap() {// Create and set map on City Center
+        map = new mapboxgl.Map({
+            container: 'map', // container ID
+            style: 'mapbox://styles/mapbox/streets-v11', // style URL
+            center: [location.lon, location.lat], // starting position [lng, lat]
+            zoom: 10, // starting zoom
+            projection: 'globe', // display the map as a 3D globe
+            boxZoom: false,
+            doubleClickZoom: false,
+            dragRotate: false,
+            pitchWithRotate: false,
+        });
+        geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl
+        });
+        map.addControl(geocoder);
+        console.log("prox - ", geocoder.getProximity());
+        map.on('style.load', () => {  // don't do stuff until map loads
+            setTimeout(() => {  // after style loads on map, wait 1.5 seconds to build markers and start icon animations
+                buildMarkersAndPopups();
+            }, 1500)
+            map.resize();
+        }).on('moveend', () => {
+            let nc = map.getCenter();
+            console.log("new center - ", nc);
+            location = {
+                "lat": nc.lat, "lon": nc.lng
+            };
+            if (gcFlag === true) {
+                gcFlag = false;
+                getLocalWxData();
+            }
+        });
+        geocoder.on('result', () => {
+            console.log('geocoder relocate event has occurred.');
+            gcFlag = true;
+        });
+    }
+
+    function buildMarkersAndPopups() {
+        // create a HTML element for each feature
+        popup = new mapboxgl.Popup()
+            .setLngLat([location.lon, location.lat])  // set location on map
+            // inject html to make it a bootstrap card
+            .setHTML(`<div class="card">
+                            <div class="card-body">
+                                <div class="card-title"><strong>Current Location</strong></div><hr/>
+                                <div class="card-subtitle text-muted"><em>location name</em></div><hr/>
+                                <div class="card-text">${[location.lat, location.lon]}</div>
+                            </div>
+                        </div>`);
+        marker = new mapboxgl.Marker({
+            draggable: true
+        })  // make the marker inside our new div
+            .setLngLat([location.lon, location.lat])
+            .addTo(map)
+            .setPopup(popup);
+        marker.on('dragend', onDragEnd);
+        popup.addTo(map);
+        if (popup.isOpen) {  // keeps popups from being open at startup
+            marker.togglePopup();
+        }
+    }
+
+    function onDragEnd() {
+        let reposition = marker.getLngLat();
+        location = {"lat": reposition.lat, "lon": reposition.lng};
+        console.log(location);
+        map.setZoom(10);
+        getLocalWxData();
+    }
+
+    function recenter(e) {
+        e.preventDefault(); //  prevent page refresh
+        let newAddress = document.querySelector('#recenter-address').value; // gets value from inout
+        geocode(newAddress, MAPBOX_KEY).then(function (coordinates) {  // get lngLat from address
+            // create a HTML element for each feature
+            const el = document.createElement('div');
+            el.className = 'custom-marker';
+            el.id = 'marker' + places.length;
+            el.setAttribute("style", `margin-top: 3px; background-image:url("../assets/icons/noun-location-5256157.png");`);
+            let popup = new mapboxgl.Popup() //  next 10 or 15 lines are similar to function above, consider refactoring
+                .setLngLat(coordinates)
+                .setHTML(`<div class="card">
+                            <div class="card-body">
+                                <div class="card-title"><strong>${newAddress}</strong></div><hr/>
+                                <div class="card-subtitle text-muted"><em>${coordinates}</em></div>
+                            </div>
+                        </div>`);
+            let marker = new mapboxgl.Marker(el)
+                .setLngLat(coordinates)
+                .addTo(map)
+                .setPopup(popup);
+            popup.addTo(map);
+            if (popup.isOpen) {
+                marker.togglePopup();
+            }
+            let bouncing = true;
+            let bounceFrames = 0;
+            places.push({popup, marker, bouncing, bounceFrames});
+            map.flyTo({  // recenters map with a flight animation
+                center: coordinates,
+                speed: 0.5,
+                curve: 0.5,
+                duration: 5000,
+                easing(t) {
+                    return t;
+                }
+            });
+        });
+    }
+
+    console.log(location);
     getFileMap();
 }());
