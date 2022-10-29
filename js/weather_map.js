@@ -2,10 +2,6 @@
 /*
 TODO:
 
-incorporate map
-marker drag = new api call
-form - turn button into text input for zipcode, add event handler and clientside validation
-use flyto anim for new zipcode
 add comments
 remove superfluous comments and garbage
 organize and consolidate css file
@@ -14,15 +10,11 @@ accessibility?
  */
 (function () {
     let wx;
-    let newZipCode = "75238";//"02108";//"99762";// "96707";
-    let zipCode = "";
-    let newLocation = {"lat": 32.869, "lon": -96.703};
+    let newZipCode = "96707";
     let location = "";
-    let newLocName = "Dallas";
     let locName = "";
     let fileMap = new Map();
     let timeShift;
-    let sunMoon;
     let fiveDay;
     mapboxgl.accessToken = MAPBOX_KEY;
     let map;
@@ -39,7 +31,6 @@ accessibility?
             data.forEach((element) => {
                 fileMap.set(element.code, element.file);
             });
-            //console.log(fileMap.get('04d'));
             lookUpLatLongByZip(newZipCode);  // start with zip code
         }).fail(function (jqXhr, status, error) {
             alert("There was an error with the file map! Check the console for details");
@@ -62,7 +53,6 @@ accessibility?
 
     function getLocalWxData() {  // use ajax to get restaurant dat from file
         let url = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&units=imperial&appid=${OPEN_WX_MAP_KEY}`
-        //console.log(url);
         $.get(url).done(function (data) {// once we have lat lon from zip code get the local area name
             wx = data;  // assign file contents to global variable
             timeShift = wx.timezone / 3600;
@@ -88,113 +78,7 @@ accessibility?
         });
     }
 
-//     function getSunAndMoonData(url) {
-//         let callUrl = `https://aa.usno.navy.mil/api/rstt/oneday?date=${makeSunMoonDate(wx.dt)}&coords=${(location.lat).toFixed(2)},${(location.lon.toFixed(2))}&tz=${timeShift}&dst=true&id=joeybaga`;
-//         fetch(callUrl, {
-//             method: 'GET',
-//             mode: 'no-cors',
-//             crossOrigin: true,
-//             dataType: 'jsonp',
-// //            credentials: 'same-origin',
-// //            headers: {
-//             // 'Access-Control-Allow-Origin': 'http://localhost:8080',
-//             // 'Vary': 'Origin',
-//             // 'Accept': 'application/json',
-// //            },
-//         })
-//             .then((response) => {
-//                 console.log("response - ", response);
-//                 response.text()
-//             })
-//             .then((data) => {
-//                 console.log(data ? JSON.parse(data) : {});
-//                 []
-//                 //sunMoon = data;
-//                 //console.log("sunMoon - ", sunMoon);
-//                 console.log("data - ", data);
-//             })
-//             .then(() => {
-//                 console.log("sun and moon: ", sunMoon);
-//                 getFiveDayData();
-//             })
-//             .catch(errorMsg => {
-//                 console.log("error - ", errorMsg);
-//             });
-//     }
-//
-//     function apiCall() {
-//         const Http = new XMLHttpRequest();
-//         const url = `https://aa.usno.navy.mil/api/rstt/oneday?date=${makeSunMoonDate(wx.dt)}&coords=${(location.lat).toFixed(2)},${(location.lon.toFixed(2))}&tz=${timeShift}&dst=true&id=joeybaga`;
-//         Http.open("GET", url);
-//         Http.send();
-//
-//         Http.onreadystatechange = function (e) {
-//             if (this.readyState == 4 && this.status === 200) {
-//                 data = JSON.parse(Http.responseText);
-//
-//                 if (data.error) {
-//                     var errmsg = document.getElementById('location-message')
-//                     errmsg.style.display = "";
-//                     errmsg.style.height = "80px";
-//                     errmsg.classList.add('usa-alert--error');
-//                     var errtxt = document.getElementsByClassName('usa-alert__text')[0]
-//                     errtxt.innerHTML = "Error: " + data.error;
-//                 } else {
-//                     var lat = document.getElementById('lat');
-//                     var lon = document.getElementById('lon');
-//
-//                     // If daylight saving time applies for this
-//                     // data service, check the appropriate radio button
-//                     if (document.getElementById('dst-radio-1')) {
-//                         if (data.dstexempt === false) {
-//                             var dst_radio_1 = document.getElementById('dst-radio-1');
-//                             dst_radio_1.checked = true;
-//                         } else {
-//                             var dst_radio_0 = document.getElementById('dst-radio-0');
-//                             dst_radio_0.checked = true;
-//                         }
-//                     }
-//
-//                     if (document.getElementById('tz')) {
-//                         var tz = document.getElementById('tz');
-//                         var tz_sign_0 = document.getElementById('tz_sign-0');
-//                         var tz_sign_1 = document.getElementById('tz_sign-1');
-//
-//                         tz.value = Math.abs(data.tz);
-//
-//                         if (parseInt(data.tz) < 0) {
-//                             tz_sign_1.checked = true
-//                         } else {
-//                             tz_sign_0.checked = true
-//                         }
-//                     }
-//
-//                     //var height = document.getElementById('height');
-//
-//                     lat.value = data.latitude;
-//                     lon.value = data.longitude;
-//
-//                     if (document.getElementById('label')) {
-//                         document.getElementById('label').value = data.city + ", " + data.state;
-//                     }
-//
-//                     // Check the box to use US TZ labels in printout
-//                     if (document.getElementById('tz-label-1')) {
-//                         var tz_label = document.getElementById('tz-label-1');
-//                         tz_label.checked = true;
-//                     }
-//
-//                     document.getElementById('location-message').display = "hidden";
-//                     //height.value = data.height
-//                     modal.style.display = "none";
-//                 }
-//             }
-//         }
-//     }
-
     function getFiveDayData() {  // use ajax to get restaurant dat from file
-        console.log(convertDate(wx.dt));
-        console.log(makeSunMoonDate(wx.dt));
         let url = `https://api.openweathermap.org/data/2.5/forecast?lat=${location.lat}&lon=${location.lon}&units=imperial&appid=${OPEN_WX_MAP_KEY}`
         //console.log(url);
         $.get(url).done(function (data) {// once we have lat lon from zip code get the local area name
@@ -211,10 +95,7 @@ accessibility?
 
     function populateDisplay() {
         createMap();
-        //$('#map-area').html(`<div>The map will go here, centered on ${JSON.stringify(location)}</div>`);
-        console.log(typeof wx.weather[0].icon);
         let imgURL = `./assets/images/weather/${fileMap.get(wx.weather[0].icon)}`;
-        console.log("image look up", imgURL);
         //  if it is night sub moon for sun: imgURL something
         setDayNightBG();
         $('#current-img').attr("src", imgURL);
@@ -229,15 +110,6 @@ accessibility?
 
     function convertDate(epoch) {
         return new Date(epoch * 1000).toLocaleString();
-    }
-
-    function makeSunMoonDate(epoch) {
-        let s = new Date(epoch * 1000).toLocaleString();
-        s = s.split(',')[0];
-        let sArr = s.split('/');
-        console.log(s);
-        s = sArr[2] + "-" + sArr[0] + "-" + sArr[1];
-        return s;
     }
 
     function setDayNightBG() {
@@ -279,37 +151,37 @@ accessibility?
         return dirStr;
     }
 
-    function createMap() {// Create and set map on City Center
+    function createMap() {// Create and set map on Lat Lon
         map = new mapboxgl.Map({
             container: 'map', // container ID
-            style: 'mapbox://styles/mapbox/streets-v11', // style URL
+            style: 'mapbox://styles/mapbox/outdoors-v11', // style URL
             center: [location.lon, location.lat], // starting position [lng, lat]
             zoom: 10, // starting zoom
             projection: 'globe', // display the map as a 3D globe
+            // remove some map controls
             boxZoom: false,
             doubleClickZoom: false,
             dragRotate: false,
             pitchWithRotate: false,
         });
-        geocoder = new MapboxGeocoder({
+        geocoder = new MapboxGeocoder({  // adds searchbox from plugin
             accessToken: mapboxgl.accessToken,
             mapboxgl: mapboxgl
         });
         map.addControl(geocoder);
         $('.mapboxgl-ctrl-geocoder--input').attr('placeholder', 'New location');
-        console.log("prox - ", geocoder.getProximity());
+        // waits to build map and ensures map fots container
         map.on('style.load', () => {  // don't do stuff until map loads
             setTimeout(() => {  // after style loads on map, wait 1.5 seconds to build markers and start icon animations
                 buildMarkersAndPopups();
             }, 1500)
             map.resize();
-        }).on('moveend', () => {
-            if (dragFlag === true) {
+        }).on('moveend', () => {  // event to tell when goecoder done moving map
+            if (dragFlag === true) {  //  if map event from dragging marker just reset flag
                 console.log('reset dragging flag');
                 dragFlag = false;
-            } else {
+            } else {  // otherwise get new location and do stuff
                 let nc = map.getCenter();
-                console.log("new center - ", nc);
                 location = {
                     "lat": nc.lat, "lon": nc.lng
                 };
@@ -325,26 +197,26 @@ accessibility?
             }
         });
         geocoder.on('result', () => {
-            console.log('geocoder relocate event has occurred.');
+            // geocoder moved map, get rid of geocoder's marker and set flag
             map._markers[1].remove();
             gcFlag = true;
         });
     }
 
     function buildMarkersAndPopups() {
-        // create a HTML element for each feature
+        // create a HTML element for marker
         popup = new mapboxgl.Popup()
             .setLngLat([location.lon, location.lat])  // set location on map
             // inject html to make it a bootstrap card
             .setHTML(`<div class="card">
                             <div class="card-body">
                                 <div class="card-title"><strong>Current Location</strong></div><hr/>
-                                <div class="card-subtitle text-muted"><em>location name</em></div><hr/>
+                                <div class="card-subtitle text-muted"><em>${locName}</em></div><hr/>
                                 <div class="card-text">${[location.lat, location.lon]}</div>
                             </div>
                         </div>`);
         marker = new mapboxgl.Marker({
-            draggable: true
+            draggable: true,
         })  // make the marker inside our new div
             .setLngLat([location.lon, location.lat])
             .addTo(map)
@@ -361,63 +233,10 @@ accessibility?
         let reposition = marker.getLngLat();
         location = {"lat": reposition.lat, "lon": reposition.lng};
         console.log("dragged - ", location);
-        // map.flyTo({  // recenters map with a flight animation
-        //     center: [location.lon, location.lat],
-        //     speed: 0.5,
-        //     curve: 0.5,
-        //     duration: 5000,
-        //     easing(t) {
-        //         return t;
-        //     }
-        // });
-        //
         marker
             .setLngLat([location.lon, location.lat])
             .addTo(map);
-        ;
-
-        map.setZoom(10);
         getLocalWxData();
-    }
-
-    function recenter(e) {
-        e.preventDefault(); //  prevent page refresh
-        let newAddress = document.querySelector('#recenter-address').value; // gets value from inout
-        geocode(newAddress, MAPBOX_KEY).then(function (coordinates) {  // get lngLat from address
-            // create a HTML element for each feature
-            const el = document.createElement('div');
-            el.className = 'custom-marker';
-            el.id = 'marker' + places.length;
-            el.setAttribute("style", `margin-top: 3px; background-image:url("../assets/icons/noun-location-5256157.png");`);
-            let popup = new mapboxgl.Popup() //  next 10 or 15 lines are similar to function above, consider refactoring
-                .setLngLat(coordinates)
-                .setHTML(`<div class="card">
-                            <div class="card-body">
-                                <div class="card-title"><strong>${newAddress}</strong></div><hr/>
-                                <div class="card-subtitle text-muted"><em>${coordinates}</em></div>
-                            </div>
-                        </div>`);
-            let marker = new mapboxgl.Marker(el)
-                .setLngLat(coordinates)
-                .addTo(map)
-                .setPopup(popup);
-            popup.addTo(map);
-            if (popup.isOpen) {
-                marker.togglePopup();
-            }
-            let bouncing = true;
-            let bounceFrames = 0;
-            places.push({popup, marker, bouncing, bounceFrames});
-            map.flyTo({  // recenters map with a flight animation
-                center: coordinates,
-                speed: 0.5,
-                curve: 0.5,
-                duration: 5000,
-                easing(t) {
-                    return t;
-                }
-            });
-        });
     }
 
     console.log(location);
