@@ -5,6 +5,7 @@
     let newZipCode = "96707";
     let location = "";
     let locName = "";
+    let locData = "";
     let fileMap = new Map();
     let timeShift;
     let fiveDay;
@@ -16,6 +17,7 @@
     let dragFlag = false;
     let popup;
     let countries = new Map();
+    let timestamp;
 
     function getFileMap() { // hash map for icon filenames
         let url = `./data/icon-map.json`
@@ -72,6 +74,7 @@
     function lookUpLocationNameByLatLon(lat, lon) {
         let url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${OPEN_WX_MAP_KEY}`
         $.get(url).done(function (data) { // now that we have lat lon, local wx, and local name from zip, update page
+            locData = data;
             locName = data[0].name;
             if (data[0].state !== undefined) {
                 locName += ", " + data[0].state;
@@ -91,7 +94,7 @@
         let url = `https://api.openweathermap.org/data/2.5/forecast?lat=${location.lat}&lon=${location.lon}&units=imperial&appid=${OPEN_WX_MAP_KEY}`
         $.get(url).done(function (data) {// once we have lat lon from zip code get the local area name
             fiveDay = data;  // assign file contents to global variable
-            populateDisplay();  // now we have the data, fill in the page with the info
+            populateDisplay(); // now we have the data, fill in the page with the info
         }).fail(function (jqXhr, status, error) {
             alert("There was an error getting forecast! Check the console for details");
             console.log("Response status: " + status);
@@ -103,7 +106,11 @@
         if (!map) {
             createMap();
         }
-
+        console.log(location);
+        console.log(locData);
+        console.log(locName);
+        console.log(wx);
+        console.log(fiveDay);
         let iconDescObj;
         let tempObj;
         let windObj;
@@ -111,7 +118,7 @@
         setDayNightBG();
         $('#current-img').attr("src", imgURL);
         $('#current-banner').html("Current Conditions for " + locName);
-        $('#current-date').html(`<b>${convertDate(wx.dt)}</b>`);
+        $('#current-date').html(`<b>${convertDate(wx.dt)}</b></br>Time adjusted to your local timezone`);
         $('#current-desc').html(`<em>${wx.weather[0].description}</em>`);
         $('#current-temps').html(`Temp: <em>${wx.main.temp.toFixed(0)} F</em><br/>Heat index: <em>${wx.main.feels_like.toFixed(0)} F</em><br/>Low: <em>${wx.main.temp_min.toFixed(0)} F</em><br/>High: <em>${wx.main.temp_max.toFixed(0)} F</em>`);
         $('#current-humid').html(`Humidity: <em>${wx.main.humidity}%</em>`);
