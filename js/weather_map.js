@@ -236,7 +236,7 @@
                 location = {
                     "lat": nc.lat, "lon": nc.lng
                 };
-                if (gcFlag === true) {
+                if (gcFlag === true) {  // if it was geocode repos, move marker and get new data
                     gcFlag = false;
                     marker
                         .setLngLat([location.lon, location.lat])
@@ -253,7 +253,7 @@
         });
     }
 
-    function buildMarkersAndPopups() {
+    function buildMarkersAndPopups() {  // put marker on current position and build popup
         // create a HTML element for marker
         popup = new mapboxgl.Popup()
             .setLngLat([location.lon, location.lat])  // set location on map
@@ -278,7 +278,7 @@
         }
     }
 
-    function onDragEnd() {
+    function onDragEnd() {  // I repositioned marker with mouse - move map and get new data
         dragFlag = true;
         let reposition = marker.getLngLat();
         location = {"lat": reposition.lat, "lon": reposition.lng};
@@ -289,7 +289,7 @@
         getLocalWxData();
     }
 
-    function computeForecastIcon(arr, sunrise) {
+    function computeForecastIcon(arr, sunrise) { // get icon for first 3 hour block of day after sunset
         let obj = {icon: '02d', description: 'few clouds'};
         for (let i = 0; i < 8; i++) {
             if (arr[i].dt > sunrise) {
@@ -301,7 +301,7 @@
         return obj;
     }
 
-    function computeForecastTemps(arr) {
+    function computeForecastTemps(arr) {  // scan  portion of 5 day and get avg hi and lo temp for one day
         let tempObj = {'lo': arr[0].main.temp_min, 'hi': arr[0].main.temp_max};
         let loSum = 0;
         let hiSum = 0
@@ -314,7 +314,7 @@
         return tempObj;
     }
 
-    function computerForecastWinds(arr) {
+    function computerForecastWinds(arr) {  // scan portion of 5 day and get avg wind speed and dir for one day
         let windObj = {'deg': arr[0].wind.deg, 'speed': arr[0].wind.speed};
         let degSum = 0;
         let spdSum = 0
