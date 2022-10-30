@@ -1,13 +1,5 @@
 "use strict";
-/*
-TODO:
 
-add comments
-remove superfluous comments and garbage
-organize and consolidate css file
-review and remove superfluous html
-accessibility?
- */
 (function () {
     let wx;
     let newZipCode = "96707";
@@ -23,15 +15,29 @@ accessibility?
     let marker;
     let dragFlag = false;
     let popup;
+    let countries = new Map();
 
-//Moons - Image by <a href="https://www.freepik.com/free-vector/realistic-moon-phases_1087009.htm#page=2&query=moon%20phases&position=6&from_view=search&track=sph">Freepik</a>
     function getFileMap() {
-        let url = `./data/icon-map.json`
-        $.ajax(url).done(function (data) {// once we have lat lon from zip code get the local area name
-            data.forEach((element) => {
+        let url = `./data/icon-map.json`  // hash map for icon filenames
+        $.ajax(url).done(function (data) { // once we have lat lon from zip code get the local area name
+            data.forEach((element) => {  // map the icon names to file names
                 fileMap.set(element.code, element.file);
             });
-            lookUpLatLongByZip(newZipCode);  // start with zip code
+            getCountryCodes();  // get country codes
+        }).fail(function (jqXhr, status, error) {
+            alert("There was an error with the file map! Check the console for details");
+            console.log("Response status: " + status);
+            console.log("Error object: " + error);
+        });
+    }
+
+    function getCountryCodes() {
+        let url = `./data/country-codes.json`  // hash map for icon filenames
+        $.ajax(url).done(function (data) { // once we have lat lon from zip code get the local area name
+            data.forEach((element) => {  // map the icon names to file names
+                countries.set(element.code, element.name);
+            });
+            lookUpLatLongByZip(newZipCode);  // then start with zip code
         }).fail(function (jqXhr, status, error) {
             alert("There was an error with the file map! Check the console for details");
             console.log("Response status: " + status);
@@ -42,8 +48,8 @@ accessibility?
     function lookUpLatLongByZip(zip) {
         let url = `https://api.openweathermap.org/geo/1.0/zip?zip=${zip}&appid=${OPEN_WX_MAP_KEY}`
         $.get(url).done(function (data) {// once we have lat lon from zip code get the local wx
-            location = {"lat": data.lat, "lon": data.lon};
-            getLocalWxData();
+            location = {"lat": data.lat, "lon": data.lon};  // set the location for the api call
+            getLocalWxData();  // do the api call from the lat long
         }).fail(function (jqXhr, status, error) {
             alert("There was an error with zip lookup! Check the console for details");
             console.log("Response status: " + status);
@@ -51,12 +57,11 @@ accessibility?
         });
     }
 
-    function getLocalWxData() {  // use ajax to get restaurant dat from file
+    function getLocalWxData() {  // use ajax to get data from api
         let url = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&units=imperial&appid=${OPEN_WX_MAP_KEY}`
         $.get(url).done(function (data) {// once we have lat lon from zip code get the local area name
             wx = data;  // assign file contents to global variable
-            timeShift = wx.timezone / 3600;
-            lookUpLocationNameByLatLon(location.lat, location.lon);
+            lookUpLocationNameByLatLon(location.lat, location.lon);  // now get local name
         }).fail(function (jqXhr, status, error) {
             alert("There was an error getting local conditions! Check the console for details");
             console.log("Response status: " + status);
@@ -67,8 +72,14 @@ accessibility?
     function lookUpLocationNameByLatLon(lat, lon) {
         let url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${OPEN_WX_MAP_KEY}`
         $.get(url).done(function (data) { // now that we have lat lon, local wx, and local name from zip, update page
-            locName = data[0].name + ", " + data[0].state;
-            getFiveDayData();//getSunAndMoonData();//apiCall();//
+            locName = data[0].name;
+            if (data[0].state !== undefined) {
+                locName += ", " + data[0].state;
+            }
+            if (data[0].country !== undefined) {
+                locName += ", " + countries.get(data[0].country);
+            }
+            getFiveDayData(); // get the forecast data
         }).fail(function (jqXhr, status, error) {
             alert("There was an error with name lookup! Check the console for details");
             console.log("Response status: " + status);
@@ -80,8 +91,7 @@ accessibility?
         let url = `https://api.openweathermap.org/data/2.5/forecast?lat=${location.lat}&lon=${location.lon}&units=imperial&appid=${OPEN_WX_MAP_KEY}`
         $.get(url).done(function (data) {// once we have lat lon from zip code get the local area name
             fiveDay = data;  // assign file contents to global variable
-            timeShift = wx.timezone / 3600;
-            populateDisplay();
+            populateDisplay();  // now we have the data, fill in the page with the info
         }).fail(function (jqXhr, status, error) {
             alert("There was an error getting forecast! Check the console for details");
             console.log("Response status: " + status);
@@ -98,7 +108,6 @@ accessibility?
         let tempObj;
         let windObj;
         let imgURL = `./assets/images/weather/${fileMap.get(wx.weather[0].icon)}`;
-        //  if it is night sub moon for sun: imgURL something
         setDayNightBG();
         $('#current-img').attr("src", imgURL);
         $('#current-banner').html("Current Conditions for " + locName);
@@ -116,7 +125,7 @@ accessibility?
         $('#day-one-date').html(`<b>${convertDate(fiveDay.list[5].dt)}</b>`);
         $('#day-one-desc').html(`<em>${iconDescObj.description}</em>`);
         $('#day-one-temps').html(`Temps:<br/>Low: <em>${tempObj.lo} F</em><br/>High: <em>${tempObj.hi} F</em>`);
-        $('#day-one-wind').html(`Winds:<br/><em>${windObj.deg} at ${windObj.speed} knots</em>`);
+        $('#day-one-wind').html(`Winds:<br/><em>${windObj.deg} at<br/>${windObj.speed} knots</em>`);
 
         iconDescObj = computeForecastIcon(fiveDay.list.slice(8, 17), fiveDay.city.sunrise);
         windObj = computerForecastWinds(fiveDay.list.slice(8, 17));
@@ -124,7 +133,7 @@ accessibility?
         $('#day-two-date').html(`<b>${convertDate(fiveDay.list[13].dt)}</b>`);
         $('#day-two-desc').html(`<em>${iconDescObj.description}</em>`);
         $('#day-two-temps').html(`Temps:<br/>Low: <em>${tempObj.lo} F</em><br/>High: <em>${tempObj.hi} F</em>`);
-        $('#day-two-wind').html(`Winds:<br/><em>${windObj.deg} at ${windObj.speed} knots</em>`);
+        $('#day-two-wind').html(`Winds:<br/><em>${windObj.deg} at<br/>${windObj.speed} knots</em>`);
 
         iconDescObj = computeForecastIcon(fiveDay.list.slice(16, 25), fiveDay.city.sunrise);
         windObj = computerForecastWinds(fiveDay.list.slice(16, 25));
@@ -132,7 +141,7 @@ accessibility?
         $('#day-three-date').html(`<b>${convertDate(fiveDay.list[21].dt)}</b>`);
         $('#day-three-desc').html(`<em>${iconDescObj.description}</em>`);
         $('#day-three-temps').html(`Temps:<br/>Low: <em>${tempObj.lo} F</em><br/>High: <em>${tempObj.hi} F</em>`);
-        $('#day-three-wind').html(`Winds:<br/><em>${windObj.deg} at ${windObj.speed} knots</em>`);
+        $('#day-three-wind').html(`Winds:<br/><em>${windObj.deg} at<br/>${windObj.speed} knots</em>`);
 
         iconDescObj = computeForecastIcon(fiveDay.list.slice(24, 33), fiveDay.city.sunrise);
         windObj = computerForecastWinds(fiveDay.list.slice(24, 33));
@@ -140,15 +149,15 @@ accessibility?
         $('#day-four-date').html(`<b>${convertDate(fiveDay.list[29].dt)}</b>`);
         $('#day-four-desc').html(`<em>${iconDescObj.description}</em>`);
         $('#day-four-temps').html(`Temps:<br/>Low: <em>${tempObj.lo} F</em><br/>High: <em>${tempObj.hi} F</em>`);
-        $('#day-four-wind').html(`Winds:<br/><em>${windObj.deg} at ${windObj.speed} knots</em>`);
+        $('#day-four-wind').html(`Winds:<br/><em>${windObj.deg} at<br/>${windObj.speed} knots</em>`);
 
-        iconDescObj = computeForecastIcon(fiveDay.list.slice(32, 40), fiveDay.city.sunrise);
+        iconDescObj = computeForecastIcon(fiveDay.list.slice(32, 40, fiveDay.city.sunrise));
         windObj = computerForecastWinds(fiveDay.list.slice(32, 40));
         $('#day-five-img').attr("src", `./assets/images/weather/${fileMap.get(iconDescObj.icon)}`);
         $('#day-five-date').html(`<b>${convertDate(fiveDay.list[37].dt)}</b>`);
         $('#day-five-desc').html(`<em>${iconDescObj.description}</em>`);
         $('#day-five-temps').html(`Temps:<br/>Low: <em>${tempObj.lo} F</em><br/>High: <em>${tempObj.hi} F</em>`);
-        $('#day-five-wind').html(`Winds:<br/><em>${windObj.deg} at ${windObj.speed} knots</em>`);
+        $('#day-five-wind').html(`Winds:<br/><em>${windObj.deg} at<br/>${windObj.speed} knots</em>`);
     }
 
     function convertDate(epoch) {

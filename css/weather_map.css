@@ -1,109 +1,7 @@
 /*
+color choices:
 https://nasa.github.io/nasawds-site/components/colors/
-
-Primary colors
-This palette’s primary colors are blue, black, and white. Blue is commonly
-associated with trust, confidence, and sincerity; it is also used to
-represent calmness and responsibility.
-#105bd8
-$color-primary
-#0b3d91
-$color-primary-darker
-#061f4a
-$color-primary-darkest
-#212121
-$color-base
-#323a45
-$color-gray-dark
-#aeb0b5
-$color-gray-light
-#ffffff
-$color-white
-
-Secondary colors
-These are accent colors to provide additional lightness and style to pages looking
-for a more modern flair. These colors should be used to highlight important features
-on a page, such as buttons, or for visual style elements, such as illustrations.
-They should be used sparingly and never draw the eye to more than one piece of
-information at a time.
-#02bfe7
-$color-primary-alt
-#046b99
-$color-primary-alt-darkest
-#00a6d2
-$color-primary-alt-dark
-#9bdaf1
-$color-primary-alt-light
-#e1f3f8
-$color-primary-alt-lightest
-
-#dd361c
-$color-secondary
-#99231b
-$color-secondary-darkest
-#c62d1f
-$color-secondary-dark
-#e59892
-$color-secondary-light
-#f9e0de
-$color-secondary-lightest
-
-Background colors
-These colors are used largely for background blocks and large content areas.
-When alternating between tones, be sure to use enough contrast between adjacent colors.
-#323a45
-$color-gray-dark
-#5b616b
-$color-gray
-#aeb0b5
-$color-gray-light
-#d6d7d9
-$color-gray-lighter
-#f1f1f1
-$color-gray-lightest
-#494440
-$color-gray-warm-dark
-#e4e2e0
-$color-gray-warm-light
-#061f4a
-$color-primary-darkest
-#dce4ef
-$color-gray-cool-light
-
-Tertiary colors
-These colors are used primarily for content-specific needs, such
-as alerts and illustrations. They should never overpower the primary colors.
-#ff9d1e
-$color-gold
-#f9aa43
-$color-gold-light
-#ffc375
-$color-gold-lighter
-#ffebd1
-$color-gold-lightest
-#2e8540
-$color-green
-#4aa564
-$color-green-light
-#94bfa2
-$color-green-lighter
-#e7f4e4
-$color-green-lightest
-#205493
-$color-cool-blue
-#4773aa
-$color-cool-blue-light
-#8ba6ca
-$color-cool-blue-lighter
-#dce4ef
-$color-cool-blue-lightest
-
-Special state colors
-#aeb0b5
-$color-focus
-#4c2c92
-$color-visited
- */
+*/
 
 html {
     box-sizing: border-box;
@@ -126,7 +24,7 @@ div {
     animation-fill-mode: forwards;
 }
 
-@keyframes fadeInAnimation {
+@keyframes fadeInAnimation { /*for div fade-in */
     0% {
         opacity: 0;
     }
@@ -147,12 +45,14 @@ div {
     background-color: #e1f3f8;
 }
 
-#current-banner, #forecast-banner {
-    color: #ffffff;
-}
-
 .day-bg {
     background: linear-gradient(to top, #92C0DC, #366DC3);
+}
+
+.mapboxgl-control-container {
+    height: 0px;
+    padding: 0;
+    margin: 0;
 }
 
 .night-bg {
@@ -186,15 +86,19 @@ div {
     z-index: 1;
 }
 
-#screen {
-    color: black;
-    background-color: rgba(200, 200, 200, .25);
-    padding: 5px;
-    border-radius: 10px
+#current-banner, #forecast-banner {
+    color: #ffffff;
 }
 
 #map {
     height: 100%;
     width: 100%;
     min-height: 500px;
+}
+
+#screen {
+    color: black;
+    background-color: rgba(200, 200, 200, .25);
+    padding: 5px;
+    border-radius: 10px
 }
