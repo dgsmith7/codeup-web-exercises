@@ -43,14 +43,16 @@ users.push({
     email,
     languages
 });
+console.log(users);
 
 // TODO: replace `var` with `let` in the following variable declarations
 let emails = [];
 let names = [];
-
+console.log(...emails, ...names);
 // TODO: rewrite the following using arrow functions
 users.forEach(user => emails.push(user.email));
 users.forEach(user => names.push(user.name));
+console.log(...users);
 
 // TODO: replace `var` with `let` in the following declaration
 let developers = [];
@@ -62,6 +64,7 @@ users.forEach(function (user) {
 
     // TODO: rewrite the assignment below to use template strings
     developers.push(`${name}\'s email is ${email}.  ${name} knows ${languages.join(', ')}`);
+    console.log(...developers);
 });
 
 // TODO: Use `let` for the following variable
@@ -74,3 +77,4 @@ developers.forEach(function (developer) {
     list += `<li>${developer}</li>`;
 });
 list += '</ul>';
+document.getElementById('dev-list').innerHTML = list;
