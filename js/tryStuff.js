@@ -272,7 +272,10 @@
     })();
 
      */
-  
+    const person = {name: 'codeup', age: 4};
+    const {name, age} = person;
+    console.log(name); // 'codeup'
+    console.log(age); // 4
 })();
 
 
