@@ -2,7 +2,7 @@
 
 (function () {
     let wx;
-    let newZipCode = "96707";
+    let newZipCode = "75238";
     let location = "";
     let locName = "";
     let locData = "";
