@@ -55,7 +55,7 @@
     let yrsExpTotal = users.reduce((total, exp) => {
         return total + exp.yearsOfExperience;
     }, 0);
-    console.log(yrsExpTotal);
+    console.log(yrsExpTotal / users.length);
     /*    Use .reduce to get the longest email from the list of users.
     */
     let longestEmail = users.reduce((longest, user) => {
