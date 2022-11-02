@@ -272,24 +272,46 @@
     })();
 
      */
-    function makeRequest() {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if (Math.random() > 0.1) {
-                    resolve('Here is your data: ...');
-                } else {
-                    reject('Network Connection Error!');
-                }
-            }, 0);
-        });
-    }
 
-    const request = makeRequest();
-    console.log(request); // pending promise
-    request.then(message => console.log('Promise resolved!', message));
-// if resolved, will log "Promise resolved!" and "Here is your data: ..."
-    request.catch(message => console.log('Promise rejected!', message));
-// if rejected, will log "Promise rejected!" and "Network Connection Error!"
+    //https://aa.usno.navy.mil/api/rstt/oneday?date=2005-09-20&coords=47.60,-122.33&tz=-8&dst=true
+// put the try catch and asynch stuff here like example on mdn
+    fetch('https://aa.usno.navy.mil/api/rstt/oneday?date=2005-09-20&coords=47.60,-122.33&tz=-8&dst=true',
+        {
+            mode: 'cors', // no-cors, *cors, same-origin
+            //          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+//            credentials: 'include', // include, *same-origin, omit
+            credentials: 'same-origin',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(response => console.log(response))
+        //        .then(data => console.log(data))
+        .catch(error => console.error(error));
+
+    //  console.log("still running");
+//     function makeRequest() {
+//         return new Promise((resolve, reject) => {
+//             setTimeout(() => {
+//                 if (Math.random() > 0.1) {
+//                     resolve('Here is your data: ...');
+//                 } else {
+//                     reject('Network Connection Error!');
+//                 }
+//             }, 0);
+//         });
+//     }
+//
+//     const request = makeRequest();
+//     console.log(request); // pending promise
+//     request.then(message => console.log('Promise resolved!', message));
+// // if resolved, will log "Promise resolved!" and "Here is your data: ..."
+//     request.catch(message => console.log('Promise rejected!', message));
+// // if rejected, will log "Promise rejected!" and "Network Connection Error!"
+//
+
+
 })();
 
 

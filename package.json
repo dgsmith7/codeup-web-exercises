@@ -2,5 +2,6 @@
   "name": "codeup-web-exercises",
   "version": "1.0.0",
   "dependencies": {
+    "octokit": "^2.0.10"
   }
 }
