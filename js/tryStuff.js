@@ -275,22 +275,31 @@
 
     //https://aa.usno.navy.mil/api/rstt/oneday?date=2005-09-20&coords=47.60,-122.33&tz=-8&dst=true
 // put the try catch and asynch stuff here like example on mdn
-    fetch('https://aa.usno.navy.mil/api/rstt/oneday?date=2005-09-20&coords=47.60,-122.33&tz=-8&dst=true',
-        {
-            mode: 'cors', // no-cors, *cors, same-origin
-            //          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-//            credentials: 'include', // include, *same-origin, omit
-            credentials: 'same-origin',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-        })
-        .then(response => console.log(response))
-        //        .then(data => console.log(data))
-        .catch(error => console.error(error));
+
 
     //  console.log("still running");
+//
+//     try {
+//         fetch('https://aa.usno.navy.mil/api/rstt/oneday?date=2005-09-20&coords=47.60,-122.33&tz=-8&dst=true',
+//             {
+//                 mode: 'cors', // no-cors, *cors, same-origin
+//                 //          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+// //            credentials: 'include', // include, *same-origin, omit
+//                 credentials: 'same-origin',
+//                 headers: {
+//                     'Access-Control-Allow-Origin': 'http://localhost:8080',
+//                     'Accept': 'application/json',
+//                     'Content-Type': 'application/json'
+//
+//                 }
+//
+//             })
+//             .then(response => console.log(response))
+//             //        .then(data => console.log(data))
+//             .catch(error => console.error("from fetch - ", error));
+//     } catch (error) {
+//         console.log("from catch - ", (error));
+//     }
 //     function makeRequest() {
 //         return new Promise((resolve, reject) => {
 //             setTimeout(() => {
@@ -310,8 +319,113 @@
 //     request.catch(message => console.log('Promise rejected!', message));
 // // if rejected, will log "Promise rejected!" and "Network Connection Error!"
 //
+//-------------------------------------------
+
+    let movieDB;
+
+    function addMovie() {
+        //  https://northern-magenta-cashew.glitch.me/movies
+        const blogPost = {title: 'Apocalypse Now', genre: 'Vietnam', rating: 'R', director: 'Francis Ford Coppola'};
+        const url = 'https://northern-magenta-cashew.glitch.me/movies';
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(blogPost),
+        };
+        fetch(url, options)
+            .then(/* post was created successfully */)
+            .catch(/* handle errors */);
+    }
+
+    function deleteMovie(id) {
+        //  https://northern-magenta-cashew.glitch.me/movies
+        const url = `https://northern-magenta-cashew.glitch.me/movies/${id}`;
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        fetch(url, options)
+            .then(/* post was created successfully */)
+            .catch(/* handle errors */);
+
+    }
+
+    function editMovie(id) {//  PUT is basically the same as replace, and PATCH is the same as append
+        //  https://northern-magenta-cashew.glitch.me/movies
+        const bod = {plot: 'An Army Captain is sent to assassinate a Colonel in his own army.'};
+        const url = `https://northern-magenta-cashew.glitch.me/movies/${id}`;
+        const options = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bod),
+        };
+        fetch(url, options)
+            .then(/* post was created successfully */)
+            .catch(/* handle errors */);
+    };
+
+    function getEntireDB() {
+        const url = 'https://northern-magenta-cashew.glitch.me/movies';
+        return fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+                movieDB = getEntireDB();
+                console.log('in it - ', movieDB)
+                getRidOfArrays();
+            })
+            .catch(/* handle errors */);
+    }
 
 
+    function getRidOfArrays() {
+        let movieObjs = movieDB.filter(n => typeof n === 'object' && n.length === undefined);
+        console.log(...movieObjs);
+    }
+
+    function getPoster() {
+        //https://api.movieposterdb.com/v1/posters
+        const url = `https://api.themoviedb.org/3/movie/550?api_key=${TMDB_KEY}`;
+        const options = {
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer 2|orm8s8TMSQSZcziQOXZwOgmRsrsW233VqoAP5oeU',
+                Accept: 'application/json'
+            },
+        };
+        fetch(url, options)
+            .then((result) => result.json())
+            .then((result) = console.log(result))
+            .catch(/* handle errors */);
+    }
+
+    function authenticate() {
+        //https://www.themoviedb.org/authenticate/${TMDB_KEY}/search/movie
+        //https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&query='Pulp%20Fiction'&language=en-US&page=1&include_adult=false
+        const url = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&query='Pulp%20Fiction'&language=en-US&page=1&include_adult=false`;
+        const options = {
+            method: 'GET',
+        };
+        fetch(url, options)
+            .then((result) => result.json())
+            .then((result) => {
+                $('#poster').css('background-image', `url("https://image.tmdb.org/t/p/original${result.results[0].poster_path}")`);
+//                console.log(result[0].poster_path);
+                console.log(result.results[0].poster_path);
+            })
+            .catch(/* handle errors */);
+    }
+
+    //addMovie();
+    //deleteMovie(288);
+    // editMovie(288);
+    console.log(authenticate());
+    //getPoster();
 })();
 
 
