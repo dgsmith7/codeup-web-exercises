@@ -406,8 +406,8 @@
 
     function authenticate() {
         //https://www.themoviedb.org/authenticate/${TMDB_KEY}/search/movie
-        //https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&query='Pulp%20Fiction'&language=en-US&page=1&include_adult=false
-        const url = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&query='Pulp%20Fiction'&language=en-US&page=1&include_adult=false`;
+        //https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&query='Apocalypse%20Now'&language=en-US&page=1&include_adult=false
+        const url = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&query='Apocalypse%20Now'&language=en-US&page=1&include_adult=false`;
         const options = {
             method: 'GET',
         };
